@@ -15,7 +15,7 @@ function App() {
 		setIsError(false);
 		setIsLoading(true);
 		fetch(
-			`https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=${year}&with_genres=${genre}&with_watch_monetization_types=flatrate`
+			`https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_year=${year}&with_genres=${genre}&with_watch_monetization_types=flatrate`
 		)
 			.then((response) => response.json())
 			.then((json) => {
