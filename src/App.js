@@ -8,6 +8,7 @@ function App() {
 	const [movies, setMovies] = useState([]);
 	const [genre, setGenre] = useState("27");
 	const [year, setYear] = useState(1980);
+	const [decade, setDecade] = useState(1989);
 	const [watchProvider, setWatchProvider] = useState("8");
 
 	const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +18,7 @@ function App() {
 		setIsError(false);
 		setIsLoading(true);
 		fetch(
-			`https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_year=${year}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`
+			`https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=${year}&primary_release_date.lte=${decade}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`
 		)
 			.then((response) => response.json())
 			.then((json) => {
@@ -29,10 +30,18 @@ function App() {
 
 	useEffect(loadMovies, [genre, year, watchProvider]);
 
+	useEffect(() => {
+		const startYear = parseInt(year);
+		const endYear = startYear + 10;
+		console.log(`endYear = ${endYear}`);
+		setDecade(endYear);
+	}, [year]);
+
 	console.log(movies);
 	console.log(genre);
 	console.log(year);
 	console.log(watchProvider);
+	console.log(decade);
 
 	const getContent = () => {
 		if (isError) {
@@ -70,10 +79,10 @@ function App() {
 					name="yearSelect"
 					onChange={(e) => setYear(e.currentTarget.value)}
 				>
-					<option value="1980">1980</option>
-					<option value="1990">1990</option>
-					<option value="2000">2000</option>
-					<option value="2010">2010</option>
+					<option value="1980">1980's</option>
+					<option value="1990">1990's</option>
+					<option value="2000">2000's</option>
+					<option value="2010">2010's</option>
 				</select>
 				<p>choose a streaming service</p>
 				<select
