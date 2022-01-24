@@ -12,7 +12,7 @@ function App() {
 	const [watchProvider, setWatchProvider] = useState("8");
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
-	const url = `https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=${year}&primary_release_date.lte=${decade}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`;
+	const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=${year}&primary_release_date.lte=${decade}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`;
 
 	const loadMovies = () => {
 		setIsError(false);
