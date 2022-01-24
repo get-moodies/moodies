@@ -48,7 +48,8 @@ function App() {
 		if (isLoading) {
 			return (
 				<div>
-					<img src={face} className="Load-spinner" alt="cage face" />
+					<img src={face} className="Load-spinner " alt="cage face" />
+					<p>loading...</p>
 				</div>
 			);
 		}
