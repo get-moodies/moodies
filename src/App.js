@@ -10,16 +10,14 @@ function App() {
 	const [year, setYear] = useState(1980);
 	const [decade, setDecade] = useState(1989);
 	const [watchProvider, setWatchProvider] = useState("8");
-
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
+	const url = `https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=${year}&primary_release_date.lte=${decade}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`;
 
 	const loadMovies = () => {
 		setIsError(false);
 		setIsLoading(true);
-		fetch(
-			`https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=${year}&primary_release_date.lte=${decade}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`
-		)
+		fetch(url)
 			.then((response) => response.json())
 			.then((json) => {
 				setIsLoading(false);
@@ -28,20 +26,20 @@ function App() {
 			.catch((err) => setIsError(true));
 	};
 
-	useEffect(loadMovies, [genre, year, watchProvider]);
+	useEffect(loadMovies, [genre, watchProvider, decade]);
 
 	useEffect(() => {
 		const startYear = parseInt(year);
 		const endYear = startYear + 10;
-		console.log(`endYear = ${endYear}`);
 		setDecade(endYear);
 	}, [year]);
 
 	console.log(movies);
-	console.log(genre);
-	console.log(year);
-	console.log(watchProvider);
-	console.log(decade);
+	console.log(`genre id is ${genre}`);
+	console.log(`watch povider id is ${watchProvider}`);
+	console.log(`start year is ${year}`);
+	console.log(`end year is ${decade}`);
+	console.log(`url is ${url}`);
 
 	const getContent = () => {
 		if (isError) {
