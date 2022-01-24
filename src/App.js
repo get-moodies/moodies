@@ -48,7 +48,7 @@ function App() {
 		if (isLoading) {
 			return (
 				<div>
-					<p>loading</p>
+					<img src={face} className="App-logo" alt="cage face" />
 				</div>
 			);
 		}
@@ -61,7 +61,7 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<img src={face} className="App-logo" alt="logo" />
+				<img src={face} className="App-logo" alt="cage face" />
 				<p>choose a genre</p>
 				<select
 					name="genreSelect"
