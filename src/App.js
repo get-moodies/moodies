@@ -62,7 +62,7 @@ function App() {
 					<option value="35">comedy</option>
 					<option value="53">thriller</option>
 				</select>
-				<p>choose a decade</p>
+				<p>choose a year</p>
 				<select
 					name="yearDrop"
 					onChange={(e) => setYear(e.currentTarget.value)}
