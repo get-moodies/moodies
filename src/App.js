@@ -8,6 +8,8 @@ function App() {
 	const [movies, setMovies] = useState([]);
 	const [genre, setGenre] = useState("27");
 	const [year, setYear] = useState(1980);
+	const [watchProvider, setWatchProvider] = useState("8");
+
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
 
@@ -15,7 +17,7 @@ function App() {
 		setIsError(false);
 		setIsLoading(true);
 		fetch(
-			`https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_year=${year}&with_genres=${genre}&with_watch_monetization_types=flatrate`
+			`https://api.themoviedb.org/3/discover/movie?api_key=d9744b937e412f755a8bf029eadabb81&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_year=${year}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`
 		)
 			.then((response) => response.json())
 			.then((json) => {
@@ -25,11 +27,12 @@ function App() {
 			.catch((err) => setIsError(true));
 	};
 
-	useEffect(loadMovies, [genre, year]);
+	useEffect(loadMovies, [genre, year, watchProvider]);
 
 	console.log(movies);
 	console.log(genre);
 	console.log(year);
+	console.log(watchProvider);
 
 	const getContent = () => {
 		if (isError) {
@@ -54,7 +57,7 @@ function App() {
 				<img src={face} className="App-logo" alt="logo" />
 				<p>choose a genre</p>
 				<select
-					name="genreDrop"
+					name="genreSelect"
 					onChange={(e) => setGenre(e.currentTarget.value)}
 				>
 					<option value="27">horror</option>
@@ -64,13 +67,22 @@ function App() {
 				</select>
 				<p>choose a year</p>
 				<select
-					name="yearDrop"
+					name="yearSelect"
 					onChange={(e) => setYear(e.currentTarget.value)}
 				>
 					<option value="1980">1980</option>
 					<option value="1990">1990</option>
 					<option value="2000">2000</option>
 					<option value="2010">2010</option>
+				</select>
+				<p>choose a streaming service</p>
+				<select
+					name="serviceSelect"
+					onChange={(e) => setWatchProvider(e.currentTarget.value)}
+				>
+					<option value="8">Netflix</option>
+					<option value="337">Disney +</option>
+					<option value="9">Amazon Prime</option>
 				</select>
 				{/* <br />
 				<button>submit</button> */}
