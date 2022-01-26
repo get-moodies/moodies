@@ -8,17 +8,17 @@ body {
 }
 
 .App {
-	background-color: #6366f1;
-	animation: bodyHue 360s alternate infinite;
+	background-color: #10b981;
+	animation: bodyHue 60s alternate infinite;
 	text-align: center;
 }
 
 @keyframes bodyHue {
 	from {
-		filter: hue-rotate(0deg);
+		filter: hue-rotate(180deg);
 	}
 	to {
-		filter: hue-rotate(360deg);
+		filter: hue-rotate(0deg);
 	}
 }
 
