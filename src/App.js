@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import face from "./face.png";
 import "./App.css";
 import MovieList from "./MovieList";
@@ -61,8 +60,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={face} className="App-logo" alt="cage face" />
+			<header></header>
+			<main className="App-main">
 				<p>choose a genre</p>
 				<select
 					name="genreSelect"
@@ -102,7 +101,7 @@ function App() {
 				<button>submit</button> */}
 				<br />
 				{getContent()}
-			</header>
+			</main>
 		</div>
 	);
 }
