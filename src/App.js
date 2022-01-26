@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
 import face from "./face.png";
-import "./App.css";
+import "./index.css";
 
-import MovieList from "./MovieList";
+import MovieList from "./components/MovieList";
+import Header from "./components/Header";
 import Bubbles from "./Bubbles";
 
 const genera = [{name:"sci-fi",id:878,image:""},
@@ -11,7 +12,6 @@ const genera = [{name:"sci-fi",id:878,image:""},
 				{name:"adventure",id:12,image:""},
 				{name:"thriller",id:53,image:""}
 				]
-
 
 function App() {
 	const [movies, setMovies] = useState([]);
@@ -68,52 +68,55 @@ function App() {
 	};
 
 	return (
-		<div className="App">
-			<header></header>
-			<main className="App-main">
-				<p>choose a genre</p>
-				<select
-					name="genreSelect"
-					onChange={(e) => setGenre(e.currentTarget.value)}
-				>
-					<option value="18">drama</option>
-					<option value="35">comedy</option>
-					<option value="53">thriller</option>
-					<option value="12">adventure</option>
-					<option value="878">sci-fi</option>
-					<option value="14">fantasy</option>
-					<option value="27">horror</option>
-					<option value="28">action</option>
-				</select>
-				<p>choose a decade</p>
-				<select
-					name="yearSelect"
-					onChange={(e) => setStartYear(e.currentTarget.value)}
-				>
-					<option value="1960">1960's</option>
-					<option value="1970">1970's</option>
-					<option value="1980">1980's</option>
-					<option value="1990">1990's</option>
-					<option value="2000">2000's</option>
-					<option value="2010">2010's</option>
-				</select>
-				<p>choose a streaming service</p>
-				<select
-					name="serviceSelect"
-					onChange={(e) => setWatchProvider(e.currentTarget.value)}
-				>
-					<option value="8">netflix</option>
-					<option value="337">disney+</option>
-					<option value="9">amazon prime</option>
-				</select>
-				<br />
-				<p>choose a genre</p>
+		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
+			<div className="w-full">
+				<Header />
+				<div className="justify-center  mx-auto text-center">
+					<p>choose a genre</p>
+					<select
+						name="genreSelect"
+						onChange={(e) => setGenre(e.currentTarget.value)}
+					>
+						<option value="18">drama</option>
+						<option value="35">comedy</option>
+						<option value="53">thriller</option>
+						<option value="12">adventure</option>
+						<option value="878">sci-fi</option>
+						<option value="14">fantasy</option>
+						<option value="27">horror</option>
+						<option value="28">action</option>
+					</select>
+					<p>choose a decade</p>
+					<select
+						name="yearSelect"
+						onChange={(e) => setStartYear(e.currentTarget.value)}
+					>
+						<option value="1960">1960's</option>
+						<option value="1970">1970's</option>
+						<option value="1980">1980's</option>
+						<option value="1990">1990's</option>
+						<option value="2000">2000's</option>
+						<option value="2010">2010's</option>
+					</select>
+					<p>choose a streaming service</p>
+					<select
+						name="serviceSelect"
+						onChange={(e) => setWatchProvider(e.currentTarget.value)}
+					>
+						<option value="8">netflix</option>
+						<option value="337">disney+</option>
+						<option value="9">amazon prime</option>
+					</select>
+					<br />
+					<p>choose a genre</p>
 					<Bubbles category={genera}/>
-				<p>choose a decade</p>
+					<p>choose a decade</p>
 					<Bubbles category={genera}/>
-				<br />
-				{getContent()}
-			</main>
+					<br />
+					{getContent()}
+				</div>
+			</div>
+			<div className="backGround"></div>
 		</div>
 	);
 }
