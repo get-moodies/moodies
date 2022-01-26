@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import face from "./face.png";
 import "./App.css";
 import MovieList from "./MovieList";
@@ -12,8 +11,9 @@ function App() {
 	const [watchProvider, setWatchProvider] = useState("8");
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
-	const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=${startYear}&primary_release_date.lte=${endYear}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`;
-
+	
+	const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=${startYear}&primary_release_date.lte=${parseInt(startYear)+9}&with_genres=${genre}&with_watch_providers=${watchProvider}&watch_region=DE&with_watch_monetization_types=flatrate`;
+	
 	const loadMovies = () => {
 		setIsError(false);
 		setIsLoading(true);
@@ -26,13 +26,11 @@ function App() {
 			.catch((err) => setIsError(true));
 	};
 
-	useEffect(loadMovies, [genre, watchProvider, endYear]);
+	useEffect(loadMovies, [genre, watchProvider, startYear]);
 
-	useEffect(() => {
-		const firstYear = parseInt(startYear);
-		const secondYear = firstYear + 9;
-		setEndYear(secondYear);
-	}, [startYear]);
+	// useEffect(() => {
+	// 	setEndYear(parseInt(startYear)+9);
+	// }, [startYear]);
 
 	console.log(movies);
 	console.log(`genre id is ${genre}`);
