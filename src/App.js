@@ -1,7 +1,17 @@
+import { useState, useEffect } from "react";
+
 import face from "./face.png";
 import "./App.css";
+
 import MovieList from "./MovieList";
-import { useState, useEffect } from "react";
+import Bubbles from "./Bubbles";
+
+const genera = [{name:"sci-fi",id:878,image:""},
+				{name:"comedy",id:35,image:""},
+				{name:"adventure",id:12,image:""},
+				{name:"thriller",id:53,image:""}
+				]
+
 
 function App() {
 	const [movies, setMovies] = useState([]);
@@ -32,12 +42,12 @@ function App() {
 	// 	setEndYear(parseInt(startYear)+9);
 	// }, [startYear]);
 
-	console.log(movies);
-	console.log(`genre id is ${genre}`);
-	console.log(`watch provider id is ${watchProvider}`);
-	console.log(`start year is ${startYear}`);
-	console.log(`end year is ${endYear}`);
-	console.log(`url is ${url}`);
+	// console.log(movies);
+	// console.log(`genre id is ${genre}`);
+	// console.log(`watch provider id is ${watchProvider}`);
+	// console.log(`start year is ${startYear}`);
+	// console.log(`end year is ${endYear}`);
+	// console.log(`url is ${url}`);
 
 	const getContent = () => {
 		if (isError) {
@@ -96,8 +106,11 @@ function App() {
 					<option value="337">disney+</option>
 					<option value="9">amazon prime</option>
 				</select>
-				{/* <br />
-				<button>submit</button> */}
+				<br />
+				<p>choose a genre</p>
+					<Bubbles category={genera}/>
+				<p>choose a decade</p>
+					<Bubbles category={genera}/>
 				<br />
 				{getContent()}
 			</main>
