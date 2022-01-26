@@ -1,5 +1,5 @@
 import face from "./face.png";
-import "./App.css";
+import "./index.css";
 import MovieList from "./MovieList";
 import { useState, useEffect } from "react";
 
@@ -60,8 +60,12 @@ function App() {
 
 	return (
 		<div className="App">
-			<header></header>
+			<header>
+				{" "}
+				<h1 className="text-5xl text-white font-medium">moodies</h1>
+			</header>
 			<main className="App-main">
+				<img src={face} alt="cage face" />
 				<p>choose a genre</p>
 				<select
 					name="genreSelect"
@@ -102,6 +106,7 @@ function App() {
 				<br />
 				{getContent()}
 			</main>
+			<div className="backGround"></div>
 		</div>
 	);
 }
