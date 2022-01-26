@@ -9,16 +9,16 @@ body {
 
 .App {
 	background-color: #10b981;
-	animation: bodyHue 60s alternate infinite;
+	animation: bodyHue 120s alternate infinite;
 	text-align: center;
 }
 
 @keyframes bodyHue {
 	from {
-		filter: hue-rotate(180deg);
+		filter: hue-rotate(130deg);
 	}
 	to {
-		filter: hue-rotate(0deg);
+		filter: hue-rotate(20deg);
 	}
 }
 
