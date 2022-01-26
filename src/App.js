@@ -65,7 +65,6 @@ function App() {
 				<h1 className="text-5xl text-white font-medium">moodies</h1>
 			</header>
 			<main className="App-main">
-				<img src={face} alt="cage face" />
 				<p>choose a genre</p>
 				<select
 					name="genreSelect"
