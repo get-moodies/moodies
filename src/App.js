@@ -2,6 +2,8 @@ import face from "./face.png";
 import "./index.css";
 import MovieList from "./components/MovieList";
 import Header from "./components/Header";
+import Button from "./components/Button";
+import ServiceSelector from "./components/ServiceSelector";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -111,9 +113,9 @@ function App() {
 							<option value="9">amazon prime</option>
 						</select>
 						<br />
-						<button className="m-1 my-5 bg-opacity-0 hover:bg-black hover:bg-opacity-20 px-4 py-2 rounded-full font-medium outline outline-offset-0 outline-1 outline-white text-white">
-							submit
-						</button>
+						<br />
+						<ServiceSelector />
+						<Button />
 						<br />
 						{search ? getContent() : <div></div>}
 					</div>
