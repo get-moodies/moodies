@@ -19,9 +19,9 @@ html {
 } */
 
 .backGround {
-	background: #10b981;
+	background: #6366f1;
 	position: absolute;
-	animation: bodyHue 120s alternate infinite;
+	animation: bodyHue 60s alternate infinite;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -31,10 +31,10 @@ html {
 
 @keyframes bodyHue {
 	from {
-		filter: hue-rotate(130deg);
+		filter: hue-rotate(0deg);
 	}
 	to {
-		filter: hue-rotate(20deg);
+		filter: hue-rotate(-70deg);
 	}
 }
 
