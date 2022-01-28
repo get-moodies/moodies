@@ -4,23 +4,14 @@ import "./index.css";
 
 import MovieList from "./components/MovieList";
 import Header from "./components/Header";
-import Button from "./components/Button";
-<<<<<<< HEAD
-import ServiceSelector from "./components/ServiceSelector";
-=======
-import { useState, useEffect } from "react";
->>>>>>> main
 import Bubbles from "./components/Bubbles";
 import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
-<<<<<<< HEAD
-=======
-import { generes, genera, age, providers } from "./data";
->>>>>>> main
 
-import { generes, genera, age} from "./data";
+
+import { generes, genera, age, providers } from "./data";
 import face from "./face.png";
 
 
@@ -62,13 +53,8 @@ function App() {
 		&page=1&primary_release_date.gte=${startYear}
 		&primary_release_date.lte=${endYear}
 		&with_genres=${genreList_URL}
-<<<<<<< HEAD
-		&with_watch_providers=${watchProvider}
-		&watch_region=${region}
-=======
 		&with_watch_providers=${provider_URL}
-		&watch_region=DE
->>>>>>> main
+		&watch_region=${region}
 		&with_watch_monetization_types=flatrate`;
 
 	const loadMovies = () => {
