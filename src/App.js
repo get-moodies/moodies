@@ -5,12 +5,20 @@ import "./index.css";
 import MovieList from "./components/MovieList";
 import Header from "./components/Header";
 import Button from "./components/Button";
+<<<<<<< HEAD
 import ServiceSelector from "./components/ServiceSelector";
+=======
+import { useState, useEffect } from "react";
+>>>>>>> main
 import Bubbles from "./components/Bubbles";
 import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
+<<<<<<< HEAD
+=======
+import { generes, genera, age, providers } from "./data";
+>>>>>>> main
 
 import { generes, genera, age} from "./data";
 import face from "./face.png";
@@ -21,7 +29,9 @@ function App() {
 	const [genre, setGenre] = useState(new Array(generes.length).fill(false));
 	const [startYear, setStartYear] = useState(1950);
 	const [endYear, setEndYear] = useState(2022);
-	const [watchProvider, setWatchProvider] = useState("8");
+	const [watchProvider, setWatchProvider] = useState(
+		new Array(providers.length).fill(false)
+	);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
@@ -29,11 +39,19 @@ function App() {
 	const [region, setRegion] = useState("DE");
 	const [userRegion, setUserRegion] = useState('');
 
+	console.log(movies);
+
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
 		.filter((genre) => genre[0])
 		.map((genre) => generes[genre[1]].id)
 		.join("%2C");
+
+	const provider_URL = [...watchProvider]
+		.map((watchProvider, index) => [watchProvider, index])
+		.filter((watchProvider) => watchProvider[0])
+		.map((watchProvider) => providers[watchProvider[1]].provider_id)
+		.join("|");
 
 	const url = `https://api.themoviedb.org/3/discover/movie?
 		api_key=${process.env.REACT_APP_API_KEY}
@@ -44,8 +62,13 @@ function App() {
 		&page=1&primary_release_date.gte=${startYear}
 		&primary_release_date.lte=${endYear}
 		&with_genres=${genreList_URL}
+<<<<<<< HEAD
 		&with_watch_providers=${watchProvider}
 		&watch_region=${region}
+=======
+		&with_watch_providers=${provider_URL}
+		&watch_region=DE
+>>>>>>> main
 		&with_watch_monetization_types=flatrate`;
 
 	const loadMovies = () => {
@@ -101,6 +124,11 @@ function App() {
 			} else if (year === "start") setStartYear(index);
 			else setEndYear(index);
 		},
+		(index) => {
+			const newProvider = [...watchProvider];
+			newProvider[index] = !newProvider[index];
+			setWatchProvider(newProvider);
+		},
 	];
 	
 	const regionHandler = (region) => setRegion(region)
@@ -115,9 +143,8 @@ function App() {
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
-				
-				<Header region={region} handler={regionHandler}/>
 
+				<Header watchProvider={watchProvider} handler={selectionHandler[2]} region={region} handler={regionHandler} />
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						Which mood are you in?
@@ -138,13 +165,29 @@ function App() {
 
 					<button
 						onClick={() => setIsSubmitted(!isSubmitted)}
-						className="m-1 my-5 bg-opacity-20 bg-black hover:bg-black hover:bg-opacity-40 px-4 py-2 rounded-full font-medium outline outline-offset-0 outline-1 outline-white text-white"
+						className="shadow-lg 
+						m-1 my-5 
+						w-44
+						h-10
+						bg-opacity-40 bg-black 
+						hover:bg-black hover:bg-opacity-60 
+						px-4 py-2 
+						rounded-full 
+						font-medium text-sm text-white"
 					>
 						Show me movies!
 					</button>
 					<button
 						onClick={() => setIsOptionsOn(!isOptionsOn)}
-						className="m-1 my-5 bg-opacity-20 bg-black hover:bg-black hover:bg-opacity-40 px-4 py-2 rounded-full font-medium outline outline-offset-0 outline-1 outline-white text-white"
+						className="shadow-lg 
+						m-1 my-5 
+						w-44
+						h-10
+						bg-opacity-40 bg-black 
+						hover:bg-black hover:bg-opacity-60 
+						px-4 py-2 
+						rounded-full 
+						font-medium text-sm text-white"
 					>
 						Particular Taste?
 					</button>
@@ -169,4 +212,3 @@ function App() {
 }
 
 export default App;
-

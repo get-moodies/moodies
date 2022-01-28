@@ -1,12 +1,12 @@
-import horror from "./images/horror.png"
-import scifi from "./images/scifi.png"
-import western from "./images/western.png"
-import vhs from "./images/90s.png"
-import nineties from "./images/90s2.jpeg"
-import oldies from "./images/oldies2.jpeg"
-import deathstar from './images/DeathStar.png'
-import hero from './images/hero.png'
-import musical from './images/musical.png'
+import horror from "./images/horror.png";
+import scifi from "./images/scifi.png";
+import western from "./images/western.png";
+import vhs from "./images/90s.png";
+import nineties from "./images/90s2.jpeg";
+import oldies from "./images/oldies2.jpeg";
+import deathstar from "./images/DeathStar.png";
+import hero from "./images/hero.png";
+import musical from "./images/musical.png";
 
 const generes = [
     {
@@ -111,13 +111,13 @@ const genera = [{
                 "name": "Crime",
                 image:horror
                 }
-                ]
+]
 const age = [	{name:"oldies",id:'1950',image:oldies},
 				{name:"60s",id:'1960',image:nineties},
 				{name:"70s",id:'1970',image:nineties},
 				{name:"80s",id:'1980',image:musical},
 				{name:"90",id:'1990',image:oldies}
-				]
+]
 const regions = [
     {"isoCode": "AT", "name": "Austria"},
     {"isoCode": "BE", "name": "Belgium"},
@@ -191,4 +191,30 @@ const regions = [
     // {"isoCode": "GG", "name": "Guernsey"},
     // {"isoCode": "GI", "name": "Gibraltar"}
   ]
-    export {generes,genera,age,regions}
+
+  const providers = [
+	{
+		display_priority: 0,
+		logo_path: "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+		provider_name: "Netflix",
+		provider_id: 8,
+	},
+	{
+		display_priority: 1,
+		logo_path: "/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg",
+		provider_name: "Disney Plus",
+		provider_id: 337,
+	},
+	{
+		display_priority: 1,
+		logo_path: "/68MNrwlkpF7WnmNPXLah69CR5cb.jpg",
+		provider_name: "Amazon Prime Video",
+		provider_id: 9,
+	},
+];
+
+
+
+
+
+    export {generes,genera,age,regions,providers}
