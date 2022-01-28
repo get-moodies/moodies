@@ -1,8 +1,8 @@
 export default function MovieList({ movies }) {
 	return movies
 		.splice(0, 3)
-		.map(({ title, overview, backdrop_path, poster_path, release_date }) => (
-			<div className="hover:scale-105 transition-all duration-700 shadow-lg hover:shadow-xl relative max-w-xl h-[150px] mx-auto my-5 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
+		.map(({ title, overview, backdrop_path, poster_path, release_date,id }) => (
+			<div key={id} className="hover:scale-105 transition-all duration-700 shadow-lg hover:shadow-xl relative max-w-xl h-[150px] mx-auto my-5 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
 				<div className="shrink-0 h-[200px] w-[200px] ">
 					<img
 						className="relative -left-10 h-full w-full object-cover object-center [clip-path:circle(45%_at_50%_50%)]"

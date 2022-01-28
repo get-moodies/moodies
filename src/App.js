@@ -1,11 +1,4 @@
-import face from "./face.png";
-// import horror from "./images/horror.png"
-// import scifi from "./images/scifi.png"
-// import western from "./images/western.png"
-// import vhs from "./images/90s.png"
-// import nineties from "./images/90s2.jpeg"
-// import oldies from "./images/oldies2.jpeg"
-// import deathstar from './images/DeathStar.png'
+import { useState, useEffect } from "react";
 
 import "./index.css";
 
@@ -13,17 +6,17 @@ import MovieList from "./components/MovieList";
 import Header from "./components/Header";
 import Button from "./components/Button";
 import ServiceSelector from "./components/ServiceSelector";
-import { useState, useEffect } from "react";
 import Bubbles from "./components/Bubbles";
 import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
-import { generes, genera, age } from "./data";
+
+import { generes, genera, age} from "./data";
+import face from "./face.png";
+
 
 function App() {
-	//const newArray = new Array(generes.length).fill(false);
-
 	const [movies, setMovies] = useState([]);
 	const [genre, setGenre] = useState(new Array(generes.length).fill(false));
 	const [startYear, setStartYear] = useState(1950);
@@ -33,6 +26,8 @@ function App() {
 	const [isError, setIsError] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
+	const [region, setRegion] = useState("DE");
+	const [userRegion, setUserRegion] = useState('');
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -50,7 +45,7 @@ function App() {
 		&primary_release_date.lte=${endYear}
 		&with_genres=${genreList_URL}
 		&with_watch_providers=${watchProvider}
-		&watch_region=DE
+		&watch_region=${region}
 		&with_watch_monetization_types=flatrate`;
 
 	const loadMovies = () => {
@@ -65,14 +60,14 @@ function App() {
 			.catch((err) => setIsError(true));
 	};
 
-	useEffect(loadMovies, [genre, watchProvider, startYear, endYear]);
+	const getUserRegion = () =>
+	fetch('https://geolocation-db.com/json/')
+	.then((response) => response.json())
+	.then((json) => {setUserRegion(json.country_code)})	
 
-	//console.log(movies);
-	// console.log(`genre id is ${genre}`);
-	// console.log(`watch provider id is ${watchProvider}`);
-	// console.log(`start year is ${startYear}`);
-	// console.log(`end year is ${endYear}`);
-	//console.log(`url is ${url}`);
+	useEffect( () => {getUserRegion()}, [])	
+	useEffect(loadMovies, [genre, watchProvider, startYear, endYear,userRegion]);
+	useEffect(()=>setRegion(userRegion),[userRegion])
 
 	const getContent = () => {
 		if (isError) {
@@ -107,11 +102,21 @@ function App() {
 			else setEndYear(index);
 		},
 	];
+	
+	const regionHandler = (region) => setRegion(region)
+
+//console.log(movies);
+	// console.log(`genre id is ${genre}`);
+	// console.log(`watch provider id is ${watchProvider}`);
+	// console.log(`start year is ${startYear}`);
+	// console.log(`end year is ${endYear}`);
+	// console.log(`url is ${url}`);
 
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
-				<Header />
+				
+				<Header region={region} handler={regionHandler}/>
 
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
@@ -165,40 +170,3 @@ function App() {
 
 export default App;
 
-{
-	/* <p>choose a genre</p>
-					<select
-						name="genreSelect"
-						onChange={(e) => setGenre(e.currentTarget.value)}
-					>
-						<option value="18">drama</option>
-						<option value="35">comedy</option>
-						<option value="53">thriller</option>
-						<option value="12">adventure</option>
-						<option value="878">sci-fi</option>
-						<option value="14">fantasy</option>
-						<option value="27">horror</option>
-						<option value="28">action</option>
-					</select>
-					<p>choose a decade</p>
-					<select
-						name="yearSelect"
-						onChange={(e) => setStartYear(e.currentTarget.value)}
-					>
-						<option value="1960">1960's</option>
-						<option value="1970">1970's</option>
-						<option value="1980">1980's</option>
-						<option value="1990">1990's</option>
-						<option value="2000">2000's</option>
-						<option value="2010">2010's</option>
-					</select>
-					<p>choose a streaming service</p>
-					<select
-						name="serviceSelect"
-						onChange={(e) => setWatchProvider(e.currentTarget.value)}
-					>
-						<option value="8">netflix</option>
-						<option value="337">disney+</option>
-						<option value="9">amazon prime</option>
-					</select> */
-}
