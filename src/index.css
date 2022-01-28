@@ -1,3 +1,6 @@
+
+
+
 body {
 	margin: 0;
 	min-height: 100%;
@@ -64,6 +67,19 @@ html {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+.bubbles{
+	left: var(--x1);
+	bottom: var(--y1);
+	border-radius: 5rem;
+	/*border:white solid; */
+}
+.icons{
+	left: var(--x1);
+	bottom: var(--y1);
+	 /* border-radius: 5rem; */
+	/*border:white solid; */
 }
 
 @tailwind base;
