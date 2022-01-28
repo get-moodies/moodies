@@ -3,7 +3,6 @@ import netflix_empty from "../icons/netflix_empty_white.png";
 import disney_empty from "../icons/disney_empty_white.png";
 
 export default function ServiceSelector({ watchProvider, handler }) {
-	console.log(`service page ${watchProvider}`);
 	return (
 		<div
 			className="shadow-lg 

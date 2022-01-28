@@ -98,7 +98,7 @@ function App() {
 		if (!movies.length) {
 			return <div>Nick found no recomendations for you! Try less picky?</div>;
 		}
-		return <MovieList movies={movies} />;
+		return <MovieList movies={movies} watchProvider={watchProvider} />;
 	};
 
 	const selectionHandler = [

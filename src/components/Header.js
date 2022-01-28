@@ -1,7 +1,6 @@
 import ServiceSelector from "./ServiceSelector";
 
 export default function Header({ watchProvider, handler }) {
-	console.log(`header page ${watchProvider}`);
 	return (
 		<div className="flex mb-5 justify-between">
 			<h1 className="text-5xl text-white font-medium">moodies</h1>
