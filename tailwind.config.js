@@ -6,5 +6,5 @@ module.exports = {
 			sans: ["Montserrat", "Arial", "sans-serif"],
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/line-clamp")],
 };
