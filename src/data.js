@@ -121,7 +121,7 @@ const age = [
 	{ name: "90", id: "1990", image: oldies },
 ];
 
-const provider = [
+const providers = [
 	{
 		display_priority: 0,
 		logo_path: "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
@@ -130,16 +130,16 @@ const provider = [
 	},
 	{
 		display_priority: 1,
-		logo_path: "/68MNrwlkpF7WnmNPXLah69CR5cb.jpg",
-		provider_name: "Amazon Prime Video",
-		provider_id: 9,
-	},
-	{
-		display_priority: 1,
 		logo_path: "/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg",
 		provider_name: "Disney Plus",
 		provider_id: 337,
 	},
+	{
+		display_priority: 1,
+		logo_path: "/68MNrwlkpF7WnmNPXLah69CR5cb.jpg",
+		provider_name: "Amazon Prime Video",
+		provider_id: 9,
+	},
 ];
 
-export { generes, genera, age, provider };
+export { generes, genera, age, providers };

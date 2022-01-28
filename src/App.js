@@ -12,14 +12,13 @@ import "./index.css";
 import MovieList from "./components/MovieList";
 import Header from "./components/Header";
 import Button from "./components/Button";
-import ServiceSelector from "./components/ServiceSelector";
 import { useState, useEffect } from "react";
 import Bubbles from "./components/Bubbles";
 import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
-import { generes, genera, age } from "./data";
+import { generes, genera, age, providers } from "./data";
 
 function App() {
 	//const newArray = new Array(generes.length).fill(false);
@@ -28,17 +27,27 @@ function App() {
 	const [genre, setGenre] = useState(new Array(generes.length).fill(false));
 	const [startYear, setStartYear] = useState(1950);
 	const [endYear, setEndYear] = useState(2022);
-	const [watchProvider, setWatchProvider] = useState("8");
+	const [watchProvider, setWatchProvider] = useState(
+		new Array(providers.length).fill(false)
+	);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
+
+	console.log(movies);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
 		.filter((genre) => genre[0])
 		.map((genre) => generes[genre[1]].id)
 		.join("%2C");
+
+	const provider_URL = [...watchProvider]
+		.map((watchProvider, index) => [watchProvider, index])
+		.filter((watchProvider) => watchProvider[0])
+		.map((watchProvider) => providers[watchProvider[1]].provider_id)
+		.join("|");
 
 	const url = `https://api.themoviedb.org/3/discover/movie?
 		api_key=${process.env.REACT_APP_API_KEY}
@@ -49,7 +58,7 @@ function App() {
 		&page=1&primary_release_date.gte=${startYear}
 		&primary_release_date.lte=${endYear}
 		&with_genres=${genreList_URL}
-		&with_watch_providers=${watchProvider}
+		&with_watch_providers=${provider_URL}
 		&watch_region=DE
 		&with_watch_monetization_types=flatrate`;
 
@@ -106,12 +115,17 @@ function App() {
 			} else if (year === "start") setStartYear(index);
 			else setEndYear(index);
 		},
+		(index) => {
+			const newProvider = [...watchProvider];
+			newProvider[index] = !newProvider[index];
+			setWatchProvider(newProvider);
+		},
 	];
 
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
-				<Header />
+				<Header watchProvider={watchProvider} handler={selectionHandler[2]} />
 
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
