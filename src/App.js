@@ -1,28 +1,21 @@
-import face from "./face.png";
-// import horror from "./images/horror.png"
-// import scifi from "./images/scifi.png"
-// import western from "./images/western.png"
-// import vhs from "./images/90s.png"
-// import nineties from "./images/90s2.jpeg"
-// import oldies from "./images/oldies2.jpeg"
-// import deathstar from './images/DeathStar.png'
+import { useState, useEffect } from "react";
 
 import "./index.css";
 
 import MovieList from "./components/MovieList";
 import Header from "./components/Header";
-import Button from "./components/Button";
-import { useState, useEffect } from "react";
 import Bubbles from "./components/Bubbles";
 import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
+
+
 import { generes, genera, age, providers } from "./data";
+import face from "./face.png";
+
 
 function App() {
-	//const newArray = new Array(generes.length).fill(false);
-
 	const [movies, setMovies] = useState([]);
 	const [genre, setGenre] = useState(new Array(generes.length).fill(false));
 	const [startYear, setStartYear] = useState(1950);
@@ -34,6 +27,8 @@ function App() {
 	const [isError, setIsError] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
+	const [region, setRegion] = useState("DE");
+	const [userRegion, setUserRegion] = useState('');
 
 	console.log(movies);
 
@@ -59,7 +54,7 @@ function App() {
 		&primary_release_date.lte=${endYear}
 		&with_genres=${genreList_URL}
 		&with_watch_providers=${provider_URL}
-		&watch_region=DE
+		&watch_region=${region}
 		&with_watch_monetization_types=flatrate`;
 
 	const loadMovies = () => {
@@ -74,14 +69,14 @@ function App() {
 			.catch((err) => setIsError(true));
 	};
 
-	useEffect(loadMovies, [genre, watchProvider, startYear, endYear]);
+	const getUserRegion = () =>
+	fetch('https://geolocation-db.com/json/')
+	.then((response) => response.json())
+	.then((json) => {setUserRegion(json.country_code)})	
 
-	//console.log(movies);
-	// console.log(`genre id is ${genre}`);
-	// console.log(`watch provider id is ${watchProvider}`);
-	// console.log(`start year is ${startYear}`);
-	// console.log(`end year is ${endYear}`);
-	//console.log(`url is ${url}`);
+	useEffect( () => {getUserRegion()}, [])	
+	useEffect(loadMovies, [genre, watchProvider, startYear, endYear,userRegion]);
+	useEffect(()=>setRegion(userRegion),[userRegion])
 
 	const getContent = () => {
 		if (isError) {
@@ -121,12 +116,21 @@ function App() {
 			setWatchProvider(newProvider);
 		},
 	];
+	
+	const regionHandler = (region) => setRegion(region)
+
+//console.log(movies);
+	// console.log(`genre id is ${genre}`);
+	// console.log(`watch provider id is ${watchProvider}`);
+	// console.log(`start year is ${startYear}`);
+	// console.log(`end year is ${endYear}`);
+	// console.log(`url is ${url}`);
 
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
-				<Header watchProvider={watchProvider} handler={selectionHandler[2]} />
 
+				<Header watchProvider={watchProvider} handler={selectionHandler[2]} region={region} handler={regionHandler} />
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						Which mood are you in?

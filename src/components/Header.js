@@ -1,10 +1,17 @@
 import ServiceSelector from "./ServiceSelector";
+import Dropdown from "./RegionDropdown";
 
-export default function Header({ watchProvider, handler }) {
+export default function Header({
+	watchProvider,
+	handler,
+	region,
+	regionHandler,
+}) {
 	return (
 		<div className="flex mb-5 justify-between">
 			<h1 className="text-5xl text-white font-medium">moodies</h1>
 			<div className="flex ">
+				<Dropdown region={region} handler={regionHandler} />
 				<ServiceSelector watchProvider={watchProvider} handler={handler} />
 				<button
 					className="shadow-lg 
