@@ -3,7 +3,8 @@ import Dropdown from "./RegionDropdown";
 
 export default function Header({
 	watchProvider,
-	handler,
+
+	selectionHandler,
 	region,
 	regionHandler,
 }) {
@@ -11,8 +12,11 @@ export default function Header({
 		<div className="flex mb-5 justify-between">
 			<h1 className="text-5xl text-white font-medium">moodies</h1>
 			<div className="flex ">
-				<Dropdown region={region} handler={regionHandler} />
-				<ServiceSelector watchProvider={watchProvider} handler={handler} />
+				<Dropdown region={region} regionHandler={regionHandler} />
+				<ServiceSelector
+					watchProvider={watchProvider}
+					selectionHandler={selectionHandler}
+				/>
 				<button
 					className="shadow-lg 
                             h-10

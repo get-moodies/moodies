@@ -10,10 +10,8 @@ import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
 
-
 import { generes, genera, age, providers } from "./data";
 import face from "./face.png";
-
 
 function App() {
 	const [movies, setMovies] = useState([]);
@@ -28,7 +26,7 @@ function App() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
 	const [region, setRegion] = useState("DE");
-	const [userRegion, setUserRegion] = useState('');
+	const [userRegion, setUserRegion] = useState("");
 
 	console.log(movies);
 
@@ -70,13 +68,17 @@ function App() {
 	};
 
 	const getUserRegion = () =>
-	fetch('https://geolocation-db.com/json/')
-	.then((response) => response.json())
-	.then((json) => {setUserRegion(json.country_code)})	
+		fetch("https://geolocation-db.com/json/")
+			.then((response) => response.json())
+			.then((json) => {
+				setUserRegion(json.country_code);
+			});
 
-	useEffect( () => {getUserRegion()}, [])	
-	useEffect(loadMovies, [genre, watchProvider, startYear, endYear,userRegion]);
-	useEffect(()=>setRegion(userRegion),[userRegion])
+	useEffect(() => {
+		getUserRegion();
+	}, []);
+	useEffect(loadMovies, [genre, watchProvider, startYear, endYear, userRegion]);
+	useEffect(() => setRegion(userRegion), [userRegion]);
 
 	const getContent = () => {
 		if (isError) {
@@ -116,10 +118,10 @@ function App() {
 			setWatchProvider(newProvider);
 		},
 	];
-	
-	const regionHandler = (region) => setRegion(region)
 
-//console.log(movies);
+	const regionHandler = (region) => setRegion(region);
+
+	//console.log(movies);
 	// console.log(`genre id is ${genre}`);
 	// console.log(`watch provider id is ${watchProvider}`);
 	// console.log(`start year is ${startYear}`);
@@ -129,8 +131,12 @@ function App() {
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
-
-				<Header watchProvider={watchProvider} handler={selectionHandler[2]} region={region} handler={regionHandler} />
+				<Header
+					watchProvider={watchProvider}
+					selectionHandler={selectionHandler[2]}
+					region={region}
+					regionHandler={regionHandler}
+				/>
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						Which mood are you in?

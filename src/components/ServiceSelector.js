@@ -2,7 +2,7 @@ import amazon_empty from "../icons/amazon_empty_white.png";
 import netflix_empty from "../icons/netflix_empty_white.png";
 import disney_empty from "../icons/disney_empty_white.png";
 
-export default function ServiceSelector({ watchProvider, handler }) {
+export default function ServiceSelector({ watchProvider, selectionHandler }) {
 	return (
 		<div
 			className="shadow-lg 
@@ -16,7 +16,7 @@ export default function ServiceSelector({ watchProvider, handler }) {
                          px-4 
                         rounded-full"
 		>
-			<button onClick={() => handler(0)}>
+			<button onClick={() => selectionHandler(0)}>
 				<img
 					className={
 						watchProvider[0]
@@ -27,7 +27,7 @@ export default function ServiceSelector({ watchProvider, handler }) {
 					alt="netflix icon"
 				/>
 			</button>
-			<button onClick={() => handler(1)}>
+			<button onClick={() => selectionHandler(1)}>
 				<img
 					className={
 						watchProvider[1]
@@ -38,7 +38,7 @@ export default function ServiceSelector({ watchProvider, handler }) {
 					alt="disney plus icon"
 				/>
 			</button>
-			<button onClick={() => handler(2)}>
+			<button onClick={() => selectionHandler(2)}>
 				<img
 					className={
 						watchProvider[2]
