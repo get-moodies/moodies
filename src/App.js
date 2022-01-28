@@ -12,14 +12,13 @@ import "./index.css";
 import MovieList from "./components/MovieList";
 import Header from "./components/Header";
 import Button from "./components/Button";
-import ServiceSelector from "./components/ServiceSelector";
 import { useState, useEffect } from "react";
 import Bubbles from "./components/Bubbles";
 import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
-import { generes, genera, age } from "./data";
+import { generes, genera, age, providers } from "./data";
 
 function App() {
 	//const newArray = new Array(generes.length).fill(false);
@@ -28,17 +27,27 @@ function App() {
 	const [genre, setGenre] = useState(new Array(generes.length).fill(false));
 	const [startYear, setStartYear] = useState(1950);
 	const [endYear, setEndYear] = useState(2022);
-	const [watchProvider, setWatchProvider] = useState("8");
+	const [watchProvider, setWatchProvider] = useState(
+		new Array(providers.length).fill(false)
+	);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
+
+	console.log(movies);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
 		.filter((genre) => genre[0])
 		.map((genre) => generes[genre[1]].id)
 		.join("%2C");
+
+	const provider_URL = [...watchProvider]
+		.map((watchProvider, index) => [watchProvider, index])
+		.filter((watchProvider) => watchProvider[0])
+		.map((watchProvider) => providers[watchProvider[1]].provider_id)
+		.join("|");
 
 	const url = `https://api.themoviedb.org/3/discover/movie?
 		api_key=${process.env.REACT_APP_API_KEY}
@@ -49,7 +58,7 @@ function App() {
 		&page=1&primary_release_date.gte=${startYear}
 		&primary_release_date.lte=${endYear}
 		&with_genres=${genreList_URL}
-		&with_watch_providers=${watchProvider}
+		&with_watch_providers=${provider_URL}
 		&watch_region=DE
 		&with_watch_monetization_types=flatrate`;
 
@@ -106,12 +115,17 @@ function App() {
 			} else if (year === "start") setStartYear(index);
 			else setEndYear(index);
 		},
+		(index) => {
+			const newProvider = [...watchProvider];
+			newProvider[index] = !newProvider[index];
+			setWatchProvider(newProvider);
+		},
 	];
 
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
-				<Header />
+				<Header watchProvider={watchProvider} handler={selectionHandler[2]} />
 
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
@@ -133,13 +147,29 @@ function App() {
 
 					<button
 						onClick={() => setIsSubmitted(!isSubmitted)}
-						className="m-1 my-5 bg-opacity-20 bg-black hover:bg-black hover:bg-opacity-40 px-4 py-2 rounded-full font-medium outline outline-offset-0 outline-1 outline-white text-white"
+						className="shadow-lg 
+						m-1 my-5 
+						w-44
+						h-10
+						bg-opacity-40 bg-black 
+						hover:bg-black hover:bg-opacity-60 
+						px-4 py-2 
+						rounded-full 
+						font-medium text-sm text-white"
 					>
 						Show me movies!
 					</button>
 					<button
 						onClick={() => setIsOptionsOn(!isOptionsOn)}
-						className="m-1 my-5 bg-opacity-20 bg-black hover:bg-black hover:bg-opacity-40 px-4 py-2 rounded-full font-medium outline outline-offset-0 outline-1 outline-white text-white"
+						className="shadow-lg 
+						m-1 my-5 
+						w-44
+						h-10
+						bg-opacity-40 bg-black 
+						hover:bg-black hover:bg-opacity-60 
+						px-4 py-2 
+						rounded-full 
+						font-medium text-sm text-white"
 					>
 						Particular Taste?
 					</button>
@@ -164,41 +194,3 @@ function App() {
 }
 
 export default App;
-
-{
-	/* <p>choose a genre</p>
-					<select
-						name="genreSelect"
-						onChange={(e) => setGenre(e.currentTarget.value)}
-					>
-						<option value="18">drama</option>
-						<option value="35">comedy</option>
-						<option value="53">thriller</option>
-						<option value="12">adventure</option>
-						<option value="878">sci-fi</option>
-						<option value="14">fantasy</option>
-						<option value="27">horror</option>
-						<option value="28">action</option>
-					</select>
-					<p>choose a decade</p>
-					<select
-						name="yearSelect"
-						onChange={(e) => setStartYear(e.currentTarget.value)}
-					>
-						<option value="1960">1960's</option>
-						<option value="1970">1970's</option>
-						<option value="1980">1980's</option>
-						<option value="1990">1990's</option>
-						<option value="2000">2000's</option>
-						<option value="2010">2010's</option>
-					</select>
-					<p>choose a streaming service</p>
-					<select
-						name="serviceSelect"
-						onChange={(e) => setWatchProvider(e.currentTarget.value)}
-					>
-						<option value="8">netflix</option>
-						<option value="337">disney+</option>
-						<option value="9">amazon prime</option>
-					</select> */
-}
