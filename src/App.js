@@ -133,13 +133,29 @@ function App() {
 
 					<button
 						onClick={() => setIsSubmitted(!isSubmitted)}
-						className="m-1 my-5 bg-opacity-20 bg-black hover:bg-black hover:bg-opacity-40 px-4 py-2 rounded-full font-medium outline outline-offset-0 outline-1 outline-white text-white"
+						className="shadow-lg 
+						m-1 my-5 
+						w-44
+						h-10
+						bg-opacity-40 bg-black 
+						hover:bg-black hover:bg-opacity-60 
+						px-4 py-2 
+						rounded-full 
+						font-medium text-sm text-white"
 					>
 						Show me movies!
 					</button>
 					<button
 						onClick={() => setIsOptionsOn(!isOptionsOn)}
-						className="m-1 my-5 bg-opacity-20 bg-black hover:bg-black hover:bg-opacity-40 px-4 py-2 rounded-full font-medium outline outline-offset-0 outline-1 outline-white text-white"
+						className="shadow-lg 
+						m-1 my-5 
+						w-44
+						h-10
+						bg-opacity-40 bg-black 
+						hover:bg-black hover:bg-opacity-60 
+						px-4 py-2 
+						rounded-full 
+						font-medium text-sm text-white"
 					>
 						Particular Taste?
 					</button>
@@ -164,41 +180,3 @@ function App() {
 }
 
 export default App;
-
-{
-	/* <p>choose a genre</p>
-					<select
-						name="genreSelect"
-						onChange={(e) => setGenre(e.currentTarget.value)}
-					>
-						<option value="18">drama</option>
-						<option value="35">comedy</option>
-						<option value="53">thriller</option>
-						<option value="12">adventure</option>
-						<option value="878">sci-fi</option>
-						<option value="14">fantasy</option>
-						<option value="27">horror</option>
-						<option value="28">action</option>
-					</select>
-					<p>choose a decade</p>
-					<select
-						name="yearSelect"
-						onChange={(e) => setStartYear(e.currentTarget.value)}
-					>
-						<option value="1960">1960's</option>
-						<option value="1970">1970's</option>
-						<option value="1980">1980's</option>
-						<option value="1990">1990's</option>
-						<option value="2000">2000's</option>
-						<option value="2010">2010's</option>
-					</select>
-					<p>choose a streaming service</p>
-					<select
-						name="serviceSelect"
-						onChange={(e) => setWatchProvider(e.currentTarget.value)}
-					>
-						<option value="8">netflix</option>
-						<option value="337">disney+</option>
-						<option value="9">amazon prime</option>
-					</select> */
-}
