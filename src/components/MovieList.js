@@ -1,5 +1,5 @@
 export default function MovieList({ movies, watchProvider }) {
-	console.log(`watch provider MovieList page ${watchProvider}`);
+	//console.log(`watch provider MovieList page ${watchProvider}`);
 
 	return movies
 		.splice(0, 3)
@@ -11,9 +11,9 @@ export default function MovieList({ movies, watchProvider }) {
 			const disneyUrl = "https://www.disneyplus.com/search";
 			const dummyUrl = `https://google.com/search?q=Where+Can+I+Watch+${amazonQuery}`;
 
-			console.log(netflixUrl);
-			console.log(amazonUrl);
-			console.log(disneyUrl);
+			// console.log(netflixUrl);
+			// console.log(amazonUrl);
+			// console.log(disneyUrl);
 
 			const movieSearch = (watchProvider) => {
 				if (watchProvider[0]) {
@@ -26,6 +26,12 @@ export default function MovieList({ movies, watchProvider }) {
 					return dummyUrl;
 				}
 			};
+			const movieSearch2 = {
+				8: () => netflixUrl,
+				9: () => amazonUrl,
+				3: () => disneyUrl,
+				default: () => dummyUrl
+			}
 
 			// const noServiceHandler = (watchProvider) => {
 			// 	if (!watchProvider[0] && !watchProvider[1] && !watchProvider[2]) {
@@ -75,10 +81,13 @@ export default function MovieList({ movies, watchProvider }) {
 							<button className="-mb-10 w-20 mt-3 mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
 								save
 							</button>
-							<a href={movieSearch(watchProvider)} target="_blank">
-								<button className="-mb-10 w-20 mt-3 mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
-									watch
-								</button>
+							<a
+								href={(movieSearch2[watchProvider.charAt(0)]||movieSearch2.default)()} 
+								target="_blank"
+							>
+							<button className="-mb-10 w-20 mt-3 mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
+								watch
+							</button>
 							</a>
 						</div>
 					</div>

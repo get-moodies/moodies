@@ -1,7 +1,7 @@
 import Icon from './Icon';
 
 
-export default function Icons({category, handler}) {
+export default function Icons({category, handler, genre}) {
 
     return (
       // className='border-8 border-lime-600 rounded-xl w-full h-40 relative'
@@ -11,7 +11,9 @@ export default function Icons({category, handler}) {
         key={element.id} 
         element={element} 
         index={index} 
-        handler={handler}/>
+        handler={handler}
+        isSelected={genre[index]}
+        />
       )}
     </div>
   );

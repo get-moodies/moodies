@@ -2,7 +2,7 @@ import OptionButton from './Option';
 
 import {generes} from '../data'
 
-export default function Options({handler}) {
+export default function Options({handler,genre}) {
   return (
   <>
     <h3 className="text-xl text-white font-medium first-letter:text-3xl">I'm into these kind of things right now...</h3>
@@ -12,6 +12,7 @@ export default function Options({handler}) {
           element={element}
           handler={handler} 
           index={index}
+          isSelected={genre[index]}
         />
 )}
   </>
