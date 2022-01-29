@@ -1,7 +1,7 @@
 import {regions} from "../data";
 import { Menu } from '@headlessui/react'
 
-export default function Dropdown({region,handler}) {
+export default function Dropdown({region,regionHandler}) {
 		return (
 		<>
 		<Menu>
@@ -43,7 +43,7 @@ export default function Dropdown({region,handler}) {
 							<Menu.Item key={region.isoCode}>
 							    <p
 									className="text-white px-2 py-2  "
-                                    onClick={()=>handler(region.isoCode)} 
+                                    onClick={()=>regionHandler(region.isoCode)} 
 								>							
 								{region.isoCode}
 								</p>

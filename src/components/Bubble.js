@@ -12,22 +12,22 @@ export default function Bubble({ element, index, handler }) {
     </div> */}
 			<div
 				// border-4 border-lime-600 rounded-3xl
-				className="
-          bubbles 
-          absolute h-20 w-20 
-          pt-[1.7em] px-auto 
-          border-2 border-white
-          text-white font-medium  
-          opacity-0  
-          z-10 
-          hover:bg-slate-600
-          hover:opacity-100
-          hover:bg-opacity-50	
-          hover:scale-105 
-          hover:shadow-xl
-          transition-all duration-300 
-          shadow-lg 
-          "
+				className={
+				`bubbles 
+				absolute h-20 w-20 
+				pt-[1.7em] px-auto 
+				border-2 border-white
+				text-white font-medium  
+				opacity-0  
+				z-10 
+				hover:bg-slate-600
+				hover:opacity-100
+				hover:bg-opacity-50	
+				hover:scale-105 
+				hover:shadow-xl
+				transition-all duration-300 
+				shadow-lg `
+				}
 				style={CSSVar}
 				onClick={() => handler(index, "era")}
 			>

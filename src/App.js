@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate,Outlet } from "react-router-dom";
+import useResults from './components/useResults';
 
 import "./index.css";
 
-import MovieList from "./components/MovieList";
 import Header from "./components/Header";
 import Bubbles from "./components/Bubbles";
 import Icons from "./components/Icons";
@@ -12,26 +13,18 @@ import SelectionBox from "./components/SelectionBox";
 
 
 import { generes, genera, age, providers } from "./data";
-import face from "./face.png";
-
 
 function App() {
-	const [movies, setMovies] = useState([]);
 	const [genre, setGenre] = useState(new Array(generes.length).fill(false));
 	const [startYear, setStartYear] = useState(1950);
 	const [endYear, setEndYear] = useState(2022);
-	const [watchProvider, setWatchProvider] = useState(
-		new Array(providers.length).fill(false)
-	);
-	const [isLoading, setIsLoading] = useState(false);
-	const [isError, setIsError] = useState(false);
-	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [watchProvider, setWatchProvider] = useState(new Array(providers.length).fill(false));
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
 	const [region, setRegion] = useState("DE");
 	const [userRegion, setUserRegion] = useState('');
-
-	console.log(movies);
-
+	const navigate = useNavigate();
+	const {loadMovies, isLoading, isError, movies} = useResults()
+	
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
 		.filter((genre) => genre[0])
@@ -44,56 +37,38 @@ function App() {
 		.map((watchProvider) => providers[watchProvider[1]].provider_id)
 		.join("|");
 
-	const url = `https://api.themoviedb.org/3/discover/movie?
-		api_key=${process.env.REACT_APP_API_KEY}
-		&language=en-US
-		&sort_by=popularity.desc
-		&include_adult=true
-		&include_video=false
-		&page=1&primary_release_date.gte=${startYear}
-		&primary_release_date.lte=${endYear}
-		&with_genres=${genreList_URL}
-		&with_watch_providers=${provider_URL}
-		&watch_region=${region}
-		&with_watch_monetization_types=flatrate`;
-
-	const loadMovies = () => {
-		setIsError(false);
-		setIsLoading(true);
-		fetch(url)
-			.then((response) => response.json())
-			.then((json) => {
-				setMovies(json.results);
-				setIsLoading(false);
-			})
-			.catch((err) => setIsError(true));
-	};
-
 	const getUserRegion = () =>
 	fetch('https://geolocation-db.com/json/')
 	.then((response) => response.json())
 	.then((json) => {setUserRegion(json.country_code)})	
 
-	useEffect( () => {getUserRegion()}, [])	
-	useEffect(loadMovies, [genre, watchProvider, startYear, endYear,userRegion]);
+	useEffect( () => {
+			loadMovies(
+				startYear, 
+				endYear, 
+				genreList_URL, 
+				provider_URL, 
+				region	
+				)
+			getUserRegion()
+		}, [])	
 	useEffect(()=>setRegion(userRegion),[userRegion])
 
 	const getContent = () => {
-		if (isError) {
-			return <div>the api fell asleep, try a refresh</div>;
+		if (isError) {navigate(`error=true`)}
+		else if (isLoading) {navigate(`loading=true`)}
+		else if (!movies.length) {navigate(`too-picky=true`)}
+		else if (!genreList_URL)	{navigate(`genre=false`)}
+		else{navigate(`
+				moodies
+				/suggestions
+				/${genreList_URL}
+				/${startYear}
+				/${endYear}
+				/${region}	
+				/${provider_URL}	
+			`); 
 		}
-		if (isLoading) {
-			return (
-				<div>
-					<img src={face} className="Load-spinner " alt="cage face" />
-					<p>loading...</p>
-				</div>
-			);
-		}
-		if (!movies.length) {
-			return <div>Nick found no recomendations for you! Try less picky?</div>;
-		}
-		return <MovieList movies={movies} />;
 	};
 
 	const selectionHandler = [
@@ -119,7 +94,6 @@ function App() {
 	
 	const regionHandler = (region) => setRegion(region)
 
-//console.log(movies);
 	// console.log(`genre id is ${genre}`);
 	// console.log(`watch provider id is ${watchProvider}`);
 	// console.log(`start year is ${startYear}`);
@@ -130,12 +104,12 @@ function App() {
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
 
-				<Header watchProvider={watchProvider} handler={selectionHandler[2]} region={region} handler={regionHandler} />
+				<Header watchProvider={watchProvider} selectionHandler={selectionHandler[2]} region={region} regionHandler={regionHandler} />
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						Which mood are you in?
 					</h3>
-					<Icons category={genera} handler={selectionHandler[0]} />
+					<Icons category={genera} handler={selectionHandler[0]} genre={genre}/>
 
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						What era do you feel like to watch?
@@ -150,16 +124,26 @@ function App() {
 					/>
 
 					<button
-						onClick={() => setIsSubmitted(!isSubmitted)}
-						className="shadow-lg 
-						m-1 my-5 
-						w-44
-						h-10
-						bg-opacity-40 bg-black 
-						hover:bg-black hover:bg-opacity-60 
-						px-4 py-2 
-						rounded-full 
-						font-medium text-sm text-white"
+						onClick={() => {
+							loadMovies(
+								startYear, 
+								endYear, 
+								genreList_URL, 
+								provider_URL, 
+								region	
+								)
+							getContent()}}
+						className="
+							shadow-lg 
+							m-1 my-5 
+							w-44
+							h-10
+							bg-opacity-40 bg-black 
+							hover:bg-black hover:bg-opacity-60 
+							px-4 py-2 
+							rounded-full 
+							font-medium text-sm text-white
+						"
 					>
 						Show me movies!
 					</button>
@@ -180,7 +164,7 @@ function App() {
 
 					{isOptionsOn && (
 						<div>
-							<Options handler={selectionHandler[0]} />
+							<Options handler={selectionHandler[0]} genre={genre}/>
 							<TimeSlider
 								handler={selectionHandler[1]}
 								startYear={startYear}
@@ -188,8 +172,8 @@ function App() {
 							/>
 						</div>
 					)}
-
-					{isSubmitted && <div>{getContent()}</div>}
+					<Outlet/>
+					{/* {isSubmitted && <div>{getContent()}</div>} */}
 				</div>
 			</div>
 			<div className="backGround"></div>
@@ -198,3 +182,31 @@ function App() {
 }
 
 export default App;
+
+	// const [movies, setMovies] = useState([]);
+	// const [isLoading, setIsLoading] = useState(false);
+	// const [isError, setIsError] = useState(false);
+	// const url = `https://api.themoviedb.org/3/discover/movie?
+	// 	api_key=${process.env.REACT_APP_API_KEY}
+	// 	&language=en-US
+	// 	&sort_by=popularity.desc
+	// 	&include_adult=true
+	// 	&include_video=false
+	// 	&page=1&primary_release_date.gte=${startYear}
+	// 	&primary_release_date.lte=${endYear}
+	// 	&with_genres=${genreList_URL}
+	// 	&with_watch_providers=${provider_URL}
+	// 	&watch_region=${region}
+	// 	&with_watch_monetization_types=flatrate`;
+
+	// const loadMovies = () => {
+	// 	setIsError(false);
+	// 	setIsLoading(true);
+	// 	fetch(url)
+	// 		.then((response) => response.json())
+	// 		.then((json) => {
+	// 			setMovies(json.results);
+	// 			setIsLoading(false);
+	// 		})
+	// 		.catch((err) => setIsError(true));
+	// };
