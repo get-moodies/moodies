@@ -11,7 +11,6 @@ import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
 
-
 import { generes, genera, age, providers } from "./data";
 
 function App() {
@@ -38,9 +37,11 @@ function App() {
 		.join("|");
 
 	const getUserRegion = () =>
-	fetch('https://geolocation-db.com/json/')
-	.then((response) => response.json())
-	.then((json) => {setUserRegion(json.country_code)})	
+		fetch("https://geolocation-db.com/json/")
+			.then((response) => response.json())
+			.then((json) => {
+				setUserRegion(json.country_code);
+			});
 
 	useEffect( () => {
 			loadMovies(
@@ -91,9 +92,10 @@ function App() {
 			setWatchProvider(newProvider);
 		},
 	];
-	
-	const regionHandler = (region) => setRegion(region)
 
+	const regionHandler = (region) => setRegion(region);
+
+	//console.log(movies);
 	// console.log(`genre id is ${genre}`);
 	// console.log(`watch provider id is ${watchProvider}`);
 	// console.log(`start year is ${startYear}`);
@@ -103,8 +105,12 @@ function App() {
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full">
-
-				<Header watchProvider={watchProvider} selectionHandler={selectionHandler[2]} region={region} regionHandler={regionHandler} />
+				<Header
+					watchProvider={watchProvider}
+					selectionHandler={selectionHandler[2]}
+					region={region}
+					regionHandler={regionHandler}
+				/>
 				<div className="justify-center  mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						Which mood are you in?
@@ -183,30 +189,3 @@ function App() {
 
 export default App;
 
-	// const [movies, setMovies] = useState([]);
-	// const [isLoading, setIsLoading] = useState(false);
-	// const [isError, setIsError] = useState(false);
-	// const url = `https://api.themoviedb.org/3/discover/movie?
-	// 	api_key=${process.env.REACT_APP_API_KEY}
-	// 	&language=en-US
-	// 	&sort_by=popularity.desc
-	// 	&include_adult=true
-	// 	&include_video=false
-	// 	&page=1&primary_release_date.gte=${startYear}
-	// 	&primary_release_date.lte=${endYear}
-	// 	&with_genres=${genreList_URL}
-	// 	&with_watch_providers=${provider_URL}
-	// 	&watch_region=${region}
-	// 	&with_watch_monetization_types=flatrate`;
-
-	// const loadMovies = () => {
-	// 	setIsError(false);
-	// 	setIsLoading(true);
-	// 	fetch(url)
-	// 		.then((response) => response.json())
-	// 		.then((json) => {
-	// 			setMovies(json.results);
-	// 			setIsLoading(false);
-	// 		})
-	// 		.catch((err) => setIsError(true));
-	// };

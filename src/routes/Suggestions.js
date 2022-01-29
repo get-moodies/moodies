@@ -22,7 +22,7 @@ export default function Suggestions() {
 
     return ( 
         <>
-            {movies && <MovieList movies={movies} />}
+            {movies && <MovieList movies={movies}  watchProvider={providerList} />}
             <img src={face} className="absolute bottom-3/4 left-[65%] my-auto h-40" alt="cage face" /> 
         </>
         );
