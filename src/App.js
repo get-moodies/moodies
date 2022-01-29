@@ -71,7 +71,26 @@ function App() {
 			`); 
 		}
 	};
-
+	const getContent2 = () => {
+		console.log(movies)
+	return( movies ? navigate(`
+						moodies
+						/suggestions
+						/${genreList_URL}
+						/${startYear}
+						/${endYear}
+						/${region}	
+						/${provider_URL}`) 
+					: 
+					(	
+					(isError && navigate("error=true")) ||
+					(isLoading && navigate("loading=true")) ||
+					(!movies.length && navigate(`too-picky=true`)) ||
+					(!genreList_URL && navigate(`genre=false`))
+					)	
+		)
+	};
+		
 	const selectionHandler = [
 		(index) => {
 			const newGenre = [...genre];
@@ -80,7 +99,6 @@ function App() {
 		},
 		(index, year) => {
 			if (index < 5) {
-				console.log(index, year, age[index].id);
 				setStartYear(age[index].id);
 				setEndYear(parseInt(age[index].id) + 9);
 			} else if (year === "start") setStartYear(index);
@@ -178,6 +196,7 @@ function App() {
 							/>
 						</div>
 					)}
+					
 					<Outlet/>
 				</div>
 			</div>
