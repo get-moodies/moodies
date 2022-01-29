@@ -179,7 +179,6 @@ function App() {
 						</div>
 					)}
 					<Outlet/>
-					{/* {isSubmitted && <div>{getContent()}</div>} */}
 				</div>
 			</div>
 			<div className="backGround"></div>
