@@ -35,8 +35,10 @@ export default function Dropdown({ region, regionHandler }) {
 						outline-0 
 						text-white
 						absolute
-						left-[57%]
+						left-[58.4%]
 						z-20
+						h-96
+						overflow-auto
 						hover:cursor-pointer	
 						"
 				>
