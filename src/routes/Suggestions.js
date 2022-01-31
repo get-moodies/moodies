@@ -19,7 +19,7 @@ export default function Suggestions() {
 			{movies && <MovieList movies={movies} watchProvider={providerList} />}
 			<img
 				src={face}
-				className="absolute bottom-3/4 left-[68%] my-auto h-36"
+				className="absolute bottom-3/4 left-[66%] my-auto h-36"
 				alt="cage face"
 			/>
 		</>
