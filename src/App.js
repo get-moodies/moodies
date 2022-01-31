@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate,Outlet } from "react-router-dom";
-import useResults from './components/useResults';
+import { useNavigate, Outlet } from "react-router-dom";
+import useResults from "./components/useResults";
 
 import "./index.css";
 
@@ -17,13 +17,15 @@ function App() {
 	const [genre, setGenre] = useState(new Array(generes.length).fill(false));
 	const [startYear, setStartYear] = useState(1950);
 	const [endYear, setEndYear] = useState(2022);
-	const [watchProvider, setWatchProvider] = useState(new Array(providers.length).fill(false));
+	const [watchProvider, setWatchProvider] = useState(
+		new Array(providers.length).fill(false)
+	);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
 	const [region, setRegion] = useState("DE");
-	const [userRegion, setUserRegion] = useState('');
+	const [userRegion, setUserRegion] = useState("");
 	const navigate = useNavigate();
-	const {loadMovies, isLoading, isError, movies} = useResults()
-	
+	const { loadMovies, isLoading, isError, movies } = useResults();
+
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
 		.filter((genre) => genre[0])
@@ -43,24 +45,23 @@ function App() {
 				setUserRegion(json.country_code);
 			});
 
-	useEffect( () => {
-			loadMovies(
-				startYear, 
-				endYear, 
-				genreList_URL, 
-				provider_URL, 
-				region	
-				)
-			getUserRegion()
-		}, [])	
-	useEffect(()=>setRegion(userRegion),[userRegion])
+	useEffect(() => {
+		loadMovies(startYear, endYear, genreList_URL, provider_URL, region);
+		getUserRegion();
+	}, []);
+	useEffect(() => setRegion(userRegion), [userRegion]);
 
 	const getContent = () => {
-		if (isError) {navigate(`error=true`)}
-		else if (isLoading) {navigate(`loading=true`)}
-		else if (!movies.length) {navigate(`too-picky=true`)}
-		else if (!genreList_URL)	{navigate(`genre=false`)}
-		else{navigate(`
+		if (isError) {
+			navigate(`error=true`);
+		} else if (isLoading) {
+			navigate(`loading=true`);
+		} else if (!movies.length) {
+			navigate(`too-picky=true`);
+		} else if (!genreList_URL) {
+			navigate(`genre=false`);
+		} else {
+			navigate(`
 				moodies
 				/suggestions
 				/${genreList_URL}
@@ -68,29 +69,26 @@ function App() {
 				/${endYear}
 				/${region}	
 				/${provider_URL}	
-			`); 
+			`);
 		}
 	};
 	const getContent2 = () => {
-		console.log(movies)
-	return( movies ? navigate(`
+		console.log(movies);
+		return movies
+			? navigate(`
 						moodies
 						/suggestions
 						/${genreList_URL}
 						/${startYear}
 						/${endYear}
 						/${region}	
-						/${provider_URL}`) 
-					: 
-					(	
-					(isError && navigate("error=true")) ||
+						/${provider_URL}`)
+			: (isError && navigate("error=true")) ||
 					(isLoading && navigate("loading=true")) ||
 					(!movies.length && navigate(`too-picky=true`)) ||
-					(!genreList_URL && navigate(`genre=false`))
-					)	
-		)
+					(!genreList_URL && navigate(`genre=false`));
 	};
-		
+
 	const selectionHandler = [
 		(index) => {
 			const newGenre = [...genre];
@@ -133,7 +131,11 @@ function App() {
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						Which mood are you in?
 					</h3>
-					<Icons category={genera} handler={selectionHandler[0]} genre={genre}/>
+					<Icons
+						category={genera}
+						handler={selectionHandler[0]}
+						genre={genre}
+					/>
 
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						What era do you feel like to watch?
@@ -150,13 +152,14 @@ function App() {
 					<button
 						onClick={() => {
 							loadMovies(
-								startYear, 
-								endYear, 
-								genreList_URL, 
-								provider_URL, 
-								region	
-								)
-							getContent()}}
+								startYear,
+								endYear,
+								genreList_URL,
+								provider_URL,
+								region
+							);
+							getContent();
+						}}
 						className="
 							shadow-lg 
 							m-1 my-5 
@@ -188,7 +191,7 @@ function App() {
 
 					{isOptionsOn && (
 						<div>
-							<Options handler={selectionHandler[0]} genre={genre}/>
+							<Options handler={selectionHandler[0]} genre={genre} />
 							<TimeSlider
 								handler={selectionHandler[1]}
 								startYear={startYear}
@@ -196,8 +199,8 @@ function App() {
 							/>
 						</div>
 					)}
-					
-					<Outlet/>
+
+					<Outlet />
 				</div>
 			</div>
 			<div className="backGround"></div>
@@ -206,4 +209,3 @@ function App() {
 }
 
 export default App;
-
