@@ -30,8 +30,8 @@ export default function MovieList({ movies, watchProvider }) {
 				8: () => netflixUrl,
 				9: () => amazonUrl,
 				3: () => disneyUrl,
-				default: () => dummyUrl
-			}
+				default: () => dummyUrl,
+			};
 
 			// const noServiceHandler = (watchProvider) => {
 			// 	if (!watchProvider[0] && !watchProvider[1] && !watchProvider[2]) {
@@ -82,12 +82,14 @@ export default function MovieList({ movies, watchProvider }) {
 								save
 							</button>
 							<a
-								href={(movieSearch2[watchProvider.charAt(0)]||movieSearch2.default)()} 
+								href={(
+									movieSearch2[watchProvider?.charAt(0)] || movieSearch2.default
+								)()}
 								target="_blank"
 							>
-							<button className="-mb-10 w-20 mt-3 mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
-								watch
-							</button>
+								<button className="-mb-10 w-20 mt-3 mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
+									watch
+								</button>
 							</a>
 						</div>
 					</div>
