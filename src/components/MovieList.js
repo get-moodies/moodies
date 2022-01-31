@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import Trailer from "./Trailer";
 import { Grow } from "@mui/material";
+import { useState } from "react";
 
 export default function MovieList({ movies, watchProvider }) {
 	//console.log(`watch provider MovieList page ${watchProvider}`);
+	// const [hoverState, setHoverState] = useState(false);
 
 	return (
 		<>
@@ -29,6 +31,12 @@ export default function MovieList({ movies, watchProvider }) {
 						// console.log(amazonUrl);
 						// console.log(disneyUrl);
 
+						// const handleMouseEnter = () => {
+						// 	setHoverState(true);
+						// };
+						// const handleMouseLeave = () => {
+						// 	setHoverState(false);
+						// };
 						const movieSearch = (watchProvider) => {
 							if (watchProvider[0]) {
 								return netflixUrl;
@@ -57,9 +65,18 @@ export default function MovieList({ movies, watchProvider }) {
 
 						return (
 							<div>
-								{console.log(index)}
 								<Grow in={true} timeout={timeDelay}>
-									<div className="hover:scale-105 transition-all duration-700 shadow-lg hover:shadow-xl relative max-w-2xl h-[150px] mx-auto my-5 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
+									<div
+										// style={
+										// 	hoverState && {
+										// 		transition: "all ease-in-out .4s",
+										// 		transform: "scale(1.05) ",
+										// 	}
+										// }
+										// onMouseEnter={handleMouseEnter}
+										// onMouseLeave={handleMouseLeave}
+										className="hover:scale-150 hover:outline-4 hover:outline-slate-400/40  hover:outline hover:outline-offset-0 transition-all duration-700 shadow-lg hover:shadow-xl relative max-w-2xl h-[150px] mx-auto my-5 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden"
+									>
 										<div className="shrink-0 h-[200px] w-[200px] ">
 											<img
 												className="relative -left-10 h-full w-full object-cover object-center [clip-path:circle(45%_at_50%_50%)]"
