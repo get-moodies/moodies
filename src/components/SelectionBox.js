@@ -1,13 +1,46 @@
+import Icon from './Icon'
+import Option from './Option'
+import Bubble from './Bubble'
 
-export default function SelectionBox({genre,startYear,endYear,generes}) {
-return (<div className='border-2 border-white rounded-xl w-3/5 mx-auto p-8  sticky'>
-            <p>Your selection:</p>
-            <div>
-            {genre.map((category,index)=> {return category && generes[index].name} 
+export default function SelectionBox({genre,startYear,endYear,generes,genresIcons,handler,age,ageSelected}) {
+
+return (<div className='border-4 border-slate-50 rounded-xl w-3/5 mx-auto p-4  sticky'>
+            <p className='text-xl text-white font-medium first-letter:text-3xl'>Current Mood:</p>
+            <div className='flex  items-center justify-center '>
+            {genresIcons.map((category,index)=> {return (
+                  genre[index] && <Icon 
+                                    element={category} 
+                                    key={category.name} 
+                                    handler={handler.genre}
+                                    index={index}
+                              />
+            )})}
+            {generes.map((category,index)=> {return ( 
+                  index > 9 && genre[index] && <Option 
+                                                element={category} 
+                                                isSelected={false} 
+                                                key={category.name}
+                                                handler={handler.genre}
+                                                index={index}
+                                                /> 
+                  )} 
             )}
             </div>
-            <p>Start Year: {startYear}</p>
-            <p>End Year: {endYear}</p>
+            <div className='flex flex-col items-center justify-center '>
+            {age.map((element, index) => 
+                  ageSelected[index] && <Bubble 
+                        key={element.id} 
+                        element={element} 
+                        index={index} 
+                        handler={handler.year}
+                        isSelected={!ageSelected[index]}
+                        />
+            )}
+            </div>
+            
+            <p className="text-lg text-white font-bold mt-[-.5rem]">{startYear} - {endYear}</p>
 		</div>
         
 )}
+
+

@@ -86,10 +86,10 @@ const generes = [
     "name": "Western"
     }
     ]
-const genera = [{
+const genresIcons = [{
                 "id": 28,
                 "name": "Action",
-                image:horror
+                image:hero
                 },
                 {
                 "id": 12,
@@ -99,7 +99,7 @@ const genera = [{
                 {
                 "id": 16,
                 "name": "Animation",
-                image:deathstar
+                image:hero
                 },
                 {
                 "id": 35,
@@ -107,16 +107,49 @@ const genera = [{
                 image:musical
                 },
                 {
-                "id": 80,
-                "name": "Crime",
-                image:horror
-                }
+                  "id": 18,
+                  "name": "Drama",
+                  image:musical
+
+                  },
+                {
+                "id": 14,
+                "name": "Fantasy",
+                image:musical
+
+                },
+                {
+                  "id": 27,
+                  "name": "Horror",
+                  image:musical
+
+                  },
+                {
+                  "id": 10749,
+                  "name": "Romance",
+                  image:musical
+
+                  },
+                {
+                  "id": 878,
+                  "name": "Science Fiction",
+                  image:musical
+
+                },       
+                
+                {
+                  "id": 53,
+                  "name": "Thriller",
+                  image:hero
+
+                },
 ]
-const age = [	{name:"oldies",id:'1950',image:oldies},
-				{name:"60s",id:'1960',image:nineties},
-				{name:"70s",id:'1970',image:nineties},
-				{name:"80s",id:'1980',image:musical},
-				{name:"90",id:'1990',image:oldies}
+const age = [	
+				{name:"vintage",id:'1960',endYear:'1979',image:"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F74%2F54%2FHvcQ91.jpg"},
+        {name:"retro",id:'1980',endYear:'1999',image:"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F1f%2Ff8%2Fa1%2F1ff8a100f3c03c989ba7fa7f16062823.jpg"},
+				{name:"nostalgic",id:'2000',endYear:'2009',image:"https://ih1.redbubble.net/image.1389637073.8271/st,small,845x845-pad,1000x1000,f8f8f8.jpg"},
+				{name:"modern",id:'2010',endYear:'2019',image:"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-vector%2Fhipster-trendy-seamless-pattern-with-triangle-leaves_37925-287.jpg"},
+				{name:"new",id:'2020',endYear:'2022',image:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Zoom_participants_Bubrikh_readings_2020_conference.png/1200px-Zoom_participants_Bubrikh_readings_2020_conference.png"}
 ]
 const regions = [
     {"isoCode": "AT", "name": "Austria"},
@@ -217,4 +250,4 @@ const regions = [
 
 
 
-    export {generes,genera,age,regions,providers}
+    export {generes,genresIcons,age,regions,providers}

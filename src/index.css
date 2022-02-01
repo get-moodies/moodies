@@ -70,7 +70,6 @@ html {
 	left: var(--x1);
 	bottom: var(--y1);
 	border-radius: 5rem;
-	/*border:white solid; */
 }
 .icons {
 	left: var(--x1);
@@ -78,6 +77,10 @@ html {
 	/* border-radius: 5rem; */
 	/*border:white solid; */
 }
+
+/* .icon {
+		background-color: black;
+} */
 
 /* Chrome, Safari and Opera */
 body ::-webkit-scrollbar {

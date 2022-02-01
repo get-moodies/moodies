@@ -8,7 +8,7 @@ const baseURL = `
         `
 
 const [movies, setMovies] = useState([])
-const [isLoading, setIsLoading] = useState(true)
+const [isLoading, setIsLoading] = useState(false)
 const [isError, setError] = useState(false)
 
     function loadMovies(startYear, endYear, genreList_URL, provider_URL, region) {
@@ -19,7 +19,8 @@ const [isError, setError] = useState(false)
 		&sort_by=popularity.desc
 		&include_adult=true
 		&include_video=false
-		&page=1&primary_release_date.gte=${startYear}
+		&page=1
+        &primary_release_date.gte=${startYear}
 		&primary_release_date.lte=${endYear}
 		&with_genres=${genreList_URL}
 		&with_watch_providers=${provider_URL}
@@ -32,8 +33,8 @@ const [isError, setError] = useState(false)
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                setMovies(data.results);
                 setIsLoading(false);
+                setMovies(data.results);
             })
             .catch(() => {
                 setError(true)

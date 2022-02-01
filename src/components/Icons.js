@@ -4,17 +4,23 @@ import Icon from './Icon';
 export default function Icons({category, handler, genre}) {
 
     return (
-      // className='border-8 border-lime-600 rounded-xl w-full h-40 relative'
-    <div className= 'mx-auto w-10/12 h-40 relative '>
-       {category.map((element, index) => 
-       <Icon
-        key={element.id} 
-        element={element} 
-        index={index} 
-        handler={handler}
-        isSelected={genre[index]}
-        />
-      )}
+    <div className={` flex items-center justify-center `} >
+      <div className={`
+              m-4
+              grid grid-cols-5 gap-x-4 gap-y-4
+              place-items-center
+            `}
+      >
+        {category.map((element, index) => 
+          <Icon
+            key={element.id} 
+            element={element} 
+            index={index} 
+            handler={handler}
+            isSelected={genre[index]} 
+          />
+        )}   
+      </div>
     </div>
   );
 }
