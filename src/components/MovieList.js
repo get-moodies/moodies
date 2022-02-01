@@ -9,8 +9,8 @@ export default function MovieList({ movies, watchProvider }) {
 
 	return (
 		<>
-			<h3 className="text-xl text-white font-medium first-letter:text-3xl mb-7">
-				Your movie recommendations are...
+			<h3 className="text-xl text-white font-medium mb-7">
+				your movie recommendations are...
 			</h3>
 
 			{movies
