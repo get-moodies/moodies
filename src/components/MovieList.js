@@ -42,7 +42,7 @@ export default function MovieList({ movies, watchProvider }) {
 			// };
 
 			return (
-				<div className="hover:scale-105 transition-all duration-700 shadow-lg hover:shadow-xl relative max-w-xl h-[150px] mx-auto my-5 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
+				<div key={title} className="hover:scale-105 transition-all duration-700 shadow-lg hover:shadow-xl relative max-w-xl h-[150px] mx-auto my-5 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
 					<div className="shrink-0 h-[200px] w-[200px] ">
 						<img
 							className="relative -left-10 h-full w-full object-cover object-center [clip-path:circle(45%_at_50%_50%)]"
@@ -82,7 +82,7 @@ export default function MovieList({ movies, watchProvider }) {
 								save
 							</button>
 							<a
-								href={(movieSearch2[watchProvider.charAt(0)]||movieSearch2.default)()} 
+								href={(movieSearch2[watchProvider?.charAt(0)]||movieSearch2.default)()} 
 								target="_blank"
 							>
 							<button className="-mb-10 w-20 mt-3 mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">

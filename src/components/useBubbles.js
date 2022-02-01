@@ -14,7 +14,7 @@ export default function useBubbles() {
     //     "--y1": RandomNum(0,100)+'%',
     //     }\
    
-    const CSSVar = {
+        const CSSVar = {
         "--x1":RandomNum(20*(index),20*(index+1)-5) +'%', 
         "--y1": RandomNum(10,40) +'%',
         }
@@ -33,7 +33,9 @@ export default function useBubbles() {
             { "--x1": "63%", "--y1": "21%" },
             { "--x1": "77%", "--y1": "29%" }
         ]
-
+        const CSSheight = RandomNum(30,45) 
+            //"--y1": RandomNum(10,40) +'%',
+            
     //return FixedCssVar2[index]
     return CSSVar
     }

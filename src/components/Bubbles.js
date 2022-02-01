@@ -1,19 +1,18 @@
 import Bubble from './Bubble';
-import useBubbles from './useBubbles'
 
 
-export default function Bubbles({category, handler}) {
-    const bubblePosition = useBubbles();
+export default function Bubbles({category, handler,ageSelected}) {
   
     return (
-      // className='border-8 border-lime-600 rounded-xl w-full h-40 relative'
-    <div className= 'mx-auto w-10/12 h-40 relative '>
+    <div className= 'mx-auto  flex flex-col items-center justify-center my-4'>
        {category.map((element, index) => 
-       <Bubble 
-        key={element.id} 
-        element={element} 
-        index={index} 
-        handler={handler}/>
+          <Bubble 
+            key={element.id} 
+            element={element} 
+            index={index} 
+            handler={handler}
+            isSelected={ageSelected[index]}
+            />
       )}
     </div>
   );
