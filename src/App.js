@@ -92,7 +92,9 @@ function App() {
 					} 
 					else if (year === "start") {
 						setStartYear(index);
-						setAgeSelected(ageSelected.fill(false));}
+						setAgeSelected(ageSelected.fill(false));
+						startYear >= endYear && setEndYear(index);
+					}
 					else {
 						setEndYear(index);
 						setAgeSelected(ageSelected.fill(false));}
