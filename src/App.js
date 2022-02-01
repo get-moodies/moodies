@@ -123,16 +123,16 @@ function App() {
 	// console.log(`url is ${url}`);
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
-			<div className="w-full">
+			<div className="w-full ">
 				<Header
 					watchProvider={watchProvider}
 					selectionHandler={selectionHandler.provider}
 					region={region}
 					regionHandler={selectionHandler.region}
 				/>
-				<div className="justify-center  mx-auto text-center w-full">
-					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
-						Which mood are you in?
+				<div className="justify-center mt-8 mx-auto text-center w-full">
+					<h3 className="text-xl text-white font-medium ">
+						what are you in the mood for?
 					</h3>
 					<Icons
 						category={genresIcons}
@@ -140,8 +140,8 @@ function App() {
 						genre={genre}
 					/>
 
-					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
-						What era do you feel like to watch?
+					<h3 className="text-xl text-white font-medium ">
+						what era do you want to visit?
 					</h3>
 					<Bubbles
 						category={age}
@@ -189,7 +189,7 @@ function App() {
 							btn-primary
 						"
 					>
-						Show me movies!
+						show me movies!
 					</button>
 					<button
 						onClick={() => setIsOptionsOn(!isOptionsOn)}
@@ -198,7 +198,7 @@ function App() {
 						w-44
 						btn-primary"
 					>
-						Particular Taste?
+						niche taste?
 					</button>
 
 					<Outlet />

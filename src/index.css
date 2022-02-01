@@ -21,7 +21,7 @@ html {
 .backGround {
 	background: #6366f1;
 	position: absolute;
-	animation: bodyHue 60s alternate infinite;
+	animation: bodyHue 40s alternate infinite;
 	top: 0;
 	left: 0;
 	right: 0;
