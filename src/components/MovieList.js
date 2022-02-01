@@ -130,15 +130,10 @@ export default function MovieList({ movies, watchProvider }) {
 
 			<button
 				className="
-							shadow-lg 
+							
 							m-1 
 							w-44
-							h-10
-							bg-opacity-40 bg-black 
-							hover:bg-black hover:bg-opacity-60 
-							px-4 py-2 
-							rounded-full 
-							font-medium text-sm text-white
+							btn-primary
 						"
 			>
 				<Link to="/">change mood</Link>
