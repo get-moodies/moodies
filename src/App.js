@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate,Outlet } from "react-router-dom";
-import useResults from './components/useResults';
+import { useNavigate, Outlet } from "react-router-dom";
+import useResults from "./components/useResults";
 
 import "./index.css";
 
@@ -21,7 +21,7 @@ function App() {
 	const [watchProvider, setWatchProvider] = useState(new Array(providers.length).fill(false));
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
 	const [region, setRegion] = useState("DE");
-	const [userRegion, setUserRegion] = useState('');
+	const [userRegion, setUserRegion] = useState("");
 	const navigate = useNavigate();
 	const {loadMovies, isLoading, isError, movies} = useResults()
 	const [isSubmitted, setIsSubmitted] = useState(false);
@@ -107,7 +107,6 @@ function App() {
 		region: (region) => setRegion(region)
 	};
 
-
 	//console.log(movies);
 	// console.log(`genre id is ${genre}`);
 	// console.log(`watch provider id is ${watchProvider}`);
@@ -127,7 +126,11 @@ function App() {
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						Which mood are you in?
 					</h3>
-					<Icons category={genresIcons} handler={selectionHandler.genre} genre={genre}/>
+					<Icons 
+						category={genresIcons} 
+						handler={selectionHandler.genre} 
+						genre={genre}
+					/>
 
 					<h3 className="text-xl text-white font-medium first-letter:text-3xl">
 						What era do you feel like to watch?
@@ -204,4 +207,3 @@ function App() {
 }
 
 export default App;
-

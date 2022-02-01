@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useResults from '../components/useResults';
+import useResults from "../components/useResults";
 
-import MovieList from '../components/MovieList';
+import MovieList from "../components/MovieList";
 
-import face from '../images/face.png'
+import face from "../images/face.png";
 
 export default function Suggestions() {
     const {genreList,startYear,endYear,region,providerList} = useParams();
@@ -22,7 +22,11 @@ export default function Suggestions() {
     return ( 
         <>
             {<MovieList movies={movies}  watchProvider={providerList} />}
-            <img src={face} className="absolute bottom-3/4 left-[65%] my-auto h-40" alt="cage face" /> 
+            <img 
+                src={face} 
+                className="absolute bottom-3/4 left-[65%] my-auto h-40" 
+                alt="cage face" 
+            /> 
         </>
         );
 }
