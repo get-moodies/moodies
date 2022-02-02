@@ -149,17 +149,6 @@ function App() {
 						ageSelected={ageSelected}
 					/>
 
-					{isOptionsOn && (
-						<div>
-							<Options handler={selectionHandler.genre} genre={genre} />
-							<TimeSlider
-								handler={selectionHandler.year}
-								startYear={startYear}
-								endYear={endYear}
-							/>
-						</div>
-					)}
-
 					<SelectionBox
 						genre={genre}
 						generes={generes}
@@ -170,7 +159,15 @@ function App() {
 						age={age}
 						ageSelected={ageSelected}
 					/>
-
+					<button
+						onClick={() => setIsOptionsOn(!isOptionsOn)}
+						className="
+						m-3 mr-10 mt-5
+						w-44
+						btn-primary"
+					>
+						niche tastes?
+					</button>
 					<button
 						onClick={() => {
 							setIsSubmitted(true);
@@ -184,23 +181,24 @@ function App() {
 						}}
 						className="
 						
-							m-1 my-5 
+							m-3 ml-10 mt-5
 							w-44
 							btn-primary
 						"
 					>
 						show me movies!
 					</button>
-					<button
-						onClick={() => setIsOptionsOn(!isOptionsOn)}
-						className="
-						m-1 my-5 
-						w-44
-						btn-primary"
-					>
-						niche taste?
-					</button>
 
+					{isOptionsOn && (
+						<div>
+							<Options handler={selectionHandler.genre} genre={genre} />
+							<TimeSlider
+								handler={selectionHandler.year}
+								startYear={startYear}
+								endYear={endYear}
+							/>
+						</div>
+					)}
 					<Outlet />
 				</div>
 			</div>
