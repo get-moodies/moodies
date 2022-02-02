@@ -19,6 +19,12 @@ import mountain from "./images/mountain_edit.jpg";
 import rafiki from "./images/rafiki_edit.jpg";
 import spaceship from "./images/spaceship_edit.jpg";
 
+import metaverse from "./images/metaverse3_edit.jpg";
+import modern from "./images/modern_edit.jpg";
+import ninetiespattern from "./images/nineties_edit.jpg";
+import phone from "./images/phone_edit.jpg";
+import wallpaper from "./images/wallpaper_edit.png";
+
 const generes = [
 	{
 		id: 28,
@@ -166,36 +172,31 @@ const age = [
 		name: "vintage",
 		id: "1960",
 		endYear: "1979",
-		image:
-			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F74%2F54%2FHvcQ91.jpg",
+		image: wallpaper,
 	},
 	{
 		name: "retro",
 		id: "1980",
 		endYear: "1999",
-		image:
-			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F1f%2Ff8%2Fa1%2F1ff8a100f3c03c989ba7fa7f16062823.jpg",
+		image: ninetiespattern,
 	},
 	{
 		name: "nostalgic",
 		id: "2000",
 		endYear: "2009",
-		image:
-			"https://ih1.redbubble.net/image.1389637073.8271/st,small,845x845-pad,1000x1000,f8f8f8.jpg",
+		image: phone,
 	},
 	{
 		name: "modern",
 		id: "2010",
 		endYear: "2019",
-		image:
-			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-vector%2Fhipster-trendy-seamless-pattern-with-triangle-leaves_37925-287.jpg",
+		image: modern,
 	},
 	{
 		name: "new",
 		id: "2020",
 		endYear: "2022",
-		image:
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Zoom_participants_Bubrikh_readings_2020_conference.png/1200px-Zoom_participants_Bubrikh_readings_2020_conference.png",
+		image: metaverse,
 	},
 ];
 const regions = [

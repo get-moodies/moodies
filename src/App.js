@@ -23,6 +23,7 @@ function App() {
 	const [watchProvider, setWatchProvider] = useState(
 		new Array(providers.length).fill(false)
 	);
+	const [nicheSelected, setNicheSelected] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
 	const [region, setRegion] = useState("DE");
 	const [userRegion, setUserRegion] = useState("");
@@ -81,6 +82,10 @@ function App() {
 	useEffect(() => {
 		getContent();
 	}, [movies]);
+
+	useEffect(() => {
+		nicheSelected ? window.scrollBy(0, 500) : window.scrollBy(0, 0);
+	}, [nicheSelected]);
 
 	const selectionHandler = {
 		genre: (index) => {
@@ -159,15 +164,21 @@ function App() {
 						age={age}
 						ageSelected={ageSelected}
 					/>
+
 					<button
-						onClick={() => setIsOptionsOn(!isOptionsOn)}
-						className="
-						m-3 mr-10 mt-5
-						w-44
-						btn-primary"
+						onClick={() => {
+							setIsOptionsOn(!isOptionsOn);
+							setNicheSelected(!nicheSelected);
+						}}
+						className={
+							!nicheSelected
+								? "m-3 mr-10 mt-5 w-44 btn-primary"
+								: "m-3 mr-10 mt-5 w-44 btn-primary-selected"
+						}
 					>
 						niche tastes?
 					</button>
+
 					<button
 						onClick={() => {
 							setIsSubmitted(true);
@@ -199,6 +210,7 @@ function App() {
 							/>
 						</div>
 					)}
+
 					<Outlet />
 				</div>
 			</div>
