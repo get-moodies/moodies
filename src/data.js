@@ -25,6 +25,12 @@ import ninetiespattern from "./images/nineties_edit.jpg";
 import phone from "./images/phone_edit.jpg";
 import wallpaper from "./images/wallpaper_edit.png";
 
+import metaverseBubble from "./images/metaverse_bubble1.jpg";
+import modernBubble from "./images/modern_bubble2.jpg";
+import ninetiespatternBubble from "./images/nineties_bubble.jpg";
+import phoneBubble from "./images/phone_bubble2.jpg";
+import wallpaperBubble from "./images/wallpaper_bubble.png";
+
 const generes = [
 	{
 		id: 28,
@@ -173,30 +179,35 @@ const age = [
 		id: "1960",
 		endYear: "1979",
 		image: wallpaper,
+		bubble: wallpaperBubble,
 	},
 	{
 		name: "retro",
 		id: "1980",
 		endYear: "1999",
 		image: ninetiespattern,
+		bubble: ninetiespatternBubble,
 	},
 	{
 		name: "nostalgic",
 		id: "2000",
 		endYear: "2009",
 		image: phone,
+		bubble: phoneBubble,
 	},
 	{
 		name: "modern",
 		id: "2010",
 		endYear: "2019",
 		image: modern,
+		bubble: modernBubble,
 	},
 	{
 		name: "new",
 		id: "2020",
 		endYear: "2022",
 		image: metaverse,
+		bubble: metaverseBubble,
 	},
 ];
 const regions = [
