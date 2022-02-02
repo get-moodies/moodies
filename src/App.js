@@ -10,6 +10,7 @@ import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
+import EraBubbles from "./components/EraBubbles";
 
 import { generes, genresIcons, age, providers } from "./data";
 
@@ -148,11 +149,17 @@ function App() {
 					<h3 className="text-xl text-white font-medium ">
 						what era do you want to visit?
 					</h3>
-					<Bubbles
+					<EraBubbles
 						category={age}
 						handler={selectionHandler.year}
 						ageSelected={ageSelected}
 					/>
+
+					{/* <Bubbles
+						category={age}
+						handler={selectionHandler.year}
+						ageSelected={ageSelected}
+					/> */}
 
 					<SelectionBox
 						genre={genre}
@@ -172,8 +179,8 @@ function App() {
 						}}
 						className={
 							!nicheSelected
-								? "m-3 mr-10 mt-5 w-44 btn-primary"
-								: "m-3 mr-10 mt-5 w-44 btn-primary-selected"
+								? "m-3 mr-10 mt-7 w-44 btn-primary"
+								: "m-3 mr-10 mt-7 w-44 btn-primary-selected"
 						}
 					>
 						niche tastes?
@@ -192,12 +199,12 @@ function App() {
 						}}
 						className="
 						
-							m-3 ml-10 mt-5
+							m-3 ml-10 mt-7
 							w-44
 							btn-primary
 						"
 					>
-						show me movies!
+						show movies!
 					</button>
 
 					{isOptionsOn && (

@@ -2,11 +2,11 @@ export default function TimeSlider({ handler, startYear, endYear }) {
 	return (
 		<div className="relative pt-2">
 			{/* <h3 className="text-xl text-white font-medium ">... and am only interested in </h3> */}
-			<span className="in-line text-3xl text-white font-semibold ">
+			<span className="in-line text-2xl text-white font-semibold ">
 				{startYear}
 			</span>
-			<span className="in-line text-3xl text-white font-medium "> to </span>
-			<span className="in-line text-3xl text-white font-semibold ">
+			<span className="in-line text-2xl text-white font-medium "> to </span>
+			<span className="in-line text-2xl text-white font-semibold ">
 				{endYear}
 			</span>
 			<div className="flex">
