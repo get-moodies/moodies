@@ -23,6 +23,7 @@ function App() {
 	const [watchProvider, setWatchProvider] = useState(
 		new Array(providers.length).fill(false)
 	);
+	const [nicheSelected, setNicheSelected] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
 	const [region, setRegion] = useState("DE");
 	const [userRegion, setUserRegion] = useState("");
@@ -81,6 +82,10 @@ function App() {
 	useEffect(() => {
 		getContent();
 	}, [movies]);
+
+	useEffect(() => {
+		nicheSelected ? window.scrollBy(0, 500) : window.scrollBy(0, 0);
+	}, [nicheSelected]);
 
 	const selectionHandler = {
 		genre: (index) => {
@@ -149,17 +154,6 @@ function App() {
 						ageSelected={ageSelected}
 					/>
 
-					{isOptionsOn && (
-						<div>
-							<Options handler={selectionHandler.genre} genre={genre} />
-							<TimeSlider
-								handler={selectionHandler.year}
-								startYear={startYear}
-								endYear={endYear}
-							/>
-						</div>
-					)}
-
 					<SelectionBox
 						genre={genre}
 						generes={generes}
@@ -170,6 +164,20 @@ function App() {
 						age={age}
 						ageSelected={ageSelected}
 					/>
+
+					<button
+						onClick={() => {
+							setIsOptionsOn(!isOptionsOn);
+							setNicheSelected(!nicheSelected);
+						}}
+						className={
+							!nicheSelected
+								? "m-3 mr-10 mt-5 w-44 btn-primary"
+								: "m-3 mr-10 mt-5 w-44 btn-primary-selected"
+						}
+					>
+						niche tastes?
+					</button>
 
 					<button
 						onClick={() => {
@@ -184,22 +192,24 @@ function App() {
 						}}
 						className="
 						
-							m-1 my-5 
+							m-3 ml-10 mt-5
 							w-44
 							btn-primary
 						"
 					>
 						show me movies!
 					</button>
-					<button
-						onClick={() => setIsOptionsOn(!isOptionsOn)}
-						className="
-						m-1 my-5 
-						w-44
-						btn-primary"
-					>
-						niche taste?
-					</button>
+
+					{isOptionsOn && (
+						<div>
+							<Options handler={selectionHandler.genre} genre={genre} />
+							<TimeSlider
+								handler={selectionHandler.year}
+								startYear={startYear}
+								endYear={endYear}
+							/>
+						</div>
+					)}
 
 					<Outlet />
 				</div>

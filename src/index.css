@@ -21,7 +21,7 @@ html {
 .backGround {
 	background: #6366f1;
 	position: absolute;
-	animation: bodyHue 40s alternate infinite;
+	animation: bodyHue 30s alternate infinite;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -105,5 +105,16 @@ body {
       px-4 py-2 
       rounded-full 
       font-medium text-sm text-white;
+	}
+
+	.btn-primary-selected {
+		@apply shadow-lg 
+      h-10
+      bg-opacity-60 bg-black 
+    
+      px-4 py-2 
+      rounded-full 
+      font-medium text-sm text-white
+	  outline-4 outline-slate-400/40  outline outline-offset-0;
 	}
 }

@@ -13,8 +13,8 @@ export default function SelectionBox({
 	ageSelected,
 }) {
 	return (
-		<div className="border-4 border-slate-50 rounded-xl w-3/5 mx-auto p-4  sticky">
-			<p className="text-xl text-white font-medium mb-4 ">current mood:</p>
+		<div className="border-4 border-slate-50 rounded-xl w-3/5 mx-auto p-4 mt-6  sticky h-[350px]">
+			<p className="text-xl text-white font-semibold mb-4 ">current mood</p>
 			<div className="flex  items-center justify-center ">
 				{genresIcons.map((category, index) => {
 					return (
@@ -58,7 +58,7 @@ export default function SelectionBox({
 				)}
 			</div>
 
-			<p className="text-lg text-white font-bold mt-[-.5rem]">
+			<p className="text-lg text-white font-medium mt-1">
 				{startYear} - {endYear}
 			</p>
 		</div>
