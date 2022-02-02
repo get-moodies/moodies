@@ -11,6 +11,7 @@ import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
 import EraBubbles from "./components/EraBubbles";
+import { MemoizedOptions } from "./components/Options";
 
 import { generes, genresIcons, age, providers } from "./data";
 
@@ -31,6 +32,8 @@ function App() {
 	const navigate = useNavigate();
 	const { loadMovies, isLoading, isError, movies } = useResults();
 	const [isSubmitted, setIsSubmitted] = useState(false);
+
+	console.log(genre);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
