@@ -36,19 +36,14 @@ function App() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const [isAdult, setIsAdult] = useState(false);
-	const [isKidsSelected, setIsKidsSelected] = useState(false);
-	const [isEpicsSelected, setIsEpicsSelected] = useState(false);
-
-	const [isStinkerSelected, setIsStinkerSelected] = useState(false);
-	const [isFlopsSelected, setIsFlopsSelected] = useState(false);
-	const [isBlockbusterSelected, setIsBlockbustersSelected] = useState(false);
-	const [isGemsSelected, setIsGemsSelected] = useState(false);
-
-	console.log(genre);
+	const [movieLength, setMovieLength] = useState(0);
+	const [sortQuery, setSortQuery] = useState("popularity.desc");
 
 	const adult_URL = isAdult;
 
-	console.log(adult_URL);
+	console.log(sortQuery);
+	console.log(movieLength);
+	console.log(isAdult);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -71,12 +66,14 @@ function App() {
 
 	useEffect(() => {
 		loadMovies(
+			sortQuery,
 			adult_URL,
 			startYear,
 			endYear,
 			genreList_URL,
 			provider_URL,
-			region
+			region,
+			movieLength
 		);
 		getUserRegion();
 	}, []);
@@ -97,12 +94,14 @@ function App() {
 				navigate(`
 					moodies
 					/suggestions
+					/${sortQuery}
 					/${adult_URL}
 					/${genreList_URL}
 					/${startYear}
 					/${endYear}
 					/${region}	
-					/${provider_URL}	
+					/${movieLength}	
+					/${provider_URL}
 				`);
 			}
 		}
@@ -147,12 +146,6 @@ function App() {
 		},
 
 		region: (region) => setRegion(region),
-	};
-
-	const nicheHandler = {
-		kidFriendly: () => {},
-		movieLength: () => {},
-		sortOptions: () => {},
 	};
 
 	//console.log(movies);
@@ -204,6 +197,9 @@ function App() {
 						handler={selectionHandler}
 						age={age}
 						ageSelected={ageSelected}
+						sortQuery={sortQuery}
+						isAdult={isAdult}
+						movieLength={movieLength}
 					/>
 
 					<button
@@ -224,42 +220,36 @@ function App() {
 						onClick={() => {
 							setIsSubmitted(true);
 							loadMovies(
+								sortQuery,
 								adult_URL,
 								startYear,
 								endYear,
 								genreList_URL,
 								provider_URL,
-								region
+								region,
+								movieLength
 							);
 						}}
 						className="
-						
 							m-3 ml-10 mt-7
 							w-44
-							btn-primary
-						"
+							btn-primary"
 						data-bs-toggle="tooltip"
 						data-bs-placement="right"
 						title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
 					>
 						show movies
 					</button>
-
+					<Outlet />
 					{isOptionsOn && (
 						<div>
 							<Niche
 								isAdult={isAdult}
 								setIsAdult={setIsAdult}
-								isStinkerSelected={isStinkerSelected}
-								isFlopsSelected={isFlopsSelected}
-								isBlockbusterSelected={isBlockbusterSelected}
-								isGemsSelected={isGemsSelected}
-								isEpicsSelected={isEpicsSelected}
-								setIsStinkerSelected={setIsStinkerSelected}
-								setIsFlopsSelected={setIsFlopsSelected}
-								setIsBlockbustersSelected={setIsBlockbustersSelected}
-								setIsGemsSelected={setIsGemsSelected}
-								setIsEpicsSelected={setIsEpicsSelected}
+								movieLength={movieLength}
+								setMovieLength={setMovieLength}
+								sortQuery={sortQuery}
+								setSortQuery={setSortQuery}
 							/>
 							<Options handler={selectionHandler.genre} genre={genre} />
 							<TimeSlider
@@ -269,8 +259,6 @@ function App() {
 							/>
 						</div>
 					)}
-
-					<Outlet />
 				</div>
 			</div>
 			<div className="backGround"></div>

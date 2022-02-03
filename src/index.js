@@ -15,30 +15,39 @@ ReactDOM.render(
 			<Route path="/" element={<App />}>
 				<Route
 					path="error=true"
-					element={<div>the api fell asleep, try a refresh</div>}
+					element={
+						<p className="font-medium mt-3 text-white">
+							the api fell asleep, try a refresh
+						</p>
+					}
 				/>
 				<Route
 					path="loading=true"
 					element={
 						<div>
 							<img src={face} className="Load-spinner " alt="cage face" />
-							<p>loading...</p>
+							<p className="font-medium mt-3 text-white">loading...</p>
 						</div>
 					}
 				/>
 				<Route
 					path="too-picky=true"
 					element={
-						<div>
-							Nick found no recomendations for you! Try to be less picky?
-						</div>
+						<p className="font-medium mt-3 text-white">
+							no recomendations found, try selecting less options
+						</p>
 					}
 				/>
-				<Route path="genre=false" element={<div>Please select a genre!</div>} />
+				<Route
+					path="genre=false"
+					element={
+						<p className="font-medium mt-3 text-white">please select a genre</p>
+					}
+				/>
 			</Route>
 			<Route path="/moodies" element={<Layout />}>
 				<Route
-					path="suggestions/:adult_URL/:genreList/:startYear/:endYear/:region/"
+					path="suggestions/:sortQuery/:adult_URL/:genreList/:startYear/:endYear/:region/:movieLength"
 					element={<Suggestions />}
 				>
 					<Route path=":providerList" element={<Suggestions />} />

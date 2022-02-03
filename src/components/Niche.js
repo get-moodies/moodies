@@ -1,114 +1,34 @@
-import { useState } from "react";
+import StinkersButton from "./StinkersButton";
+import GemsButton from "./GemsButton";
+import FlopsButton from "./FlopsButton";
+import BlockbusterButton from "./BlockbusterButton";
+import EpicsButton from "./EpicsButton";
+import AdultButton from "./AdultButton";
 
 export default function Niche({
-	isStinkerSelected,
-
 	isAdult,
 	setIsAdult,
-
-	isFlopsSelected,
-	isGemsSelected,
-	isEpicsSelected,
-	isBlockbustersSelected,
-	setIsStinkerSelected,
-
-	setIsFlopsSelected,
-	setIsBlockbustersSelected,
-	setIsGemsSelected,
-	setIsEpicsSelected,
+	movieLength,
+	setMovieLength,
+	sortQuery,
+	setSortQuery,
 }) {
-	console.log(`isAdult on niche page is ${isAdult}`);
 	return (
 		<>
 			<div>
 				<h3 className="text-xl text-white font-medium mt-8 mb-5">
 					in the mood for something more niche?
 				</h3>
-				<button
-					className={
-						!isStinkerSelected
-							? `mx-2 my-3
-                                btn-primary`
-							: `mx-2 my-3
-                                btn-primary-selected`
-					}
-					onClick={() => {
-						setIsStinkerSelected(!isStinkerSelected);
-					}}
-				>
-					real stinkers
-				</button>
-				<button
-					className={
-						!isEpicsSelected
-							? `mx-2 my-3
-                                btn-primary`
-							: `mx-2 my-3
-                                btn-primary-selected`
-					}
-					onClick={() => {
-						setIsEpicsSelected(!isEpicsSelected);
-					}}
-				>
-					sprawling epics
-				</button>
-				<button
-					className={
-						!isFlopsSelected
-							? `mx-2 my-3
-                                btn-primary`
-							: `mx-2 my-3
-                                btn-primary-selected`
-					}
-					onClick={() => {
-						setIsFlopsSelected(!isFlopsSelected);
-					}}
-				>
-					massive flops
-				</button>
-				<button
-					className={
-						!isBlockbustersSelected
-							? `mx-2 my-3
-                                btn-primary`
-							: `mx-2 my-3
-                                btn-primary-selected`
-					}
-					onClick={() => {
-						setIsBlockbustersSelected(!isBlockbustersSelected);
-					}}
-				>
-					blockbusters
-				</button>
-				<button
-					className={
-						!isGemsSelected
-							? `mx-2 my-3
-                                btn-primary`
-							: `mx-2 my-3
-                                btn-primary-selected`
-					}
-					onClick={() => {
-						setIsGemsSelected(!isGemsSelected);
-					}}
-				>
-					forgotten gems
-				</button>
 
-				<button
-					className={
-						!isAdult
-							? `mx-2 my-3
-                                btn-primary`
-							: `mx-2 my-3
-                                btn-primary-selected`
-					}
-					onClick={() => {
-						setIsAdult(!isAdult);
-					}}
-				>
-					remove child lock
-				</button>
+				<StinkersButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
+				<GemsButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
+				<FlopsButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
+				<BlockbusterButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
+				<EpicsButton
+					movieLength={movieLength}
+					setMovieLength={setMovieLength}
+				/>
+				<AdultButton isAdult={isAdult} setIsAdult={setIsAdult} />
 			</div>
 		</>
 	);

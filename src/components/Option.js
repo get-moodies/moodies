@@ -4,12 +4,10 @@ export default function Option({ element, handler, index, isSelected }) {
 			className={
 				!isSelected
 					? `
-         
             mx-2 my-3
            btn-primary
             `
 					: `
-            
             mx-2 my-3
           btn-primary-selected
             `
