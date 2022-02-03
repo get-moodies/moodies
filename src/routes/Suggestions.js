@@ -23,12 +23,12 @@ export default function Suggestions() {
 		loadMovies(
 			sortQuery,
 			adult_URL,
+			movieLength,
 			startYear,
 			endYear,
 			genreList,
 			providerList,
-			region,
-			movieLength
+			region
 		);
 	}, []);
 	return (

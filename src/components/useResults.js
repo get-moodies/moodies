@@ -13,17 +13,18 @@ function useResults() {
 	function loadMovies(
 		sortQuery,
 		adult_URL,
+		movieLength,
 		startYear,
 		endYear,
 		genreList_URL,
 		provider_URL,
-		region,
-		movieLength
+		region
 	) {
 		const url = `https://api.themoviedb.org/3/discover/movie?
 		api_key=${process.env.REACT_APP_API_KEY}
 		&sort_by=${sortQuery}
 		&include_adult=${adult_URL}
+		&with_runtime.gte=${movieLength}
 		&page=1
         &vote_count.gte=100
         &primary_release_date.gte=${startYear}
@@ -31,7 +32,6 @@ function useResults() {
 		&with_genres=${genreList_URL}
 		&with_watch_providers=${provider_URL}
 		&watch_region=${region}
-        &with_runtime.gte=${movieLength}
         `;
 		console.log(adult_URL);
 		console.log(url);

@@ -47,7 +47,7 @@ ReactDOM.render(
 			</Route>
 			<Route path="/moodies" element={<Layout />}>
 				<Route
-					path="suggestions/:sortQuery/:adult_URL/:genreList/:startYear/:endYear/:region/:movieLength"
+					path="suggestions/:sortQuery/:adult_URL/:movieLength/:genreList/:startYear/:endYear/:region"
 					element={<Suggestions />}
 				>
 					<Route path=":providerList" element={<Suggestions />} />

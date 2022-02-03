@@ -68,12 +68,12 @@ function App() {
 		loadMovies(
 			sortQuery,
 			adult_URL,
+			movieLength,
 			startYear,
 			endYear,
 			genreList_URL,
 			provider_URL,
-			region,
-			movieLength
+			region
 		);
 		getUserRegion();
 	}, []);
@@ -96,11 +96,11 @@ function App() {
 					/suggestions
 					/${sortQuery}
 					/${adult_URL}
+					/${movieLength}	
 					/${genreList_URL}
 					/${startYear}
 					/${endYear}
 					/${region}	
-					/${movieLength}	
 					/${provider_URL}
 				`);
 			}
@@ -222,12 +222,12 @@ function App() {
 							loadMovies(
 								sortQuery,
 								adult_URL,
+								movieLength,
 								startYear,
 								endYear,
 								genreList_URL,
 								provider_URL,
-								region,
-								movieLength
+								region
 							);
 						}}
 						className="
