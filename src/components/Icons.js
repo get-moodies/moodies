@@ -6,7 +6,7 @@ export default function Icons({ category, handler, genre }) {
 			<div
 				className={`
               m-4
-              grid grid-cols-5 gap-x-4 gap-y-4
+              grid md:grid-cols-5 grid-cols-2 gap-x-4 gap-y-4
               place-items-center
             `}
 			>
