@@ -4,19 +4,17 @@ export default function Option({ element, handler, index, isSelected }) {
 			className={
 				!isSelected
 					? `
-         
-            mx-2 my-5
+            mx-2 my-3
            btn-primary
             `
 					: `
-            
-            mx-2 my-5
+            mx-2 my-3
           btn-primary-selected
             `
 			}
-			onClick={() => handler(index)}
+			onClick={() => handler(index + 10)}
 		>
-			{element.name}
+			{element.tag}
 		</button>
 	);
 }

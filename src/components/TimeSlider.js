@@ -1,6 +1,6 @@
 export default function TimeSlider({ handler, startYear, endYear }) {
 	return (
-		<div className="relative pt-2">
+		<div className="relative pt-2 mt-5">
 			{/* <h3 className="text-xl text-white font-medium ">... and am only interested in </h3> */}
 			<span className="in-line text-2xl text-white font-semibold ">
 				{startYear}

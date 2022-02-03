@@ -10,7 +10,9 @@ import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
+import Niche from "./components/Niche";
 import EraBubbles from "./components/EraBubbles";
+import { MemoizedOptions } from "./components/Options";
 
 import { generes, genresIcons, age, providers } from "./data";
 
@@ -26,11 +28,22 @@ function App() {
 	);
 	const [nicheSelected, setNicheSelected] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
+
 	const [region, setRegion] = useState("DE");
 	const [userRegion, setUserRegion] = useState("");
 	const navigate = useNavigate();
 	const { loadMovies, isLoading, isError, movies } = useResults();
 	const [isSubmitted, setIsSubmitted] = useState(false);
+
+	const [isAdult, setIsAdult] = useState(false);
+	const [movieLength, setMovieLength] = useState(0);
+	const [sortQuery, setSortQuery] = useState("popularity.desc");
+
+	const adult_URL = isAdult;
+
+	console.log(sortQuery);
+	console.log(movieLength);
+	console.log(isAdult);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -52,10 +65,21 @@ function App() {
 			});
 
 	useEffect(() => {
-		loadMovies(startYear, endYear, genreList_URL, provider_URL, region);
+		loadMovies(
+			sortQuery,
+			adult_URL,
+			startYear,
+			endYear,
+			genreList_URL,
+			provider_URL,
+			region,
+			movieLength
+		);
 		getUserRegion();
 	}, []);
+
 	useEffect(() => setRegion(userRegion), [userRegion]);
+
 	const getContent = () => {
 		if (isSubmitted) {
 			if (isError) {
@@ -70,11 +94,14 @@ function App() {
 				navigate(`
 					moodies
 					/suggestions
+					/${sortQuery}
+					/${adult_URL}
 					/${genreList_URL}
 					/${startYear}
 					/${endYear}
 					/${region}	
-					/${provider_URL}	
+					/${movieLength}	
+					/${provider_URL}
 				`);
 			}
 		}
@@ -149,17 +176,17 @@ function App() {
 					<h3 className="text-xl text-white font-medium ">
 						what era do you want to visit?
 					</h3>
-					<EraBubbles
-						category={age}
-						handler={selectionHandler.year}
-						ageSelected={ageSelected}
-					/>
-
-					{/* <Bubbles
+					{/* <EraBubbles
 						category={age}
 						handler={selectionHandler.year}
 						ageSelected={ageSelected}
 					/> */}
+
+					<Bubbles
+						category={age}
+						handler={selectionHandler.year}
+						ageSelected={ageSelected}
+					/>
 
 					<SelectionBox
 						genre={genre}
@@ -170,6 +197,9 @@ function App() {
 						handler={selectionHandler}
 						age={age}
 						ageSelected={ageSelected}
+						sortQuery={sortQuery}
+						isAdult={isAdult}
+						movieLength={movieLength}
 					/>
 
 					<button
@@ -183,32 +213,44 @@ function App() {
 								: "m-3 mr-10 mt-7 w-44 btn-primary-selected"
 						}
 					>
-						niche tastes?
+						niche taste
 					</button>
 
 					<button
 						onClick={() => {
 							setIsSubmitted(true);
 							loadMovies(
+								sortQuery,
+								adult_URL,
 								startYear,
 								endYear,
 								genreList_URL,
 								provider_URL,
-								region
+								region,
+								movieLength
 							);
 						}}
 						className="
-						
 							m-3 ml-10 mt-7
 							w-44
-							btn-primary
-						"
+							btn-primary"
+						data-bs-toggle="tooltip"
+						data-bs-placement="right"
+						title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
 					>
-						show movies!
+						show movies
 					</button>
-
+					<Outlet />
 					{isOptionsOn && (
 						<div>
+							<Niche
+								isAdult={isAdult}
+								setIsAdult={setIsAdult}
+								movieLength={movieLength}
+								setMovieLength={setMovieLength}
+								sortQuery={sortQuery}
+								setSortQuery={setSortQuery}
+							/>
 							<Options handler={selectionHandler.genre} genre={genre} />
 							<TimeSlider
 								handler={selectionHandler.year}
@@ -217,8 +259,6 @@ function App() {
 							/>
 						</div>
 					)}
-
-					<Outlet />
 				</div>
 			</div>
 			<div className="backGround"></div>

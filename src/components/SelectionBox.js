@@ -1,6 +1,12 @@
 import Icon from "./Icon";
 import Option from "./Option";
-import EraBubble from "./EraBubble";
+import Bubble from "./Bubble";
+import StinkersButton from "./StinkersButton";
+import GemsButton from "./GemsButton";
+import FlopsButton from "./FlopsButton";
+import BlockbusterButton from "./BlockbusterButton";
+import EpicsButton from "./EpicsButton";
+import AdultButton from "./AdultButton";
 
 export default function SelectionBox({
 	genre,
@@ -11,11 +17,14 @@ export default function SelectionBox({
 	handler,
 	age,
 	ageSelected,
+	sortQuery,
+	isAdult,
+	movieLength,
 }) {
 	return (
 		<>
-			<p className="text-xl text-white font-medium mb-4 ">current mood</p>
-			<div className="border-4 border-slate-50 overflow-hidden rounded-xl w-3/5 mx-auto p-4 mt-6 sticky h-[350px]">
+			<p className="text-xl text-white font-medium mb-3 mt-7 ">current mood</p>
+			<div className="border-4 border-slate-50 overflow-hidden rounded-xl w-3/5 mx-auto p-4 mt-5 sticky h-[350px]">
 				<div className="flex  items-center justify-center ">
 					{genresIcons.map((category, index) => {
 						return (
@@ -48,7 +57,7 @@ export default function SelectionBox({
 					{age.map(
 						(element, index) =>
 							ageSelected[index] && (
-								<EraBubble
+								<Bubble
 									key={element.id}
 									element={element}
 									index={index}
@@ -59,6 +68,14 @@ export default function SelectionBox({
 					)}
 				</div>
 
+				<div className="flex flex-row items-center justify-center ">
+					{sortQuery === "vote_average.asc" && <StinkersButton />}
+					{sortQuery === "popularity.asc" && <GemsButton />}
+					{sortQuery === "revenue.asc" && <FlopsButton />}
+					{sortQuery === "revenue.desc" && <BlockbusterButton />}
+					{isAdult && <AdultButton />}
+					{movieLength === 180 && <EpicsButton />}
+				</div>
 				{/* <p className="text-lg text-white font-medium mt-1">
 					{startYear} - {endYear}
 				</p> */}

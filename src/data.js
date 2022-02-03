@@ -49,40 +49,16 @@ const generes = [
 		name: "Comedy",
 	},
 	{
-		id: 80,
-		name: "Crime",
-	},
-	{
-		id: 99,
-		name: "Documentary",
-	},
-	{
 		id: 18,
 		name: "Drama",
-	},
-	{
-		id: 10751,
-		name: "Family",
 	},
 	{
 		id: 14,
 		name: "Fantasy",
 	},
 	{
-		id: 36,
-		name: "History",
-	},
-	{
 		id: 27,
 		name: "Horror",
-	},
-	{
-		id: 10402,
-		name: "Music",
-	},
-	{
-		id: 9648,
-		name: "Mystery",
 	},
 	{
 		id: 10749,
@@ -93,20 +69,57 @@ const generes = [
 		name: "Science Fiction",
 	},
 	{
-		id: 10770,
-		name: "TV Movie",
-	},
-	{
 		id: 53,
 		name: "Thriller",
 	},
 	{
+		id: 80,
+		name: "Crime",
+		tag: "gangs and heists",
+	},
+	{
+		id: 99,
+		name: "Documentary",
+		tag: "teach me something",
+	},
+	{
+		id: 10751,
+		name: "Family",
+		tag: "fun for the family",
+	},
+
+	{
+		id: 36,
+		name: "History",
+		tag: "history repeating",
+	},
+
+	{
+		id: 10402,
+		name: "Music",
+		tag: "harmonies and melodies",
+	},
+	{
+		id: 9648,
+		name: "Mystery",
+		tag: "murder mysteries",
+	},
+
+	{
+		id: 10770,
+		name: "TV Movie",
+		tag: "made for tv",
+	},
+
+	{
 		id: 10752,
 		name: "War",
+		tag: "war movies",
 	},
 	{
 		id: 37,
 		name: "Western",
+		tag: "cowboys and cowgirls",
 	},
 ];
 const genresIcons = [
