@@ -5,7 +5,7 @@ export default function Dropdown({ region, regionHandler }) {
 	return (
 		<>
 			<Menu>
-				<div className="relative">
+				<div className="relative  hidden md:inline-block ">
 					<Menu.Items
 						className=" 
                         shadow-lg 

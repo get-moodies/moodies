@@ -209,8 +209,8 @@ function App() {
 						}}
 						className={
 							!nicheSelected
-								? "m-3 mr-10 mt-7 w-44 btn-primary"
-								: "m-3 mr-10 mt-7 w-44 btn-primary-selected"
+								? "m-3 mr-0 sm:mr-10 mt-7 w-44 btn-primary"
+								: "m-3 mr-0 sm:mr-10 mt-7 w-44 btn-primary-selected"
 						}
 					>
 						niche taste
@@ -231,7 +231,7 @@ function App() {
 							);
 						}}
 						className="
-							m-3 ml-10 mt-7
+							m-3 ml-5 sm:ml-10 mt-7
 							w-44
 							btn-primary"
 						data-bs-toggle="tooltip"

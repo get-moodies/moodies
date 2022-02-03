@@ -25,7 +25,11 @@ ReactDOM.render(
 					path="loading=true"
 					element={
 						<div>
-							<img src={face} className="Load-spinner " alt="cage face" />
+							<img
+								src={face}
+								className="Load-spinner mx-auto"
+								alt="cage face"
+							/>
 							<p className="font-medium mt-3 text-white">loading...</p>
 						</div>
 					}

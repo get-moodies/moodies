@@ -9,7 +9,9 @@ export default function Header({
 }) {
 	return (
 		<div className="flex mb-5 justify-between">
-			<h1 className="text-5xl text-white font-medium">moodies</h1>
+			<h1 className="text-4xl sm:text-5xl mt-2 sm:mt-0 text-white font-medium">
+				moodies
+			</h1>
 			<div className="flex ">
 				<Dropdown region={region} regionHandler={regionHandler} />
 				<ServiceSelector
@@ -18,9 +20,9 @@ export default function Header({
 				/>
 				<button
 					className="btn-primary
-                         
 							mt-1
 							ml-3
+							hidden sm:inline-block 
                         "
 				>
 					account
