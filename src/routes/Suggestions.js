@@ -7,26 +7,21 @@ import MovieList from "../components/MovieList";
 import face from "../images/face.png";
 
 export default function Suggestions() {
-    const {genreList,startYear,endYear,region,providerList} = useParams();
-    const {loadMovies, isLoading, isError, movies} = useResults()
-	
-    useEffect(() => {
-        loadMovies(
-            startYear, 
-            endYear, 
-            genreList, 
-            providerList, 
-            region	
-            )
-    },[])
-    return ( 
-        <>
-            {<MovieList movies={movies}  watchProvider={providerList} />}
-            <img 
-                src={face} 
-                className="absolute bottom-3/4 left-[65%] my-auto h-40" 
-                alt="cage face" 
-            /> 
-        </>
-        );
+	const { genreList, startYear, endYear, region, providerList, adult_URL } =
+		useParams();
+	const { loadMovies, isLoading, isError, movies } = useResults();
+
+	useEffect(() => {
+		loadMovies(adult_URL, startYear, endYear, genreList, providerList, region);
+	}, []);
+	return (
+		<>
+			{<MovieList movies={movies} watchProvider={providerList} />}
+			<img
+				src={face}
+				className="absolute bottom-3/4 left-[65%] my-auto h-40"
+				alt="cage face"
+			/>
+		</>
+	);
 }

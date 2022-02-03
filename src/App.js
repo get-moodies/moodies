@@ -28,13 +28,27 @@ function App() {
 	);
 	const [nicheSelected, setNicheSelected] = useState(false);
 	const [isOptionsOn, setIsOptionsOn] = useState(false);
+
 	const [region, setRegion] = useState("DE");
 	const [userRegion, setUserRegion] = useState("");
 	const navigate = useNavigate();
 	const { loadMovies, isLoading, isError, movies } = useResults();
 	const [isSubmitted, setIsSubmitted] = useState(false);
 
+	const [isAdult, setIsAdult] = useState(false);
+	const [isKidsSelected, setIsKidsSelected] = useState(false);
+	const [isEpicsSelected, setIsEpicsSelected] = useState(false);
+
+	const [isStinkerSelected, setIsStinkerSelected] = useState(false);
+	const [isFlopsSelected, setIsFlopsSelected] = useState(false);
+	const [isBlockbusterSelected, setIsBlockbustersSelected] = useState(false);
+	const [isGemsSelected, setIsGemsSelected] = useState(false);
+
 	console.log(genre);
+
+	const adult_URL = isAdult;
+
+	console.log(adult_URL);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -56,7 +70,14 @@ function App() {
 			});
 
 	useEffect(() => {
-		loadMovies(startYear, endYear, genreList_URL, provider_URL, region);
+		loadMovies(
+			adult_URL,
+			startYear,
+			endYear,
+			genreList_URL,
+			provider_URL,
+			region
+		);
 		getUserRegion();
 	}, []);
 
@@ -76,6 +97,7 @@ function App() {
 				navigate(`
 					moodies
 					/suggestions
+					/${adult_URL}
 					/${genreList_URL}
 					/${startYear}
 					/${endYear}
@@ -125,6 +147,12 @@ function App() {
 		},
 
 		region: (region) => setRegion(region),
+	};
+
+	const nicheHandler = {
+		kidFriendly: () => {},
+		movieLength: () => {},
+		sortOptions: () => {},
 	};
 
 	//console.log(movies);
@@ -189,13 +217,14 @@ function App() {
 								: "m-3 mr-10 mt-7 w-44 btn-primary-selected"
 						}
 					>
-						niche tastes?
+						niche taste
 					</button>
 
 					<button
 						onClick={() => {
 							setIsSubmitted(true);
 							loadMovies(
+								adult_URL,
 								startYear,
 								endYear,
 								genreList_URL,
@@ -213,12 +242,25 @@ function App() {
 						data-bs-placement="right"
 						title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
 					>
-						show suggestions!
+						show movies
 					</button>
 
 					{isOptionsOn && (
 						<div>
-							<Niche />
+							<Niche
+								isAdult={isAdult}
+								setIsAdult={setIsAdult}
+								isStinkerSelected={isStinkerSelected}
+								isFlopsSelected={isFlopsSelected}
+								isBlockbusterSelected={isBlockbusterSelected}
+								isGemsSelected={isGemsSelected}
+								isEpicsSelected={isEpicsSelected}
+								setIsStinkerSelected={setIsStinkerSelected}
+								setIsFlopsSelected={setIsFlopsSelected}
+								setIsBlockbustersSelected={setIsBlockbustersSelected}
+								setIsGemsSelected={setIsGemsSelected}
+								setIsEpicsSelected={setIsEpicsSelected}
+							/>
 							<Options handler={selectionHandler.genre} genre={genre} />
 							<TimeSlider
 								handler={selectionHandler.year}

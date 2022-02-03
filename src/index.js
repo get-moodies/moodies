@@ -7,6 +7,8 @@ import Suggestions from "./routes/Suggestions";
 import Layout from "./routes/Layout";
 import Error from "./routes/Error";
 
+import face from "./images/face.png";
+
 ReactDOM.render(
 	<BrowserRouter>
 		<Routes>
@@ -16,10 +18,10 @@ ReactDOM.render(
 					element={<div>the api fell asleep, try a refresh</div>}
 				/>
 				<Route
-					path="loading=ture"
+					path="loading=true"
 					element={
 						<div>
-							{/* <img src={face} className="Load-spinner " alt="cage face" /> */}
+							<img src={face} className="Load-spinner " alt="cage face" />
 							<p>loading...</p>
 						</div>
 					}
@@ -27,14 +29,16 @@ ReactDOM.render(
 				<Route
 					path="too-picky=true"
 					element={
-						<div>Nick found no recomendations for you! Try less picky?</div>
+						<div>
+							Nick found no recomendations for you! Try to be less picky?
+						</div>
 					}
 				/>
 				<Route path="genre=false" element={<div>Please select a genre!</div>} />
 			</Route>
 			<Route path="/moodies" element={<Layout />}>
 				<Route
-					path="suggestions/:genreList/:startYear/:endYear/:region"
+					path="suggestions/:adult_URL/:genreList/:startYear/:endYear/:region/"
 					element={<Suggestions />}
 				>
 					<Route path=":providerList" element={<Suggestions />} />

@@ -1,13 +1,23 @@
 import { useState } from "react";
 
-export default function Niche() {
-	const [isStinkerSelected, setIsStinkerSelected] = useState(false);
-	const [isKidsSelected, setIsKidsSelected] = useState(false);
-	const [isFlopsSelected, setIsFlopsSelected] = useState(false);
-	const [isBlockbustersSelected, setIsBlockbustersSelected] = useState(false);
-	const [isGemsSelected, setIsGemsSelected] = useState(false);
-	const [isEpicsSelected, setIsEpicsSelected] = useState(false);
+export default function Niche({
+	isStinkerSelected,
 
+	isAdult,
+	setIsAdult,
+
+	isFlopsSelected,
+	isGemsSelected,
+	isEpicsSelected,
+	isBlockbustersSelected,
+	setIsStinkerSelected,
+
+	setIsFlopsSelected,
+	setIsBlockbustersSelected,
+	setIsGemsSelected,
+	setIsEpicsSelected,
+}) {
+	console.log(`isAdult on niche page is ${isAdult}`);
 	return (
 		<>
 			<div>
@@ -30,17 +40,17 @@ export default function Niche() {
 				</button>
 				<button
 					className={
-						!isKidsSelected
+						!isEpicsSelected
 							? `mx-2 my-3
                                 btn-primary`
 							: `mx-2 my-3
                                 btn-primary-selected`
 					}
 					onClick={() => {
-						setIsKidsSelected(!isKidsSelected);
+						setIsEpicsSelected(!isEpicsSelected);
 					}}
 				>
-					safe for kids
+					sprawling epics
 				</button>
 				<button
 					className={
@@ -84,19 +94,20 @@ export default function Niche() {
 				>
 					forgotten gems
 				</button>
+
 				<button
 					className={
-						!isEpicsSelected
+						!isAdult
 							? `mx-2 my-3
                                 btn-primary`
 							: `mx-2 my-3
                                 btn-primary-selected`
 					}
 					onClick={() => {
-						setIsEpicsSelected(!isEpicsSelected);
+						setIsAdult(!isAdult);
 					}}
 				>
-					sprawling epics
+					remove child lock
 				</button>
 			</div>
 		</>
