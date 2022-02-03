@@ -1,6 +1,6 @@
 import Icon from "./Icon";
 import Option from "./Option";
-import EraBubble from "./EraBubble";
+import Bubble from "./Bubble";
 
 export default function SelectionBox({
 	genre,
@@ -48,7 +48,7 @@ export default function SelectionBox({
 					{age.map(
 						(element, index) =>
 							ageSelected[index] && (
-								<EraBubble
+								<Bubble
 									key={element.id}
 									element={element}
 									index={index}

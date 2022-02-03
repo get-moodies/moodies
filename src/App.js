@@ -10,6 +10,7 @@ import Icons from "./components/Icons";
 import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
+import Niche from "./components/Niche";
 import EraBubbles from "./components/EraBubbles";
 import { MemoizedOptions } from "./components/Options";
 
@@ -58,7 +59,9 @@ function App() {
 		loadMovies(startYear, endYear, genreList_URL, provider_URL, region);
 		getUserRegion();
 	}, []);
+
 	useEffect(() => setRegion(userRegion), [userRegion]);
+
 	const getContent = () => {
 		if (isSubmitted) {
 			if (isError) {
@@ -152,17 +155,17 @@ function App() {
 					<h3 className="text-xl text-white font-medium ">
 						what era do you want to visit?
 					</h3>
-					<EraBubbles
-						category={age}
-						handler={selectionHandler.year}
-						ageSelected={ageSelected}
-					/>
-
-					{/* <Bubbles
+					{/* <EraBubbles
 						category={age}
 						handler={selectionHandler.year}
 						ageSelected={ageSelected}
 					/> */}
+
+					<Bubbles
+						category={age}
+						handler={selectionHandler.year}
+						ageSelected={ageSelected}
+					/>
 
 					<SelectionBox
 						genre={genre}
@@ -206,12 +209,16 @@ function App() {
 							w-44
 							btn-primary
 						"
+						data-bs-toggle="tooltip"
+						data-bs-placement="right"
+						title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
 					>
-						show movies!
+						show suggestions!
 					</button>
 
 					{isOptionsOn && (
 						<div>
+							<Niche />
 							<Options handler={selectionHandler.genre} genre={genre} />
 							<TimeSlider
 								handler={selectionHandler.year}

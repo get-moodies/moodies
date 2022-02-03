@@ -7,10 +7,6 @@ export default function Options({ handler, genre }) {
 	console.log(nicheGenres);
 	return (
 		<>
-			<h3 className="text-xl text-white font-medium mt-8 mb-5">
-				in the mood for something more niche?
-			</h3>
-
 			{nicheGenres.map((element, index) => (
 				<OptionButton
 					key={element.id}

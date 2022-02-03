@@ -33,6 +33,9 @@ export default function Bubble({ element, index, handler, isSelected }) {
 							overflow: "hidden",
 						}}
 						onClick={() => handler(index, "era")}
+						data-bs-toggle="tooltip"
+						data-bs-placement="right"
+						title={`${element.id} to ${element.endYear}`}
 					></div>
 					<div
 						className={
