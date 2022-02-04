@@ -84,13 +84,13 @@ function App() {
 	const getContent = () => {
 		if (isSubmitted) {
 			if (isError) {
-				navigate(`error=true`);
+				navigate(`moodies/error=true`);
 			} else if (isLoading) {
-				navigate(`loading=true`);
+				navigate(`moodies/loading=true`);
 			} else if (isSubmitted && !genreList_URL) {
-				navigate(`genre=false`);
+				navigate(`moodies/genre=false`);
 			} else if (isSubmitted && !movies.length) {
-				navigate(`too-picky=true`);
+				navigate(`moodies/too-picky=true`);
 			} else {
 				navigate(`
 					moodies

@@ -33,7 +33,14 @@ export default function Suggestions() {
 	}, []);
 	return (
 		<>
-			{<MovieList movies={movies} watchProvider={providerList} />}
+			{
+				<MovieList
+					movies={movies}
+					watchProvider={providerList}
+					isLoading={isLoading}
+					isError={isError}
+				/>
+			}
 			{/* <img
 				src={face}
 				className="absolute bottom-3/4 left-[65%] my-auto h-40"
