@@ -39,7 +39,7 @@ html {
 }
 
 .Load-spinner {
-	height: 10vmin;
+	height: 18vmin;
 	pointer-events: none;
 }
 
@@ -116,5 +116,14 @@ body {
       rounded-full 
       font-medium text-sm text-white
 	  outline-4 outline-slate-400/40  outline outline-offset-0;
+	}
+	.btn-primary-disabled {
+		@apply shadow-lg 
+      h-10
+      bg-opacity-40 bg-black 
+		cursor-default
+      px-4 py-2 
+      rounded-full 
+      font-medium text-sm text-gray-100/25;
 	}
 }
