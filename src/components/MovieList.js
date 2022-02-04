@@ -4,15 +4,51 @@ import Trailer from "./Trailer";
 import { useState, useEffect } from "react";
 
 export default function MovieList({ movies, watchProvider }) {
-	const [startIndex, setStartIndex] = useState(0);
+	const [startIndex, setStartIndex] = useState();
 	const [endPoint, setEndPoint] = useState(4);
 	const [disabled, setDisabled] = useState(false);
 
 	const arrayLength = movies.length;
 
 	useEffect(() => {
-		movies.length < 4 ? setDisabled(true) : setDisabled(false);
+		movies.length < 8 ? setDisabled(true) : setDisabled(false);
+		if (movies.length < 8) {
+			setStartIndex(0);
+			setEndPoint(4);
+		}
+		if (movies.length >= 8 && movies.length < 12) {
+			const randomNumber = Math.floor(Math.random() * 2);
+			switch (randomNumber) {
+				case 0:
+					setStartIndex(0);
+					setEndPoint(4);
+					break;
+				case 1:
+					setStartIndex(4);
+					setEndPoint(8);
+					break;
+			}
+		}
+		if (movies.length >= 12) {
+			const randomNumber = Math.floor(Math.random() * 3);
+			switch (randomNumber) {
+				case 0:
+					setStartIndex(0);
+					setEndPoint(4);
+					break;
+				case 1:
+					setStartIndex(4);
+					setEndPoint(8);
+					break;
+				case 2:
+					setStartIndex(8);
+					setEndPoint(12);
+					break;
+			}
+		}
 	}, [movies]);
+
+	console.log(`start index is ${startIndex}`);
 
 	console.log(`array length is ${arrayLength}`);
 	console.log(`disabled is ${disabled}`);
@@ -190,7 +226,7 @@ export default function MovieList({ movies, watchProvider }) {
 							w-44
 							btn-primary
 						"
-							onClick={movies.length > 8 ? shuffleLong : shuffleShort}
+							onClick={movies.length >= 12 ? shuffleLong : shuffleShort}
 						>
 							shuffle movies
 						</button>

@@ -241,7 +241,7 @@ function App() {
 							btn-primary"
 								data-bs-toggle="tooltip"
 								data-bs-placement="right"
-								title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
+								title="Tip! You won't always get the same results from the same choices."
 							>
 								show movies
 							</button>

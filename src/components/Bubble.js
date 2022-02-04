@@ -13,7 +13,7 @@ export default function Bubble({ element, index, handler, isSelected }) {
 	// const pt = RandomNum(-2,2)
 	return (
 		<>
-			<div className=" flex group w-8/12 items-center justify-center">
+			<div className=" flex group w-7/12 items-center justify-center">
 				<div
 					className={
 						!isSelected
