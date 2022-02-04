@@ -11,6 +11,7 @@ import Options from "./components/Options";
 import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
 import Niche from "./components/Niche";
+import ServiceSelector from "./components/ServiceSelector";
 import EraBubbles from "./components/EraBubbles";
 import { MemoizedOptions } from "./components/Options";
 
@@ -163,7 +164,7 @@ function App() {
 					region={region}
 					regionHandler={selectionHandler.region}
 				/>
-				<div className="justify-center mt-8 mx-auto text-center w-full">
+				<div className="justify-center mt-12 mb-5 mx-auto text-center w-full">
 					<h3 className="text-xl text-white font-medium ">
 						what are you in the mood for?
 					</h3>
@@ -173,7 +174,7 @@ function App() {
 						genre={genre}
 					/>
 
-					<h3 className="text-xl text-white font-medium ">
+					<h3 className="text-xl text-white mt-6 mb-5 font-medium ">
 						what era do you want to visit?
 					</h3>
 					{/* <EraBubbles
@@ -201,45 +202,51 @@ function App() {
 						isAdult={isAdult}
 						movieLength={movieLength}
 					/>
-
-					<button
-						onClick={() => {
-							setIsOptionsOn(!isOptionsOn);
-							setNicheSelected(!nicheSelected);
-						}}
-						className={
-							!nicheSelected
-								? "m-3 mr-0 sm:mr-10 mt-7 w-44 btn-primary"
-								: "m-3 mr-0 sm:mr-10 mt-7 w-44 btn-primary-selected"
-						}
-					>
-						niche taste
-					</button>
-
-					<button
-						onClick={() => {
-							setIsSubmitted(true);
-							loadMovies(
-								sortQuery,
-								adult_URL,
-								movieLength,
-								startYear,
-								endYear,
-								genreList_URL,
-								provider_URL,
-								region
-							);
-						}}
-						className="
-							m-3 ml-5 sm:ml-10 mt-7
+					<div className="flex w-full justify-center ">
+						<div className="flex flex-col sm:flex-row ">
+							<button
+								onClick={() => {
+									setIsOptionsOn(!isOptionsOn);
+									setNicheSelected(!nicheSelected);
+								}}
+								className={
+									!nicheSelected
+										? "m-3 mr-0 sm:mr-10 my-5 sm:my-9 w-44 btn-primary"
+										: "m-3 mr-0 sm:mr-10 my-5 sm:my-9 w-44 btn-primary-selected"
+								}
+							>
+								niche taste
+							</button>
+							<ServiceSelector
+								watchProvider={watchProvider}
+								selectionHandler={selectionHandler.provider}
+							/>
+							<button
+								onClick={() => {
+									setIsSubmitted(true);
+									loadMovies(
+										sortQuery,
+										adult_URL,
+										movieLength,
+										startYear,
+										endYear,
+										genreList_URL,
+										provider_URL,
+										region
+									);
+								}}
+								className="
+							m-3 ml-3 sm:ml-10 my-5 sm:my-9
 							w-44
 							btn-primary"
-						data-bs-toggle="tooltip"
-						data-bs-placement="right"
-						title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
-					>
-						show movies
-					</button>
+								data-bs-toggle="tooltip"
+								data-bs-placement="right"
+								title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
+							>
+								show movies
+							</button>
+						</div>
+					</div>
 					<Outlet />
 					{isOptionsOn && (
 						<div>
