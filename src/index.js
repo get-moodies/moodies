@@ -6,6 +6,7 @@ import App from "./App";
 import Suggestions from "./routes/Suggestions";
 import Layout from "./routes/Layout";
 import Error from "./routes/Error";
+import Profile from "./routes/Profile";
 
 import face from "./images/face.png";
 
@@ -57,6 +58,8 @@ ReactDOM.render(
 					<Route path=":providerList" element={<Suggestions />} />
 					<Route path="" element={<Suggestions />} />
 				</Route>
+				<Route path="users/:user" element={<Profile />} />
+				<Route path="profiles/:user" element={<Profile />} />
 				<Route path="*" element={<Error />} />
 			</Route>
 			<Route path="*" element={<Error />} />
