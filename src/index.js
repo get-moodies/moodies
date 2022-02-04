@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import {
+	BrowserRouter,
+	HashRouter,
+	Routes,
+	Route,
+	Link,
+} from "react-router-dom";
 
 import App from "./App";
 import Suggestions from "./routes/Suggestions";
@@ -17,40 +23,126 @@ ReactDOM.render(
 				<Route
 					path="error=true"
 					element={
-						<p className="font-medium mt-3 text-white">
-							the api fell asleep, try a refresh
-						</p>
+						<div>
+							<p className="font-medium text-xl mt-12 text-white">
+								the api fell asleep, try again
+							</p>
+							<button
+								className="
+						mt-9
+						w-44
+						btn-primary
+					"
+							>
+								<Link to="/">back</Link>
+							</button>
+						</div>
 					}
 				/>
 				<Route
 					path="loading=true"
 					element={
-						<div>
+						<div className="mt-12">
 							<img
 								src={face}
 								className="Load-spinner mx-auto"
 								alt="cage face"
 							/>
-							<p className="font-medium mt-3 text-white">loading...</p>
+							<p className="font-medium text-xl mt-9 text-white">loading...</p>
 						</div>
 					}
 				/>
 				<Route
 					path="too-picky=true"
 					element={
-						<p className="font-medium mt-3 text-white">
-							no recomendations found, try selecting less options
-						</p>
+						<div>
+							<p className="font-medium text-xl mt-12 text-white">
+								no recomendations found, try selecting less options
+							</p>
+							<button
+								className="
+								mt-9
+								w-44
+								btn-primary
+							"
+							>
+								<Link to="/">back</Link>
+							</button>
+						</div>
 					}
 				/>
 				<Route
 					path="genre=false"
 					element={
-						<p className="font-medium mt-3 text-white">please select a genre</p>
+						<div>
+							<p className="font-medium text-xl mt-12 text-white">
+								please select a mood to see results
+							</p>
+							<button
+								className="
+							mt-9
+							w-44
+							btn-primary
+						"
+							>
+								<Link to="/">back</Link>
+							</button>
+						</div>
 					}
 				/>
 			</Route>
 			<Route path="/moodies" element={<Layout />}>
+				<Route
+					path="genre=false"
+					element={
+						<div>
+							<p className="font-medium text-xl mt-12 text-white">
+								please select a mood to see results
+							</p>
+							<button
+								className="
+							mt-9
+							w-44
+							btn-primary
+						"
+							>
+								<Link to="/">back</Link>
+							</button>
+						</div>
+					}
+				/>
+				<Route
+					path="too-picky=true"
+					element={
+						<div>
+							<p className="font-medium text-xl mt-12 text-white">
+								no recomendations found, try selecting less options
+							</p>
+							<button
+								className="
+								mt-9
+								w-44
+								btn-primary
+							"
+							>
+								<Link to="/">back</Link>
+							</button>
+						</div>
+					}
+				/>
+				<Route
+					path="loading=true"
+					element={
+						<div className="mt-12">
+							<img
+								src={face}
+								className="Load-spinner mx-auto"
+								alt="cage face"
+							/>
+							<p className="font-medium text-xl mt-9 text-white">loading...</p>
+						</div>
+					}
+				/>
 				<Route
 					path="suggestions/:sortQuery/:adult_URL/:movieLength/:genreList/:startYear/:endYear/:region"
 					element={<Suggestions />}

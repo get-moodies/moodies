@@ -30,6 +30,7 @@ export default function Icon({ element, index, handler, isSelected }) {
 						marginLeft: pl + "rem",
 						marginTop: pt + "rem",
 					}}
+					onClick={() => handler(index, "era")}
 				>
 					<div
 						className={
@@ -45,7 +46,7 @@ export default function Icon({ element, index, handler, isSelected }) {
 							backgroundSize: "cover",
 							overflow: "hidden",
 						}}
-						onClick={() => handler(index, "era")}
+						// onClick={() => handler(index, "era")}
 					>
 						{" "}
 					</div>
@@ -63,7 +64,7 @@ export default function Icon({ element, index, handler, isSelected }) {
 							//	verticalAlign: "middle",
 							//	borderRadius: borderRadius,
 						}}
-						onClick={() => handler(index, "era")}
+						// onClick={() => handler(index, "era")}
 					>
 						<span> {element.mood}</span>
 					</div>

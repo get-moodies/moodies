@@ -12,8 +12,6 @@ import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
 import Niche from "./components/Niche";
 import ServiceSelector from "./components/ServiceSelector";
-import EraBubbles from "./components/EraBubbles";
-import { MemoizedOptions } from "./components/Options";
 
 import { generes, genresIcons, age, providers } from "./data";
 
@@ -45,6 +43,7 @@ function App() {
 	console.log(sortQuery);
 	console.log(movieLength);
 	console.log(isAdult);
+	console.log(userRegion);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -63,6 +62,9 @@ function App() {
 			.then((response) => response.json())
 			.then((json) => {
 				setUserRegion(json.country_code);
+			})
+			.catch(() => {
+				setUserRegion("DE");
 			});
 
 	useEffect(() => {
@@ -84,13 +86,13 @@ function App() {
 	const getContent = () => {
 		if (isSubmitted) {
 			if (isError) {
-				navigate(`error=true`);
+				navigate(`moodies/error=true`);
 			} else if (isLoading) {
-				navigate(`loading=true`);
+				navigate(`moodies/loading=true`);
 			} else if (isSubmitted && !genreList_URL) {
-				navigate(`genre=false`);
+				navigate(`moodies/genre=false`);
 			} else if (isSubmitted && !movies.length) {
-				navigate(`too-picky=true`);
+				navigate(`moodies/too-picky=true`);
 			} else {
 				navigate(`
 					moodies
@@ -241,7 +243,7 @@ function App() {
 							btn-primary"
 								data-bs-toggle="tooltip"
 								data-bs-placement="right"
-								title="TIP! Have you selected your favorite streaming service provider from the toolbar?"
+								title="Tip! You won't always get the same results from the same choices."
 							>
 								show movies
 							</button>

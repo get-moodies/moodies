@@ -24,7 +24,7 @@ export default function SelectionBox({
 	return (
 		<>
 			<p className="text-xl text-white font-medium mb-5 mt-8 ">current mood</p>
-			<div className="border-4 border-slate-50 overflow-hidden rounded-xl w-3/5 mx-auto p-4 mt-5 sticky h-[350px]">
+			<div className="border-4 border-slate-50 overflow-hidden rounded-xl w-3/5 mx-auto p-4 mt-5 sticky h-[300px]">
 				<div className="flex  items-center justify-center ">
 					{genresIcons.map((category, index) => {
 						return (
