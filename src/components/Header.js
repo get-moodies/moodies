@@ -14,15 +14,15 @@ export default function Header({
 			</h1>
 			<div className="flex ">
 				<Dropdown region={region} regionHandler={regionHandler} />
-				<ServiceSelector
+				{/* <ServiceSelector
 					watchProvider={watchProvider}
 					selectionHandler={selectionHandler}
-				/>
+				/> */}
 				<button
 					className="btn-primary
 							mt-1
-							ml-3
-							hidden sm:inline-block 
+							ml-0
+							
                         "
 				>
 					account

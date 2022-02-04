@@ -12,7 +12,9 @@ export default function ServiceSelector({ watchProvider, selectionHandler }) {
                         bg-black bg-opacity-40 
                         w-max 
                         h-10
-                        mx-auto mt-1
+						mx-auto
+						my-0
+                        sm:my-9
                          px-4 
                         rounded-full"
 		>
@@ -51,4 +53,21 @@ export default function ServiceSelector({ watchProvider, selectionHandler }) {
 			</button>
 		</div>
 	);
+}
+
+// header className
+
+{
+	/* <div
+			className="shadow-lg 
+                        flex 
+                        justify-center 
+                        align-center
+                        bg-black bg-opacity-40 
+                        w-max 
+                        h-10
+                        mx-auto mt-1
+                         px-4 
+                        rounded-full"
+		></div> */
 }

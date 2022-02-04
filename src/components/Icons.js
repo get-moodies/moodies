@@ -2,7 +2,7 @@ import Icon from "./Icon";
 
 export default function Icons({ category, handler, genre }) {
 	return (
-		<div className={` flex items-center justify-center mt-4 mb-6 `}>
+		<div className={` flex items-center justify-center mt-6 `}>
 			<div
 				className={`
               m-4

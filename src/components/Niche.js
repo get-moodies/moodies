@@ -16,7 +16,7 @@ export default function Niche({
 	return (
 		<>
 			<div>
-				<h3 className="text-xl text-white font-medium mt-8 mb-5">
+				<h3 className="text-xl text-white font-medium mb-5 mt-6">
 					in the mood for something more niche?
 				</h3>
 
