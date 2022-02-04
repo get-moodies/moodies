@@ -12,8 +12,6 @@ import TimeSlider from "./components/TimeSlider";
 import SelectionBox from "./components/SelectionBox";
 import Niche from "./components/Niche";
 import ServiceSelector from "./components/ServiceSelector";
-import EraBubbles from "./components/EraBubbles";
-import { MemoizedOptions } from "./components/Options";
 
 import { generes, genresIcons, age, providers } from "./data";
 
@@ -45,6 +43,7 @@ function App() {
 	console.log(sortQuery);
 	console.log(movieLength);
 	console.log(isAdult);
+	console.log(userRegion);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -63,6 +62,9 @@ function App() {
 			.then((response) => response.json())
 			.then((json) => {
 				setUserRegion(json.country_code);
+			})
+			.catch(() => {
+				setUserRegion("DE");
 			});
 
 	useEffect(() => {
