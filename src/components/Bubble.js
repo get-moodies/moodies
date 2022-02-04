@@ -20,6 +20,7 @@ export default function Bubble({ element, index, handler, isSelected }) {
 							? "bg-black  relative group-hover:cursor-pointer group-hover:scale-105 transition-all duration-500 overflow-hidden shadow-lg group-hover:shadow-xl h-12 m-2 rounded-lg w-full items-center justify-center"
 							: "bg-black  relative group-hover:cursor-pointer scale-105 transition-all duration-500 overflow-hidden shadow-xl h-12 m-2 rounded-lg w-full items-center justify-center outline-4 outline-slate-400/40  outline outline-offset-0"
 					}
+					onClick={() => handler(index, "era")}
 				>
 					<div
 						className={
@@ -32,7 +33,6 @@ export default function Bubble({ element, index, handler, isSelected }) {
 							backgroundSize: "cover",
 							overflow: "hidden",
 						}}
-						onClick={() => handler(index, "era")}
 						data-bs-toggle="tooltip"
 						data-bs-placement="right"
 						title={`${element.id} to ${element.endYear}`}
@@ -43,7 +43,7 @@ export default function Bubble({ element, index, handler, isSelected }) {
 								? ` text-white w-full h-full leading-[45px] opacity-0  text-base mx-auto font-medium group-hover:opacity-100 right-0 top-0 inline-block align-middle transition-all duration-500 `
 								: ` text-white w-full h-full leading-[45px]  text-base mx-auto font-medium opacity-100 right-0 top-0 inline-block align-middle transition-all duration-500  `
 						}
-						onClick={() => handler(index, "era")}
+						// onClick={() => handler(index, "era")}
 					>
 						<span> {element.name}</span>
 					</div>
