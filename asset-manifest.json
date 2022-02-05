@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/moodies/static/css/main.c3eb91c4.css",
+    "main.js": "/moodies/static/js/main.a67b222c.js",
+    "static/media/scifi.png": "/moodies/static/media/scifi.1ff4987d3770c9c31d02.png",
+    "static/media/western.png": "/moodies/static/media/western.d7e6f468138867c235b8.png",
+    "static/media/oldies2.jpeg": "/moodies/static/media/oldies2.5311a90e00612ad9bcd1.jpeg",
+    "static/media/wallpaper_bubble.png": "/moodies/static/media/wallpaper_bubble.c5273392ffd3a2c6fb6f.png",
+    "static/media/mary_edit.png": "/moodies/static/media/mary_edit.a0342eb6bd45c439ba3f.png",
+    "static/media/phone_bubble2.jpg": "/moodies/static/media/phone_bubble2.0c7a2075522279933d55.jpg",
+    "static/media/nineties_bubble.jpg": "/moodies/static/media/nineties_bubble.ab4fc89340258b235e36.jpg",
+    "static/media/forest_edit.jpg": "/moodies/static/media/forest_edit.41dcb6a6c6d7fc582c28.jpg",
+    "static/media/wallpaper_edit.png": "/moodies/static/media/wallpaper_edit.79002f3a4ac23f1e3025.png",
+    "static/media/cuphead_edit.jpg": "/moodies/static/media/cuphead_edit.451d6a9ecdbab870d465.jpg",
+    "static/media/phone_edit.jpg": "/moodies/static/media/phone_edit.823aa6ab0415b0b40708.jpg",
+    "static/media/explosion_edit.jpg": "/moodies/static/media/explosion_edit.952cb505290e29ceaccf.jpg",
+    "static/media/spaceship_edit.jpg": "/moodies/static/media/spaceship_edit.bfcf5e74991f85b6c909.jpg",
+    "static/media/metaverse_bubble1.jpg": "/moodies/static/media/metaverse_bubble1.31d14e9bfc8f068b3c78.jpg",
+    "static/media/fear_edit.jpg": "/moodies/static/media/fear_edit.3582dbd3c2c583cafa93.jpg",
+    "static/media/modern_bubble2.jpg": "/moodies/static/media/modern_bubble2.52efc386b4bcc5de0193.jpg",
+    "static/media/rafiki_edit.jpg": "/moodies/static/media/rafiki_edit.c40545e86dc499585cba.jpg",
+    "static/media/gonegirl_edit.jpg": "/moodies/static/media/gonegirl_edit.d7ea9f17aaf41b90e248.jpg",
+    "static/media/lambs_edit.jpg": "/moodies/static/media/lambs_edit.afd2478c6ce18df88886.jpg",
+    "static/media/mountain_edit.jpg": "/moodies/static/media/mountain_edit.01d82acca38279fbb93f.jpg",
+    "static/media/horror.png": "/moodies/static/media/horror.04a59ffeeba597e3ba5e.png",
+    "static/media/nineties_edit.jpg": "/moodies/static/media/nineties_edit.8842b3792a38ce98c621.jpg",
+    "static/media/modern_edit.jpg": "/moodies/static/media/modern_edit.697c8107ad366e94f2ca.jpg",
+    "static/media/DeathStar.png": "/moodies/static/media/DeathStar.52f112fb4b4b3b80512f.png",
+    "static/media/metaverse3_edit.jpg": "/moodies/static/media/metaverse3_edit.6d87955a4434915522ef.jpg",
+    "static/media/90s.png": "/moodies/static/media/90s.b7d84d7dfe551806cd9f.png",
+    "static/media/face.png": "/moodies/static/media/face.3a1e83d7454415a7643a.png",
+    "static/media/musical.png": "/moodies/static/media/musical.57157a9e930148a0c0a3.png",
+    "static/media/hero.png": "/moodies/static/media/hero.9e42a28bb2393073df32.png",
+    "static/media/90s2.jpeg": "/moodies/static/media/90s2.364d5fd4d18a62e72d8e.jpeg",
+    "index.html": "/moodies/index.html",
+    "main.c3eb91c4.css.map": "/moodies/static/css/main.c3eb91c4.css.map",
+    "main.a67b222c.js.map": "/moodies/static/js/main.a67b222c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c3eb91c4.css",
+    "static/js/main.a67b222c.js"
+  ]
+}
