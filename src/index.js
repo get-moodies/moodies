@@ -23,8 +23,13 @@ ReactDOM.render(
 				<Route
 					path="error=true"
 					element={
-						<div>
-							<p className="font-medium text-xl mt-12 text-white">
+						<div className="mt-12">
+							<img
+								src={face}
+								className="Load-spinner mx-auto"
+								alt="cage face"
+							/>
+							<p className="font-medium text-xl mt-9 text-white">
 								the api fell asleep, try again
 							</p>
 							<button
@@ -55,8 +60,13 @@ ReactDOM.render(
 				<Route
 					path="too-picky=true"
 					element={
-						<div>
-							<p className="font-medium text-xl mt-12 text-white">
+						<div className="mt-12">
+							<img
+								src={face}
+								className="Load-spinner mx-auto"
+								alt="cage face"
+							/>
+							<p className="font-medium text-xl mt-9 text-white">
 								no recomendations found, try selecting less options
 							</p>
 							<button
@@ -74,8 +84,13 @@ ReactDOM.render(
 				<Route
 					path="genre=false"
 					element={
-						<div>
-							<p className="font-medium text-xl mt-12 text-white">
+						<div className="mt-12">
+							<img
+								src={face}
+								className="Load-spinner mx-auto"
+								alt="cage face"
+							/>
+							<p className="font-medium text-xl mt-9 text-white">
 								please select a mood to see results
 							</p>
 							<button
@@ -95,8 +110,13 @@ ReactDOM.render(
 				<Route
 					path="genre=false"
 					element={
-						<div>
-							<p className="font-medium text-xl mt-12 text-white">
+						<div className="mt-12">
+							<img
+								src={face}
+								className="Load-spinner mx-auto"
+								alt="cage face"
+							/>
+							<p className="font-medium text-xl mt-9 text-white">
 								please select a mood to see results
 							</p>
 							<button
@@ -114,8 +134,13 @@ ReactDOM.render(
 				<Route
 					path="too-picky=true"
 					element={
-						<div>
-							<p className="font-medium text-xl mt-12 text-white">
+						<div className="mt-12">
+							<img
+								src={face}
+								className="Load-spinner mx-auto"
+								alt="cage face"
+							/>
+							<p className="font-medium text-xl mt-9 text-white">
 								no recomendations found, try selecting less options
 							</p>
 							<button
