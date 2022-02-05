@@ -44,7 +44,7 @@ return (
                 leading-tight 
                 focus:outline-none focus:shadow-outline" 
             id="username" 
-            type="text"
+            type="password"
             placeholder={"magicword"}
             //onChange={}
             //value={}
