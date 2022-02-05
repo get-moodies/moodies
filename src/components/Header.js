@@ -2,6 +2,7 @@ import Dropdown from "./RegionDropdown";
 import RegisterLoginLayout from "../components/RegisterLoginLayout";
 import { Box, Modal, Fade } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const style = {
 	position: "absolute",
@@ -22,7 +23,7 @@ export default function Header({ region, regionHandler }) {
 	return (
 		<div className="flex mb-5 justify-between">
 			<h1 className="text-4xl sm:text-5xl mt-2 sm:mt-0 text-white font-medium">
-				moodies
+				<Link to="/">moodies</Link>
 			</h1>
 			<div className="flex ">
 				<Dropdown region={region} regionHandler={regionHandler} />
