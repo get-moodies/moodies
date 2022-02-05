@@ -76,20 +76,17 @@ return (
                 leading-tight 
                 focus:outline-none focus:shadow-outline" 
             id="username" 
-            type="text"
+            type="password"
             placeholder={"magicword"}
             //onChange={}
             //value={}
         />
         <p class="text-red-500 text-xs italic">This we can activate/deactivete with a state if theres mistakes</p>
     </div>
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-center">
       <button class="btn-primary" type="button">
         Join now! 
       </button>
-      <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-        Forgot Password?
-      </a>
     </div>
   </div>
 </div>
