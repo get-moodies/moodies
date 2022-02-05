@@ -17,7 +17,7 @@ import Profile from "./routes/Profile";
 import face from "./images/face.png";
 
 ReactDOM.render(
-	<BrowserRouter>
+	<HashRouter>
 		<Routes>
 			<Route path="/" element={<App />}>
 				<Route
@@ -181,6 +181,6 @@ ReactDOM.render(
 			</Route>
 			<Route path="*" element={<Error />} />
 		</Routes>
-	</BrowserRouter>,
+	</HashRouter>,
 	document.getElementById("root")
 );

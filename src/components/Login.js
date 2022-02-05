@@ -2,7 +2,7 @@ export default function Login({ screenHandler }) {
 	return (
 		<>
 			<div className="max-w-xs ">
-				<div className="bg-black shadow-lg rounded-xl px-8 pt-2 pb-8 bg-opacity-70">
+				<div className="bg-black shadow-lg rounded-xl px-8 pt-2 pb-8 bg-opacity-80">
 					<div className="text-xl text-white font-medium m-5">login</div>
 					<div className="mb-4">
 						<label
