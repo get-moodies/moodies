@@ -4,11 +4,6 @@ import useResults from "../components/useResults";
 
 import MovieList from "../components/MovieList";
 
-
-///borrar esto cuando acabe componentes
-import Register from "../components/Register"
-import Login from "../components/Login";
-
 import face from "../images/face.png";
 
 export default function Suggestions() {
@@ -38,10 +33,7 @@ export default function Suggestions() {
 	}, []);
 	return (
 		<>
-			<Register/>
-			<Login/>
 			
-
 			{
 				<MovieList
 					movies={movies}
