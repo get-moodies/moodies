@@ -1,5 +1,24 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+import useUsers from "../components/useUsers"
+import useFormData from "./useFormData"
+
+const defaultData = {
+        userName: '',
+        password: ''
+      };
 
 export default function Login() {
+
+const [ data, handleChange ] = useFormData(defaultData)
+const {login, isLogin} = useUsers()
+const navigate = useNavigate();
+
+useEffect( () => {
+    if (isLogin) 
+        {return  navigate(`profiles/${data.userName}`)}}
+    ,[isLogin])
 
 return (
 <>
@@ -24,8 +43,8 @@ return (
             id="username" 
             type="text"
             placeholder={"Nick"}
-            //onChange={}
-            //value={}
+            name="userName" 
+            onChange={handleChange}
         />
     </div>
     <div className="mb-6">
@@ -46,8 +65,8 @@ return (
             id="password" 
             type="password"
             placeholder={"magicword"}
-            //onChange={}
-            //value={}
+            name="password" 
+            onChange={handleChange}
         />
         <p className="text-red-500 text-xs italic">This we can activate/deactivete with a state if theres mistakes</p>
     </div>
@@ -61,6 +80,12 @@ return (
             font-medium text-sm text-white
             whitespace-nowrap" 
             type="button"
+            onClick={()=> {
+                login({
+                    userName:data.userName,
+                    magicword:data.password
+                }) 
+            }}
         >
         Sign in! 
       </button>

@@ -1,9 +1,18 @@
+import { useState } from "react";
 
 function useUsers  () {
 
 const url = "https://get-moodies.herokuapp.com/"
 const urlProfile = url + "profile/"
 const urlUser = url + "users/"
+// localStorage.setItem('token',null) 
+
+const [ isLogin, setIsLogin ] = useState(false)
+const [ token, setToken] = useState( localStorage.getItem('token') || null );
+
+const changeToken = ( word ) => {
+    setToken(word);
+}
 
 function getUserPublic( userName ) {
     fetch( urlProfile + userName)
@@ -15,6 +24,7 @@ function getUserPublic( userName ) {
 }
 
 function getUser( userName) {
+
     //change this to cookie token
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
     fetch( urlUser + userName,
@@ -45,10 +55,12 @@ function register (post) {
         headers: {"Content-Type": "application/json"},
         method: "POST",
         body: JSON.stringify(post)
-    })
+        })
         .then((res) => res.json())
-        .then((result) => {console.log(result)});
-}
+        .then((result) => {
+            if(result._id){setIsLogin(true)}
+            console.log(result)
+        })}
 
 function login (post) {
     fetch(url + "login", {
@@ -57,7 +69,12 @@ function login (post) {
         body: JSON.stringify(post)
     })
         .then((res) => res.json())
-        .then((result) => {console.log(result)});
+        .then((result) => {
+            if(result.success){
+                setIsLogin(true)
+                localStorage.setItem('token', result.token)
+            }
+            console.log(result)});
 }
 
 function editUser ( userName, put) {
@@ -75,7 +92,16 @@ function editUser ( userName, put) {
     .then((result) => {console.log(result)});
 }
 
-return {getUserPublic, getUser, register, deleteUser, login, editUser}
+return {
+    getUserPublic, 
+    getUser, 
+    register, 
+    deleteUser, 
+    login, 
+    editUser,
+    isLogin,
+    token
+}
 }
 
 export default useUsers;
