@@ -3,11 +3,11 @@ export default function Login() {
 
 return (
 <>
-<div class="w-full max-w-xs ">
+<div className="w-full max-w-xs ">
     <div className="text-xl text-white font-bold">Log in</div>     
-  <div class="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 bg-opacity-40">
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+  <div className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 bg-opacity-40">
+    <div className="mb-4">
+      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
         Username
       </label>
       <input
@@ -28,8 +28,8 @@ return (
             //value={}
         />
     </div>
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+    <div className="mb-6">
+      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
         Password
       </label>
       <input
@@ -43,16 +43,16 @@ return (
                 py-2 px-3 
                 leading-tight 
                 focus:outline-none focus:shadow-outline" 
-            id="username" 
+            id="password" 
             type="password"
             placeholder={"magicword"}
             //onChange={}
             //value={}
         />
-        <p class="text-red-500 text-xs italic">This we can activate/deactivete with a state if theres mistakes</p>
+        <p className="text-red-500 text-xs italic">This we can activate/deactivete with a state if theres mistakes</p>
     </div>
-    <div class="flex items-center justify-between">
-      <button class="
+    <div className="flex items-center justify-between">
+      <button className="
             @apply shadow-lg 
             bg-opacity-40 bg-black 
             hover:bg-black hover:bg-opacity-60 
@@ -64,7 +64,7 @@ return (
         >
         Sign in! 
       </button>
-      <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+      <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
         What was my password?
       </a>
     </div>
