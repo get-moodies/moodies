@@ -89,7 +89,7 @@ const user = {
 	__v: 14,
 };
 
-export default function User() {
+export default function Profile() {
 	const [isListActive, setIsListActive] = useState(true);
 	const [isWatchListActive, setIsWatchListActive] = useState(true);
 	const [isHiddenListActive, setIsHiddenListActive] = useState(false);
@@ -116,10 +116,10 @@ export default function User() {
 						{user.userName}{" "}
 					</h1>
 
-					<p className="text-md font-medium text-white mt-2 mb-8">
+					<p className="text-md font-medium text-white mt-2">
 						"my type is dark fairy"
 					</p>
-					{/* <button className="btn-primary mt-4 mb-8">edit</button> */}
+					<button className="btn-primary mt-4 mb-8">edit</button>
 				</div>
 			</div>
 
@@ -128,7 +128,7 @@ export default function User() {
 					<h1 className="text-2xl font-medium text-white text-left mt-8">
 						playlists
 					</h1>
-					{/* <div>
+					<div>
 						<h1 className="text-lg font-medium text-white mt-6 mb-3 ml-1 text-left">
 							main lists
 						</h1>
@@ -164,7 +164,7 @@ export default function User() {
 								hidden
 							</button>
 						</div>
-					</div> */}
+					</div>
 					<div>
 						<h1 className="text-lg font-medium text-white mt-6 mb-3 ml-1 text-left">
 							public lists
@@ -187,7 +187,7 @@ export default function User() {
 							</p>
 						)}
 					</div>
-					{/* <div>
+					<div>
 						<h1 className="text-lg font-medium text-white mt-6 mb-3 ml-1  text-left">
 							private lists
 						</h1>
@@ -210,34 +210,35 @@ export default function User() {
 								</p>
 							)}
 						</div>
-					</div> */}
+					</div>
 				</div>
-				<div className="px-8 h-[600px] pt-0 pb-8 mb-4 border-0 border-white w-full  mt-0 ">
+
+				<div className="px-8 h-[600px] pt-0 pb-8 ml-0 md:ml-6 mb-4 border-0 border-white w-full mt-0">
 					<h1 className="text-2xl font-medium text-white text-left mt-8 mb-3 ">
 						selected playlist
 					</h1>
 					<div
 						className={
-							isListActive
+							isWatchListActive || isHiddenListActive
 								? `transition-all duration-700 w-full`
 								: `transition-all duration-700 hidden`
 						}
 					>
 						<div className="mb-4 ">
-							<h2 className="text-lg font-medium text-white  mb-2text-center">
-								active list
+							<h2 className="text-lg font-medium text-white  mb-2 text-center">
+								{listName} list
 							</h2>
 							<h2 className={"text-base font-medium text-white mb-2 my-auto"}>
 								{" "}
-								{`a description of my list`}
+								{`a list of your ${listName} movies`}
 							</h2>
 							<p className=" text-md font-normal text-white text-center">
-								{`#first_tag #second_tag #third_tag`}
+								{`#${listName} #second_tag #third_tag`}
 							</p>
 						</div>
-						{/* <div className="mb-4 flex items-center justify-around">
+						<div className="mb-4 flex items-center justify-around">
 							<button className="btn-primary">edit</button>
-						</div> */}
+						</div>
 						<div className=" justify-center w-full border-4 border-white h-[390px] overflow-scroll p-4 rounded-xl">
 							{/* begin single playlist */}
 							{moviesTemplate.map(
@@ -286,9 +287,9 @@ export default function User() {
 															</p>
 														</div>
 														<div className="flex">
-															{/* <button className=" w-20  mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
+															<button className=" w-20  mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
 																delete
-															</button> */}
+															</button>
 
 															{/* <a
 															href={(
