@@ -12,13 +12,13 @@ const defaultData = {
 export default function Login() {
 
 const [ data, handleChange ] = useFormData(defaultData)
-const {login, isLogin} = useUsers()
+const {login, isLoggedIn} = useUsers()
 const navigate = useNavigate();
 
 useEffect( () => {
-    if (isLogin) 
+    if (isLoggedIn) 
         {return  navigate(`profiles/${data.userName}`)}}
-    ,[isLogin])
+    ,[isLoggedIn])
 
 return (
 <>

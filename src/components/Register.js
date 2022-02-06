@@ -16,17 +16,27 @@ const defaultData = {
 export default function Register() {
 
 const [ data, handleChange ] = useFormData(defaultData)
-const {register, isLogin, changeToken, token} = useUsers()
+const {register, isLoggedIn, logout, token} = useUsers()
 const navigate = useNavigate();
 
+
+//const [isSubmitted,setIsSubmitted] = useState(false);
+//const [isLoggedIn,setIsLoggedIn] = useState(JSON.parse(localStorage.getItem('isLoggedIn')));
+
+
 useEffect( () => {
-    if (isLogin) 
+    console.log("Loged in?",isLoggedIn)
+    if (isLoggedIn) 
         {return  navigate(`profiles/${data.userName}`)}}
-    ,[isLogin])
-console.log("token", token)
+    ,[isLoggedIn])
+console.log("register top: token", token)
 
 return (
     <>
+	{isLoggedIn && <h1>Is logged in</h1>}
+	<button className="btn-primary" onClick={()=>{logout()}}> Log out</button>
+
+
 <div className="w-full max-w-xs ">
 <div className="text-xl text-white font-bold">Join Moodies</div>     
 <div className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 bg-opacity-40">
@@ -111,7 +121,6 @@ return (
     </div>
   </div>
 </div>
-<input type="text" onChange={(e)=> {changeToken(e.target.value) }} />
     </>
 )
 }

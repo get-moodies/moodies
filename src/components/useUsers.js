@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 function useUsers  () {
@@ -5,14 +6,28 @@ function useUsers  () {
 const url = "https://get-moodies.herokuapp.com/"
 const urlProfile = url + "profile/"
 const urlUser = url + "users/"
-// localStorage.setItem('token',null) 
 
-const [ isLogin, setIsLogin ] = useState(false)
-const [ token, setToken] = useState( localStorage.getItem('token') || null );
+const [ isLoggedIn, setIsLoggedIn ] = useState(false)
+const [ token, setToken] = useState(  null );
 
-const changeToken = ( word ) => {
-    setToken(word);
+const logout = ( ) => {
+    setToken(false);
 }
+
+useEffect( 
+    () => {
+        console.log("Inside Effect", token);
+        localStorage.setItem("token", JSON.stringify( token ) );
+        if (token) {
+            localStorage.setItem("isLoggedIn", JSON.stringify( true ) ) 
+            setIsLoggedIn(true)
+        }
+        else {
+            localStorage.setItem("isLoggedIn", JSON.stringify( false ))
+            setIsLoggedIn(false) 
+        }}
+    ,[token]
+)
 
 function getUserPublic( userName ) {
     fetch( urlProfile + userName)
@@ -51,6 +66,8 @@ function deleteUser ( userName ) {
 }
 
 function register (post) {
+    
+    
     fetch(urlUser , {
         headers: {"Content-Type": "application/json"},
         method: "POST",
@@ -58,8 +75,14 @@ function register (post) {
         })
         .then((res) => res.json())
         .then((result) => {
-            if(result._id){setIsLogin(true)}
-            console.log(result)
+            console
+            if(result._id){ 
+                login({
+                    userName:post.userName,
+                    magicword:post.magicword
+                })
+            }
+            console.log("Inside register:", result)
         })}
 
 function login (post) {
@@ -71,8 +94,8 @@ function login (post) {
         .then((res) => res.json())
         .then((result) => {
             if(result.success){
-                setIsLogin(true)
-                localStorage.setItem('token', result.token)
+                setToken(result.token)
+                console.log("inside sucessful log in",result)
             }
             console.log(result)});
 }
@@ -99,8 +122,8 @@ return {
     deleteUser, 
     login, 
     editUser,
-    isLogin,
-    token
+    isLoggedIn,
+    logout
 }
 }
 
