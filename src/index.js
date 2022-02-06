@@ -15,9 +15,11 @@ import Error from "./routes/Error";
 import Profile from "./routes/Profile";
 
 import face from "./images/face.png";
+import {ContextProvider} from "./components/ContextProvider";
 
 ReactDOM.render(
-	<HashRouter>
+<ContextProvider>
+	<BrowserRouter>
 		<Routes>
 			<Route path="/" element={<App />}>
 				<Route
@@ -181,6 +183,7 @@ ReactDOM.render(
 			</Route>
 			<Route path="*" element={<Error />} />
 		</Routes>
-	</HashRouter>,
+	</BrowserRouter>
+</ContextProvider>,
 	document.getElementById("root")
 );

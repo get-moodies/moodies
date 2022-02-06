@@ -1,6 +1,6 @@
 import { useState } from "react";
 import face from "../images/face.png";
-import { useParams } from "react-router-dom";
+
 
 
 const moviesTemplate = ["movie 1", "movie 2", "movie 3"]
@@ -38,7 +38,6 @@ const user = {
 export default function Profile() {
 
 const [isListActive,setIsListActive] = useState(false)
-//const {user} = useParams();
 
 return <>
     <h1 className="text-2xl font-bold text-white text-left mt-10"> {user.userName} </h1>

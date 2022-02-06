@@ -1,9 +1,38 @@
+import { useEffect, useState } from "react";
+
+import {useAuth} from "./ContextProvider"
 
 function useUsers  () {
 
 const url = "https://get-moodies.herokuapp.com/"
 const urlProfile = url + "profile/"
 const urlUser = url + "users/"
+
+const {token, setToken} = useAuth( );
+
+const logout = ( ) => {
+    setToken(false);
+}
+const logToken = ( ) => {
+    setToken(true);
+}
+const showToken  = ( ) => {
+    console.log("token is:" ,token);
+}
+// useEffect( 
+//     () => {
+//         console.log("Inside Effect", token);
+//         localStorage.setItem("token", JSON.stringify( token ) );
+//         if (token) {
+//             localStorage.setItem("isLoggedIn", JSON.stringify( true ) ) 
+//             setIsLoggedIn(true)
+//         }
+//         else {
+//             localStorage.setItem("isLoggedIn", JSON.stringify( false ))
+//             setIsLoggedIn(false) 
+//         }}
+//     ,[token]
+// )
 
 function getUserPublic( userName ) {
     fetch( urlProfile + userName)
@@ -15,6 +44,7 @@ function getUserPublic( userName ) {
 }
 
 function getUser( userName) {
+
     //change this to cookie token
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
     fetch( urlUser + userName,
@@ -41,14 +71,22 @@ function deleteUser ( userName ) {
 }
 
 function register (post) {
+    
     fetch(urlUser , {
         headers: {"Content-Type": "application/json"},
         method: "POST",
         body: JSON.stringify(post)
-    })
+        })
         .then((res) => res.json())
-        .then((result) => {console.log(result)});
-}
+        .then((result) => {
+            if(result._id){ 
+                login({
+                    userName:post.userName,
+                    magicword:post.magicword
+                })
+            }
+            // console.log("Inside register:", result)
+        })}
 
 function login (post) {
     fetch(url + "login", {
@@ -57,7 +95,13 @@ function login (post) {
         body: JSON.stringify(post)
     })
         .then((res) => res.json())
-        .then((result) => {console.log(result)});
+        .then((result) => {
+            if(result.success){
+                setToken(result.token)
+                // console.log("inside sucessful log in.. changin Token",result)
+            }
+            // console.log(result)
+        });
 }
 
 function editUser ( userName, put) {
@@ -75,7 +119,17 @@ function editUser ( userName, put) {
     .then((result) => {console.log(result)});
 }
 
-return {getUserPublic, getUser, register, deleteUser, login, editUser}
+return {
+    getUserPublic, 
+    getUser, 
+    register, 
+    deleteUser, 
+    login, 
+    editUser,
+    logout,
+    logToken,
+    showToken
+}
 }
 
 export default useUsers;
