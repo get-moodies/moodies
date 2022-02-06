@@ -40,10 +40,10 @@ function App() {
 
 	const adult_URL = isAdult;
 
-	console.log(sortQuery);
-	console.log(movieLength);
-	console.log(isAdult);
-	console.log(userRegion);
+	// console.log(sortQuery);
+	// console.log(movieLength);
+	// console.log(isAdult);
+	// console.log(userRegion);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -176,7 +176,7 @@ function App() {
 						genre={genre}
 					/>
 
-					<h3 className="text-xl text-white mt-6 mb-5 font-medium ">
+					<h3 className="text-xl text-white font-medium mt-6 mb-5 ">
 						what era do you want to visit?
 					</h3>
 					{/* <EraBubbles

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import face from "../images/face.png";
-import { useParams } from "react-router-dom";
 
 const moviesTemplate = [
 	{

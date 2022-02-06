@@ -1,8 +1,11 @@
-import Dropdown from "./RegionDropdown";
-import { Link } from "react-router-dom";
-import RegisterLoginLayout from "../components/RegisterLoginLayout";
 import { Box, Modal, Fade } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import Dropdown from "./RegionDropdown";
+import RegisterLoginLayout from "./RegisterLoginLayout";
+import { useAuth } from "./ContextProvider";
+
 
 const style = {
 	position: "absolute",
@@ -16,9 +19,12 @@ const style = {
 };
 
 export default function Header({ region, regionHandler }) {
-	const [open, setOpen] = useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const {isLoggedIn} = useAuth()
+	
+	useEffect( () => {
+			if (isLoggedIn()) {setIsOpen(false)}}
+			,[isLoggedIn])
 
 	return (
 		<div className="flex mb-5 justify-between">
@@ -34,17 +40,17 @@ export default function Header({ region, regionHandler }) {
 							ml-0
 							
                         "
-					onClick={handleOpen}
+					onClick={()=>setIsOpen(!isOpen)}
 				>
 					account
 				</button>
 				<Modal
-					open={open}
-					onClose={handleClose}
+					open={isOpen}
+					onClose={()=>setIsOpen(!isOpen)}
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description"
 				>
-					<Fade in={open} timeout={500}>
+					<Fade in={isOpen} timeout={500}>
 						<Box sx={style}>
 							<RegisterLoginLayout />
 						</Box>

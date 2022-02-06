@@ -1,6 +1,30 @@
+
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+import useUsers from "../components/useUsers"
+import useFormData from "./useFormData"
+import { useAuth } from "./ContextProvider";
+
+const defaultData = {
+        userName: '',
+        password: ''
+};
+
 export default function Login({ screenHandler }) {
-	return (
-		<>
+
+const [ data, handleChange ] = useFormData(defaultData)
+const {login} = useUsers()
+const {isLoggedIn} = useAuth()
+const navigate = useNavigate();
+
+useEffect( () => {
+    if (isLoggedIn()) 
+        {return  navigate(`profiles/${data.userName}`)}}
+    ,[isLoggedIn])
+
+
+return (<>
 			<div className="max-w-xs ">
 				<div className="bg-black shadow-lg rounded-xl px-8 pt-2 pb-8 bg-opacity-80">
 					<div className="text-xl text-white font-medium m-5">login</div>
@@ -13,26 +37,26 @@ export default function Login({ screenHandler }) {
 						</label>
 						<input
 							className="
-              form-control
-              block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
+                                form-control
+                                block
+                                w-full
+                                px-3
+                                py-1.5
+                                text-base
+                                font-normal
+                                text-gray-700
+                                bg-white bg-clip-padding
+                                border border-solid border-gray-300
+                                rounded
+                                transition
+                                ease-in-out
+                                m-0
+                                focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
 							id="username"
 							type="text"
+                            name="userName" 
 							placeholder={"nickcage64"}
-							//onChange={}
-							//value={}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="mb-8">
@@ -44,26 +68,26 @@ export default function Login({ screenHandler }) {
 						</label>
 						<input
 							className="
-              form-control
-              block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
+                                form-control
+                                block
+                                w-full
+                                px-3
+                                py-1.5
+                                text-base
+                                font-normal
+                                text-gray-700
+                                bg-white bg-clip-padding
+                                border border-solid border-gray-300
+                                rounded
+                                transition
+                                ease-in-out
+                                m-0
+                                focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
 							id="password"
 							type="password"
+                            name="password" 
 							placeholder={"magicword22"}
-							//onChange={}
-							//value={}
+							onChange={handleChange}
 						/>
 						{/* <p className="text-red-500 text-xs italic">
 							This we can activate/deactivete with a state if theres mistakes
@@ -72,8 +96,14 @@ export default function Login({ screenHandler }) {
 					<div className="flex items-center justify-between">
 						<button
 							className="
-              mr-2 bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-full font-medium text-sm  text-slate-900"
+                            mr-2 bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-full font-medium text-sm  text-slate-900"
 							type="button"
+                            onClick={()=> {
+                                login({
+                                    userName:data.userName,
+                                    magicword:data.password
+                                }) 
+                            }}
 						>
 							sign in
 						</button>
@@ -94,4 +124,5 @@ export default function Login({ screenHandler }) {
 			</div>
 		</>
 	);
+
 }
