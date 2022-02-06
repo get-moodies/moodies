@@ -15,7 +15,7 @@ import forest from "./images/forest_edit.jpg";
 import gonegirl from "./images/gonegirl_edit.jpg";
 import lambs from "./images/lambs_edit.jpg";
 import mary from "./images/mary_edit.png";
-import noface from "./images/noface_edit2.png";
+import noface from "./images/noface_edit4.jpg";
 import mountain from "./images/mountain_edit.jpg";
 import rafiki from "./images/rafiki_edit.jpg";
 import spaceship from "./images/spaceship_edit.jpg";
