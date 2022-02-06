@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import {useAuth} from "./ContextProvider"
 
 function useUsers  () {
 
@@ -7,27 +8,31 @@ const url = "https://get-moodies.herokuapp.com/"
 const urlProfile = url + "profile/"
 const urlUser = url + "users/"
 
-const [ isLoggedIn, setIsLoggedIn ] = useState(false)
-const [ token, setToken] = useState(  null );
+const {token, setToken} = useAuth( );
 
 const logout = ( ) => {
     setToken(false);
 }
-
-useEffect( 
-    () => {
-        console.log("Inside Effect", token);
-        localStorage.setItem("token", JSON.stringify( token ) );
-        if (token) {
-            localStorage.setItem("isLoggedIn", JSON.stringify( true ) ) 
-            setIsLoggedIn(true)
-        }
-        else {
-            localStorage.setItem("isLoggedIn", JSON.stringify( false ))
-            setIsLoggedIn(false) 
-        }}
-    ,[token]
-)
+const logToken = ( ) => {
+    setToken(true);
+}
+const showToken  = ( ) => {
+    console.log("token is:" ,token);
+}
+// useEffect( 
+//     () => {
+//         console.log("Inside Effect", token);
+//         localStorage.setItem("token", JSON.stringify( token ) );
+//         if (token) {
+//             localStorage.setItem("isLoggedIn", JSON.stringify( true ) ) 
+//             setIsLoggedIn(true)
+//         }
+//         else {
+//             localStorage.setItem("isLoggedIn", JSON.stringify( false ))
+//             setIsLoggedIn(false) 
+//         }}
+//     ,[token]
+// )
 
 function getUserPublic( userName ) {
     fetch( urlProfile + userName)
@@ -67,7 +72,6 @@ function deleteUser ( userName ) {
 
 function register (post) {
     
-    
     fetch(urlUser , {
         headers: {"Content-Type": "application/json"},
         method: "POST",
@@ -75,14 +79,13 @@ function register (post) {
         })
         .then((res) => res.json())
         .then((result) => {
-            console
             if(result._id){ 
                 login({
                     userName:post.userName,
                     magicword:post.magicword
                 })
             }
-            console.log("Inside register:", result)
+            // console.log("Inside register:", result)
         })}
 
 function login (post) {
@@ -95,9 +98,10 @@ function login (post) {
         .then((result) => {
             if(result.success){
                 setToken(result.token)
-                console.log("inside sucessful log in",result)
+                // console.log("inside sucessful log in.. changin Token",result)
             }
-            console.log(result)});
+            // console.log(result)
+        });
 }
 
 function editUser ( userName, put) {
@@ -122,8 +126,9 @@ return {
     deleteUser, 
     login, 
     editUser,
-    isLoggedIn,
-    logout
+    logout,
+    logToken,
+    showToken
 }
 }
 

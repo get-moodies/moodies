@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import useUsers from "../components/useUsers"
 import useFormData from "./useFormData"
+import { useAuth } from "./ContextProvider";
 
 const defaultData = {
         userName: '',
@@ -13,13 +14,15 @@ const defaultData = {
 export default function Login({ screenHandler }) {
 
 const [ data, handleChange ] = useFormData(defaultData)
-const {login, isLoggedIn} = useUsers()
+const {login} = useUsers()
+const {isLoggedIn} = useAuth()
 const navigate = useNavigate();
 
 useEffect( () => {
-    if (isLoggedIn) 
+    if (isLoggedIn()) 
         {return  navigate(`profiles/${data.userName}`)}}
     ,[isLoggedIn])
+
 
 return (<>
 			<div className="max-w-xs ">
