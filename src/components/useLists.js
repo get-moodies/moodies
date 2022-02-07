@@ -37,30 +37,29 @@ function useLists() {
 		private: [{ _id: "", name: "", movies: [], tags: [] }],
 	});
 
-const {token, setToken} = useAuth( );
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
+	const { token, setToken } = useAuth();
+	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 
-function getPublicLists( userName ) {
-    
-    fetch( urlProfile + userName + list)
-        .then((res) => res.json())
-        .then((result) => {
-            setPublicLists(result)
-        })
-}
+	function getPublicLists(userName) {
+		fetch(urlProfile + userName + list)
+			.then((res) => res.json())
+			.then((result) => {
+				setPublicLists(result);
+			});
+	}
 
-function getAllLists( userName ) {
-    
-    fetch( urlUser + userName + list,
-            {headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            }})
-        .then((res) => res.json())
-        .then((result) => {
-            setAllLists(result);
-        })
-}
+	function getAllLists(userName) {
+		fetch(urlUser + userName + list, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				setAllLists(result);
+			});
+	}
 
 	function deleteList(userName, listId) {
 		fetch(urlUser + userName + list + listId, {
@@ -74,7 +73,6 @@ function getAllLists( userName ) {
 		});
 	}
 
-<<<<<<< HEAD
 	function addList(post, userName) {
 		fetch(urlUser + userName + list, {
 			headers: {
@@ -84,28 +82,9 @@ function getAllLists( userName ) {
 			method: "POST",
 			body: JSON.stringify(post),
 		}).then((res) => res.json());
-		// console.log("Inside register:", result)
 	}
 
 	function editList(userName, listId, put) {
-		//Change this token
-=======
-function addList (post, userName) {
-    
-    fetch(urlUser + userName + list, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-            },
-        method: "POST",
-        body: JSON.stringify(post)
-        })
-        .then((res) => res.json())
-}
-
-function editList ( userName, listId, put) {
->>>>>>> main
-
 		fetch(urlUser + userName + list + listId, {
 			headers: {
 				"Content-Type": "application/json",
@@ -145,28 +124,28 @@ export default useLists;
 //     editRight: req.params.userName
 // }                    }
 
-    // useLists is imported like this:
-    //import useLists from "../components/useLists"
-    //const {
-    // getPublicLists, 
-    // getAllLists, 
-    // deleteList, 
-    // editList,
-    // addList,
-    // publicLists
-    // } = useLists()      
-	
-    // // addList object needs: {
-        //                 name: req.body.name,
-                    //     public: req.body.public,
-                    //     movies: req.body.movies,
-                    //     tags: req.body.tags,
-                    //     editRight: req.params.userName
-    // }                    }
+// useLists is imported like this:
+//import useLists from "../components/useLists"
+//const {
+// getPublicLists,
+// getAllLists,
+// deleteList,
+// editList,
+// addList,
+// publicLists
+// } = useLists()
 
-	/// editList takes object with this form : 
-                                    // list.name = name 
-                                    // list.public = public 
-                                    // list.movies = movies 
-                                    // list.tags =  tags
-                                    // list.editRight =  editRight
+// // addList object needs: {
+//                 name: req.body.name,
+//     public: req.body.public,
+//     movies: req.body.movies,
+//     tags: req.body.tags,
+//     editRight: req.params.userName
+// }                    }
+
+/// editList takes object with this form :
+// list.name = name
+// list.public = public
+// list.movies = movies
+// list.tags =  tags
+// list.editRight =  editRight

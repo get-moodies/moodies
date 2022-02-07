@@ -73,7 +73,7 @@ export default function Profile() {
 	const [selectedIndex, setSelectedIndex] = useState(0);
 
 	const { user } = useParams();
-	const { getUser, userData } = useUsers();
+	const { getUserPublic, publicUserData } = useUsers();
 
 	const {
 		getPublicLists,
@@ -86,12 +86,14 @@ export default function Profile() {
 	} = useLists();
 
 	useEffect(() => {
-		getUser(user);
+		getUserPublic(user);
 	}, []);
 
 	useEffect(() => {
 		getPublicLists(user);
 	}, []);
+
+	console.log(publicUserData);
 
 	return (
 		<>
@@ -104,12 +106,12 @@ export default function Profile() {
 				</div>
 				<div>
 					<h1 className="text-lg font-normal text-white text-center mt-3">
-						{userData.userName}
+						{publicUserData.userName}
 					</h1>
 
-					{userData.info ? (
-						<p className="text-md font-medium text-white mt-2">
-							{userData.info}
+					{publicUserData.info ? (
+						<p className="text-md font-medium text-white mt-2 mb-8">
+							{publicUserData.info}
 						</p>
 					) : (
 						<p className="text-md font-medium text-white mt-2 mb-8">
@@ -128,7 +130,7 @@ export default function Profile() {
 						<h1 className="text-lg font-medium text-white mt-6 mb-3 ml-1 text-left">
 							public lists
 						</h1>
-						{userData.publicLists.length ? (
+						{publicUserData.publicLists.length ? (
 							<div className="flex flex-col justify-left">
 								{publicLists.public.map((list, index) => (
 									<button
@@ -199,19 +201,19 @@ export default function Profile() {
 													className="relative -left-20 h-full w-full object-cover object-center [clip-path:circle(45%_at_50%_50%)]"
 													src={backdrop_path}
 													// src={
-													// 	backdrop_path
-													// 		? `https://image.tmdb.org/t/p/w500${backdrop_path}`
-													// 		: `https://image.tmdb.org/t/p/w500${poster_path}`
+													//  backdrop_path
+													//      ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
+													//      : `https://image.tmdb.org/t/p/w500${poster_path}`
 													// }
 													alt="movie image"
 												/>
 											</div>
-											<div className="w-full	">
+											<div className="w-full  ">
 												<div className="flex justify-between">
 													<div>
 														<p className="text-lg font-medium line-clamp-1 text-white mt-1 -ml-24 ">
 															{title}
-															<span className="text-base font-light	 text-white">{` (${release_date.substring(
+															<span className="text-base font-light    text-white">{` (${release_date.substring(
 																0,
 																4
 															)})`}</span>{" "}
@@ -219,16 +221,16 @@ export default function Profile() {
 													</div>
 													<div className="flex">
 														{/* <button className=" w-20  mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
-													delete
-												</button> */}
+										delete
+									</button> */}
 
 														{/* <a
-												href={(
-													movieSearch2[watchProvider?.charAt(0)] ||
-													movieSearch2.default
-												)()}
-												target="_blank"
-											> */}
+									href={(
+										movieSearch2[watchProvider?.charAt(0)] ||
+										movieSearch2.default
+									)()}
+									target="_blank"
+								> */}
 														<button className="w-20 mr-3 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900 ">
 															watch
 														</button>

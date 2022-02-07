@@ -1,4 +1,5 @@
 import { useAuth } from "./ContextProvider";
+import { useState } from "react";
 
 function useUsers() {
 	const url = "https://get-moodies.herokuapp.com/";
@@ -6,6 +7,7 @@ function useUsers() {
 	const urlUser = url + "users/";
 
 	const [userData, setUserData] = useState({
+		info: "",
 		_id: "",
 		userName: "",
 		email: "",
@@ -13,7 +15,12 @@ function useUsers() {
 		publicLists: [],
 		privateLists: [],
 		blacklist: [],
+	});
+	const [publicUserData, setPublicUserData] = useState({
 		info: "",
+		_id: "",
+		userName: "",
+		publicLists: [],
 	});
 
 	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
@@ -28,9 +35,11 @@ function useUsers() {
 		fetch(urlProfile + userName)
 			.then((res) => res.json())
 			.then((result) => {
-				console.log(result);
+				setPublicUserData(result);
 			});
 	}
+
+	console.log(publicUserData);
 
 	function getUser(userName) {
 		fetch(urlUser + userName, {
@@ -113,6 +122,7 @@ function useUsers() {
 		editUser,
 		logout,
 		userData,
+		publicUserData,
 	};
 }
 
