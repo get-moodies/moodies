@@ -171,7 +171,7 @@ export default function Profile() {
 						</h2>
 					</div>
 
-					<div className=" justify-center w-full border-4 border-white h-[500px] overflow-scroll p-4 rounded-xl">
+					<div className=" justify-center w-full border-4 border-white h-[390px] overflow-scroll p-4 rounded-xl">
 						{moviesTemplate.map(
 							(
 								{ title, overview, backdrop_path, poster_path, release_date },

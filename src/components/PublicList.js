@@ -77,7 +77,7 @@ export default function PublicList({ allLists, selectedIndex }) {
 			<div className="mb-4 flex items-center justify-around">
 				<button className="btn-primary">edit</button>
 			</div>
-			<div className=" justify-center w-full border-4 border-white h-[500px] overflow-scroll p-4 rounded-xl">
+			<div className=" justify-center w-full border-4 border-white h-[390px] overflow-scroll p-4 rounded-xl">
 				{/* begin single playlist */}
 				{moviesTemplate.map(
 					(
@@ -100,7 +100,7 @@ export default function PublicList({ allLists, selectedIndex }) {
 
 						return (
 							<div>
-								<div className="hover:scale-105 hover:outline- transition-all duration-700 shadow-lg hover:shadow-xl relative w-11/12 h-[60px] mx-auto my-3 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
+								<div className="hover:scale-105 hover:outline- transition-all duration-700 shadow-lg hover:shadow-xl relative w-11/12 h-[60px] mx-auto mb-3 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
 									<div className="shrink-0 h-[200px] w-[200px] ">
 										<img
 											className="relative -left-20 h-full w-full object-cover object-center [clip-path:circle(45%_at_50%_50%)]"
