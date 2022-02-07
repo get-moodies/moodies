@@ -23,7 +23,7 @@ export default function Header({ region, regionHandler }) {
 	const {isLoggedIn} = useAuth()
 	
 	useEffect( () => {
-			if (isLoggedIn()) {setIsOpen(false)}}
+			if (isLoggedIn()) setIsOpen(false)}
 			,[isLoggedIn])
 
 	return (
