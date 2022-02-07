@@ -10,10 +10,11 @@ const list = "/playlists/"
 
 const [publicLists, setPublicLists] = useState({});
 
-// /const {token, setToken} = useAuth( );
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
+const {token, setToken} = useAuth( );
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 
 function getPublicLists( userName ) {
+    
     fetch( urlProfile + userName + list)
         .then((res) => res.json())
         .then((result) => {
@@ -21,8 +22,10 @@ function getPublicLists( userName ) {
             console.log(result)
         })
 }
+
 function getAllLists( userName ) {
-    fetch( urlProfile + userName + list,
+    
+    fetch( urlUser + userName + list,
             {headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
@@ -55,11 +58,9 @@ function addList (post, userName) {
         body: JSON.stringify(post)
         })
         .then((res) => res.json())
-            // console.log("Inside register:", result)
-       }
+}
 
 function editList ( userName, listId, put) {
-    //Change this token
 
     fetch(urlUser + userName + list + listId, {
         headers: {
@@ -86,9 +87,16 @@ export default useLists;
 
 
 
-    // useUsers is imported like this:
-    //import useUsers from "../components/useUsers"
-    //const {getUserPublic, getUser, register, deleteUser, login, editUser} = useUsers()
+    // useLists is imported like this:
+    //import useLists from "../components/useLists"
+    //const {
+    // getPublicLists, 
+    // getAllLists, 
+    // deleteList, 
+    // editList,
+    // addList,
+    // publicLists
+    // } = useLists()      
 	
     // // addList object needs: {
         //                 name: req.body.name,
