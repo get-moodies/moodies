@@ -17,7 +17,6 @@ export default function Register({ screenHandler }) {
     const {register, logout} = useUsers()
     const {isLoggedIn} = useAuth()
 
-
     const navigate = useNavigate();
 
 
