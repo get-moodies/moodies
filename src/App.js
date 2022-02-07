@@ -151,12 +151,6 @@ function App() {
 		region: (region) => setRegion(region),
 	};
 
-	//console.log(movies);
-	// console.log(`genre id is ${genre}`);
-	// console.log(`watch provider id is ${watchProvider}`);
-	// console.log(`start year is ${startYear}`);
-	// console.log(`end year is ${endYear}`);
-	// console.log(`url is ${url}`);
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 ">
 			<div className="w-full ">
