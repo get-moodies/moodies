@@ -103,8 +103,6 @@ return {
     login, 
     editUser,
     logout,
-    logToken,
-    showToken
 }
 }
 

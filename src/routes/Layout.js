@@ -20,10 +20,6 @@ export default function Layout() {
 	
 const {logout} = useUsers()
 const {token, setToken} = useAuth( );
-
-////Hasta aqui 
-
-console.log("Imported public list:", publicLists)
     
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 justify-center text-center w-full">
