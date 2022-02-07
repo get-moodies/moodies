@@ -1,6 +1,8 @@
 import Header from "../components/HeaderLayout";
 import { Outlet } from "react-router-dom";
 import useLists from "../components/useLists"
+import { useEffect } from "react";
+
 
 //import RegisterLoginLayout from "../components/RegisterLoginLayout";
 
@@ -11,11 +13,19 @@ const {
     getAllLists, 
     deleteList, 
     editList,
-    addList
+    addList,
+	publicLists
 } = useLists()
 	
-console.log( 	"public:", getPublicLists("gerardo"), 
-   				"private:", getAllLists("gerardo"))
+// console.log( 	"public:", getPublicLists("gerardo"), 
+//    				"private:", getAllLists("gerardo"),
+				//    )
+
+useEffect(() => {
+getPublicLists("gerardo")
+}, []);
+
+console.log("Imported public list:", publicLists)
     // deleteList(gerardo), 
     // editList(gerardo),
     // addList(gerardo))
