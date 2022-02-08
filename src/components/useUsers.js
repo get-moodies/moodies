@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 import {useAuth} from "./ContextProvider"
 
@@ -7,8 +8,13 @@ const url = "https://get-moodies.herokuapp.com/"
 const urlProfile = url + "profile/"
 const urlUser = url + "users/"
 
+const urlUserLocal = "http://localhost:4000/users"
+
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 const {token, setToken} = useAuth( );
+
+const [allUsers, setAllUsers] = useState([]);
+
 
 const logout = ( ) => {
     
@@ -95,6 +101,15 @@ function editUser ( userName, put) {
     .then((result) => {console.log(result)});
 }
 
+function getAllUsers( ) {
+    fetch( urlUserLocal )
+        .then((res) => res.json())
+        .then((result) => {
+            setAllUsers( result )
+        })
+}
+
+
 return {
     getUserPublic, 
     getUser, 
@@ -103,6 +118,8 @@ return {
     login, 
     editUser,
     logout,
+    getAllUsers,
+    allUsers
 }
 }
 

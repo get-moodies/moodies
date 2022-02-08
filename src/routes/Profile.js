@@ -95,10 +95,7 @@ export default function User() {
 	const [watchLaterSelected, setWatchLaterSelected] = useState(true);
 	const [hiddenSelected, setHiddenSelected] = useState(false);
 	const [listName, setListName] = useState("saved");
-	//const {user} = useParams();
-
-	console.log(`watch list active ${isWatchListActive}`);
-	console.log(`hidden list active ${isHiddenListActive}`);
+	
 
 	return (
 		<>

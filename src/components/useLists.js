@@ -9,6 +9,7 @@ const urlUser = url + "users/"
 const list = "/playlists/"
 
 const [publicLists, setPublicLists] = useState({});
+const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
 
 const {token, setToken} = useAuth( );
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
@@ -73,13 +74,40 @@ function editList ( userName, listId, put) {
     .then((result) => {console.log(result)});
 }
 
+function getAllPublicAllUsers(  ) {
+    
+    fetch('https://get-moodies.herokuapp.com/playlists/getpublic')
+        .then((res) => res.json())
+        .then((result) => {
+            // console.log(result)
+            setAllPublicAllUsers(result.result)
+        })
+        .catch((e)=> console.log(e))
+}
+
+function searchByTags ( tags ) {
+    
+    const tagsURL = tags.split(', ').join('&')
+    
+    fetch('http://localhost:4000/playlists/bytag/' + tagsURL )
+        .then((res) => res.json())
+        .then((result) => {
+            console.log("tags:",result)
+        })
+        .catch((e)=> console.log(e))
+
+}
+
 return {
     getPublicLists, 
     getAllLists, 
     deleteList, 
     editList,
     addList,
-    publicLists
+    publicLists,
+    getAllPublicAllUsers,
+    searchByTags,
+    allPublicAllUsers
 }
 }
 
