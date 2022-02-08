@@ -62,9 +62,16 @@ export default function SaveButton() {
                                 focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
 										name="color"
 									>
-										<option value="playlist1">playlist1</option>
-										<option value="playlist2">playlist2</option>
-										<option value="playlist3">playlist3</option>
+										<option value="watch later">watch later</option>
+										<option value="hidden">hidden</option>
+										<option value="public playlist 1">public playlist 1</option>
+										<option value="public playlist 2">public playlist 2</option>
+										<option value="private playlist 1">
+											private playlist 1
+										</option>
+										<option value="private playlist 2">
+											private playlist 2
+										</option>
 									</select>
 								</div>
 
