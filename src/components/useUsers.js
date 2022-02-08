@@ -135,6 +135,7 @@ return {
     getAllUsers,
     allUsers
 }
+
 }
 
 export default useUsers;

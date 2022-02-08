@@ -5,73 +5,75 @@ import useUsers from "../components/useUsers";
 import useLists from "../components/useLists";
 import moodiescover from "../images/moodiescover.jpeg";
 
-const moviesTemplate = [
-	{
-		title: "The Good Movie To Watch",
-		overview:
-			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-		backdrop_path:
-			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-		poster_path:
-			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-		release_date: "1994 05 26",
-	},
-	{
-		title: "The Good Movie To Watch",
-		overview:
-			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-		backdrop_path:
-			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-		poster_path:
-			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-		release_date: "1994 05 26",
-	},
-	{
-		title: "The Good Movie To Watch",
-		overview:
-			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-		backdrop_path:
-			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-		poster_path:
-			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-		release_date: "1994 05 26",
-	},
-	{
-		title: "The Good Movie To Watch",
-		overview:
-			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-		backdrop_path:
-			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-		poster_path:
-			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-		release_date: "1994 05 26",
-	},
-	{
-		title: "The Good Movie To Watch",
-		overview:
-			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-		backdrop_path:
-			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-		poster_path:
-			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-		release_date: "1994 05 26",
-	},
-	{
-		title: "The Good Movie To Watch",
-		overview:
-			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-		backdrop_path:
-			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-		poster_path:
-			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-		release_date: "1994 05 26",
-	},
-];
+// const moviesTemplate = [
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// ];
 
 export default function Profile() {
-	const [activeList, setActiveList] = useState(0);
+	const [activeList, setActiveList] = useState("public0");
 
 	const [selectedIndex, setSelectedIndex] = useState(0);
+
+	const [playlistId, setPlaylistId] = useState("");
 
 	const { user } = useParams();
 	const { getUserPublic, publicUserData } = useUsers();
@@ -80,12 +82,16 @@ export default function Profile() {
 	// const apiImage =
 	// 	"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.doblu.com%2Fwp-content%2Fuploads%2F2018%2F12%2FEVIL-DEAD-2_t00.mkv_snapshot_00.59.09_2018.12.16_14.15.38.jpg";
 
+	// const initialPlaylistState = publicLists.public[0]._id;
+
 	const {
 		getPublicLists,
 		getAllLists,
 		deleteList,
 		editList,
 		addList,
+		getMovies,
+		movieData,
 		publicLists,
 		allLists,
 	} = useLists();
@@ -98,7 +104,17 @@ export default function Profile() {
 		getPublicLists(user);
 	}, []);
 
-	console.log(apiImage);
+	useEffect(() => {
+		setPlaylistId(publicLists.public[0]._id);
+	}, [publicLists]);
+
+	useEffect(() => {
+		getMovies(user, playlistId);
+	}, [playlistId]);
+
+	// console.log(selectedIndex);
+	// console.log(playlistId);
+	// console.log(movieData[0].data.title);
 
 	return (
 		<>
@@ -176,6 +192,7 @@ export default function Profile() {
 										onClick={() => {
 											setActiveList(`public${index}`);
 											setSelectedIndex(index);
+											setPlaylistId(publicLists.public[index]._id);
 										}}
 									>
 										{list.name}
@@ -207,65 +224,62 @@ export default function Profile() {
 					</div>
 
 					<div className=" justify-center w-full border-4 border-white h-[390px] overflow-scroll p-4 rounded-xl">
-						{moviesTemplate.map(
-							(
-								{ title, overview, backdrop_path, poster_path, release_date },
-								index
-							) => {
-								const netflixQuery = title.split(" ").join("%20");
-								//	const amazonQuery = title.split(" ").join("+");
-								const netflixUrl = `https://www.netflix.com/search?q=${netflixQuery}`;
-								//	const amazonUrl = `https://www.amazon.de/s?k=${amazonQuery}&i=instant-video&crid=8PUTSZSV6RPC&sprefix=fight+club%2Cinstant-video%2C301&ref=nb_sb_noss_1`;
-								//	const disneyUrl = "https://www.disneyplus.com/search";
-								//	const dummyUrl = `https://google.com/search?q=Where+Can+I+Watch+${amazonQuery}`;
-
-								// const movieSearch2 = {
-								// 	8: () => netflixUrl,
-								// 	9: () => amazonUrl,
-								// 	3: () => disneyUrl,
-								// 	default: () => dummyUrl,
-								// };
-
-								return (
-									<div key={index}>
-										<div className="hover:scale-105 hover:outline- transition-all duration-700 shadow-lg hover:shadow-xl relative w-11/12 h-[60px] mx-auto mb-3 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
-											<div className="shrink-0 h-[200px] w-[200px] ">
-												<img
-													className="relative -left-20 h-full w-full object-cover object-center [clip-path:circle(45%_at_50%_50%)]"
-													src={backdrop_path}
-													// src={
-													//  backdrop_path
-													//      ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
-													//      : `https://image.tmdb.org/t/p/w500${poster_path}`
-													// }
-													alt="movie image"
-												/>
-											</div>
-											<div className="w-full  ">
-												<div className="flex justify-between">
-													<div>
-														<p className="text-lg font-medium line-clamp-1 text-white mt-1 -ml-24 ">
-															{title}
-															<span className="text-base font-light    text-white">{` (${release_date.substring(
-																0,
-																4
-															)})`}</span>{" "}
-														</p>
-													</div>
-													<div className="flex">
-														<a href={netflixUrl} target="_blank">
-															<button className="w-20 mr-3 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900 ">
-																watch
-															</button>
-														</a>
-													</div>
+						{movieData.map(({ data }, index) => {
+							const netflixQuery = data.title?.split(" ").join("%20");
+							//	const amazonQuery = title.split(" ").join("+");
+							const netflixUrl = `https://www.netflix.com/search?q=${netflixQuery}`;
+							//	const amazonUrl = `https://www.amazon.de/s?k=${amazonQuery}&i=instant-video&crid=8PUTSZSV6RPC&sprefix=fight+club%2Cinstant-video%2C301&ref=nb_sb_noss_1`;
+							//	const disneyUrl = "https://www.disneyplus.com/search";
+							//	const dummyUrl = `https://google.com/search?q=Where+Can+I+Watch+${amazonQuery}`;
+							// const movieSearch2 = {
+							// 	8: () => netflixUrl,
+							// 	9: () => amazonUrl,
+							// 	3: () => disneyUrl,
+							// 	default: () => dummyUrl,
+							// };
+							return (
+								<div key={index}>
+									<div className="hover:scale-105 hover:outline- transition-all duration-700 shadow-lg hover:shadow-xl relative w-11/12 h-[60px] mx-auto mb-3 bg-black bg-opacity-40  pr-1 rounded-r-full rounded-l-[1800px] flex items-center text-left space-x-4 overflow-hidden">
+										<div className="shrink-0 h-[200px] w-[200px] ">
+											<img
+												className="relative -left-20 h-full w-full object-cover object-center [clip-path:circle(45%_at_50%_50%)]"
+												// src={data.backdrop_path}
+												src={
+													data.backdrop_path
+														? `https://image.tmdb.org/t/p/w500${data.backdrop_path}`
+														: `https://image.tmdb.org/t/p/w500${data.poster_path}`
+												}
+												alt="movie image"
+											/>
+										</div>
+										<div className="w-full  ">
+											<div className="flex justify-between">
+												<div>
+													<p className="text-lg font-medium line-clamp-1 text-white mt-1 -ml-24 ">
+														{data.title}
+														<span className="text-base font-light    text-white">{` (${data.release_date.substring(
+															0,
+															4
+														)})`}</span>{" "}
+													</p>
+												</div>
+												<div className="flex">
+													<a href={netflixUrl} target="_blank">
+														<button className="w-20 mr-3 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900 ">
+															watch
+														</button>
+													</a>
 												</div>
 											</div>
 										</div>
 									</div>
-								);
-							}
-						)}
+								</div>
+							);
+						})}
+
+						{/* {movieData.map(({ data }, index) => {
+							return <div key={index}>{data.title}</div>;
+						})} */}
 					</div>
 				</div>
 			</div>

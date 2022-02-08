@@ -9,6 +9,24 @@ const urlUser = url + "users/"
 const list = "/playlists/"
 
 const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
+
+const [movieData, setMovieData] = useState([
+	{
+		_id: "",
+		movie_id: "",
+		data: {
+			adult: "",
+			backdrop_path: "",
+			genre_ids: [],
+			id: 0,
+			original_title: "",
+			poster_path: "",
+			release_date: "",
+		},
+	},
+]);
+
+
 const [publicLists, setPublicLists] = useState({
     _id: "",
     publicLists: [],
@@ -41,6 +59,14 @@ const [allLists, setAllLists] = useState({
 
 const {token, setToken} = useAuth( );
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
+
+function getMovies(userName, playlistId) {
+	fetch(urlUser + userName + list + playlistId)
+		.then((res) => res.json())
+		.then((result) => {
+			setMovieData(result.public);
+		});
+}
 
 function getPublicLists( userName ) {
     
@@ -131,39 +157,41 @@ return {
     deleteList, 
     editList,
     addList,
+	getMovies,
+	movieData,
     publicLists,
+	allLists,
     getAllPublicAllUsers,
     searchByTags,
     allPublicAllUsers
 }
+
 }
 
 export default useLists;
 
+// useLists is imported like this:
+//import useLists from "../components/useLists"
+//const {
+// getPublicLists,
+// getAllLists,
+// deleteList,
+// editList,
+// addList,
+// publicLists
+// } = useLists()
 
+// // addList object needs: {
+//                 name: req.body.name,
+//     public: req.body.public,
+//     movies: req.body.movies,
+//     tags: req.body.tags,
+//     editRight: req.params.userName
+// }                    }
 
-    // useLists is imported like this:
-    //import useLists from "../components/useLists"
-    //const {
-    // getPublicLists, 
-    // getAllLists, 
-    // deleteList, 
-    // editList,
-    // addList,
-    // publicLists
-    // } = useLists()      
-	
-    // // addList object needs: {
-        //                 name: req.body.name,
-                    //     public: req.body.public,
-                    //     movies: req.body.movies,
-                    //     tags: req.body.tags,
-                    //     editRight: req.params.userName
-    // }                    }
-
-	/// editList takes object with this form : 
-                                    // list.name = name 
-                                    // list.public = public 
-                                    // list.movies = movies 
-                                    // list.tags =  tags
-                                    // list.editRight =  editRight
+/// editList takes object with this form :
+// list.name = name
+// list.public = public
+// list.movies = movies
+// list.tags =  tags
+// list.editRight =  editRight
