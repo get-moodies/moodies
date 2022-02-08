@@ -180,18 +180,18 @@ export default function Profile() {
 								index
 							) => {
 								const netflixQuery = title.split(" ").join("%20");
-								const amazonQuery = title.split(" ").join("+");
+								//	const amazonQuery = title.split(" ").join("+");
 								const netflixUrl = `https://www.netflix.com/search?q=${netflixQuery}`;
-								const amazonUrl = `https://www.amazon.de/s?k=${amazonQuery}&i=instant-video&crid=8PUTSZSV6RPC&sprefix=fight+club%2Cinstant-video%2C301&ref=nb_sb_noss_1`;
-								const disneyUrl = "https://www.disneyplus.com/search";
-								const dummyUrl = `https://google.com/search?q=Where+Can+I+Watch+${amazonQuery}`;
+								//	const amazonUrl = `https://www.amazon.de/s?k=${amazonQuery}&i=instant-video&crid=8PUTSZSV6RPC&sprefix=fight+club%2Cinstant-video%2C301&ref=nb_sb_noss_1`;
+								//	const disneyUrl = "https://www.disneyplus.com/search";
+								//	const dummyUrl = `https://google.com/search?q=Where+Can+I+Watch+${amazonQuery}`;
 
-								const movieSearch2 = {
-									8: () => netflixUrl,
-									9: () => amazonUrl,
-									3: () => disneyUrl,
-									default: () => dummyUrl,
-								};
+								// const movieSearch2 = {
+								// 	8: () => netflixUrl,
+								// 	9: () => amazonUrl,
+								// 	3: () => disneyUrl,
+								// 	default: () => dummyUrl,
+								// };
 
 								return (
 									<div key={index}>
@@ -220,21 +220,11 @@ export default function Profile() {
 														</p>
 													</div>
 													<div className="flex">
-														{/* <button className=" w-20  mr-2 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
-										delete
-									</button> */}
-
-														{/* <a
-									href={(
-										movieSearch2[watchProvider?.charAt(0)] ||
-										movieSearch2.default
-									)()}
-									target="_blank"
-								> */}
-														<button className="w-20 mr-3 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900 ">
-															watch
-														</button>
-														{/* </a> */}
+														<a href={netflixUrl} target="_blank">
+															<button className="w-20 mr-3 bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900 ">
+																watch
+															</button>
+														</a>
 													</div>
 												</div>
 											</div>
