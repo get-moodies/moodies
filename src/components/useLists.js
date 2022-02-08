@@ -8,11 +8,45 @@ const urlProfile = url + "profiles/"
 const urlUser = url + "users/"
 const list = "/playlists/"
 
-const [publicLists, setPublicLists] = useState({});
 const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
+const [publicLists, setPublicLists] = useState({
+    _id: "",
+    publicLists: [],
+    public: [
+        {
+            _id: "",
+            name: "",
+            movies: [],
+            tags: [],
+        },
+    ],
+});
+
+const [allLists, setAllLists] = useState({
+    _id: "",
+    watchlist: [],
+    publicLists: [],
+    privateLists: [],
+    blacklist: [],
+    public: [
+        {
+            _id: "",
+            name: "",
+            movies: [],
+            tags: [],
+        },
+    ],
+    private: [{ _id: "", name: "", movies: [], tags: [] }],
+});
+
+
 
 const {token, setToken} = useAuth( );
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
+
+
+
+
 
 function getPublicLists( userName ) {
     
@@ -20,7 +54,6 @@ function getPublicLists( userName ) {
         .then((res) => res.json())
         .then((result) => {
             setPublicLists(result)
-            console.log(result)
         })
 }
 
@@ -33,7 +66,7 @@ function getAllLists( userName ) {
             }})
         .then((res) => res.json())
         .then((result) => {
-            console.log(result)
+            setAllLists(result);
         })
 }
 

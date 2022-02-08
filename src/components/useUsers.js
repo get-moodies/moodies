@@ -10,6 +10,23 @@ const urlUser = url + "users/"
 
 const urlUserLocal = "http://localhost:4000/users"
 
+const [userData, setUserData] = useState({
+    info: "",
+    _id: "",
+    userName: "",
+    email: "",
+    watchlist: [],
+    publicLists: [],
+    privateLists: [],
+    blacklist: [],
+});
+const [publicUserData, setPublicUserData] = useState({
+    info: "",
+    _id: "",
+    userName: "",
+    publicLists: [],
+});
+
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 const {token, setToken} = useAuth( );
 
@@ -22,14 +39,12 @@ const logout = ( ) => {
     localStorage.setItem( "token" , JSON.stringify( false )) 
 }
 
-function getUserPublic( userName ) {
-    
-    fetch( urlProfile + userName)
+function getUserPublic(userName) {
+    fetch(urlProfile + userName)
         .then((res) => res.json())
         .then((result) => {
-            console.log(result)
-            
-        })
+            setPublicUserData(result);
+        });
 }
 
 function getUser( userName) {
@@ -40,9 +55,7 @@ function getUser( userName) {
                 'Authorization': 'Bearer ' + token
         }})
         .then((res) => res.json())
-        .then((result) => {
-            console.log(result)
-        })
+        .then((result) => { setUserData(result.result); })
 }
 
 function deleteUser ( userName ) {
@@ -118,6 +131,8 @@ return {
     login, 
     editUser,
     logout,
+    userData,
+	publicUserData,
     getAllUsers,
     allUsers
 }
@@ -125,16 +140,17 @@ return {
 
 export default useUsers;
 
+// useUsers is imported like this:
+//import useUsers from "../components/useUsers"
+//const {getUserPublic, getUser, register, deleteUser, login, editUser} = useUsers()
 
+// useUsers is imported:
+//
+//  import useUsers from "../components/useUsers"
+//  const {getUserPublic, getUser, register, deleteUser, login, editUser} = useUsers()
 
-    // useUsers is imported:
-    // 
-    //  import useUsers from "../components/useUsers"
-    //  const {getUserPublic, getUser, register, deleteUser, login, editUser} = useUsers()
-	
-    //Methods require this type of parameter:
-    // 
-    //register: const newUser = {userName:"RegisterUser",email:"user@das.de",magicword:"guest"}
-	//login: const log = {userName:"gerardo",magicword:"password"}
-    //edit: const edit = { info:   "i like movies"}
-	
+//Methods require this type of parameter:
+//
+//register: const newUser = {userName:"RegisterUser",email:"user@das.de",magicword:"guest"}
+//login: const log = {userName:"gerardo",magicword:"password"}
+//edit: const edit = { info:   "i like movies"}
