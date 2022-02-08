@@ -1,5 +1,5 @@
 import Icon from "./Icon";
-import Option from "./Option";
+import OptionButton from "./Option";
 import Bubble from "./Bubble";
 import StinkersButton from "./StinkersButton";
 import GemsButton from "./GemsButton";
@@ -20,7 +20,15 @@ export default function SelectionBox({
 	sortQuery,
 	isAdult,
 	movieLength,
+	setSortQuerySelected,
+	sortQuerySelected,
+	setIsAdult,
+	setIsAdultSelected,
+	setMovieLength,
+	setMovieLengthSelected,
+	setSortQuery,
 }) {
+	const nicheGenres = generes.slice(10, 19);
 	return (
 		<>
 			<p className="text-xl text-white font-medium mb-5 mt-8 ">current mood</p>
@@ -38,16 +46,16 @@ export default function SelectionBox({
 							)
 						);
 					})}
-					{generes.map((category, index) => {
+					{nicheGenres.map((element, index) => {
 						return (
-							index > 9 &&
-							genre[index] && (
-								<Option
-									element={category}
-									isSelected={false}
-									key={category.name}
+							// index > 9 &&
+							genre[index + 10] && (
+								<OptionButton
+									key={element.id}
+									element={element}
 									handler={handler.genre}
 									index={index}
+									//	isSelected={genre[index + 10]}
 								/>
 							)
 						);
@@ -69,12 +77,48 @@ export default function SelectionBox({
 				</div>
 
 				<div className="flex flex-row items-center justify-center ">
-					{sortQuery === "vote_average.asc" && <StinkersButton />}
-					{sortQuery === "popularity.asc" && <GemsButton />}
-					{sortQuery === "revenue.asc" && <FlopsButton />}
-					{sortQuery === "revenue.desc" && <BlockbusterButton />}
-					{isAdult && <AdultButton />}
-					{movieLength === 180 && <EpicsButton />}
+					{sortQuery === "vote_average.asc" && (
+						<StinkersButton
+							sortQuery={sortQuery}
+							setSortQuery={setSortQuery}
+							setSortQuerySelected={setSortQuerySelected}
+						/>
+					)}
+					{sortQuery === "popularity.asc" && (
+						<GemsButton
+							sortQuery={sortQuery}
+							setSortQuery={setSortQuery}
+							setSortQuerySelected={setSortQuerySelected}
+						/>
+					)}
+					{sortQuery === "revenue.asc" && (
+						<FlopsButton
+							sortQuery={sortQuery}
+							setSortQuery={setSortQuery}
+							setSortQuerySelected={setSortQuerySelected}
+						/>
+					)}
+					{sortQuery === "revenue.desc" && (
+						<BlockbusterButton
+							sortQuery={sortQuery}
+							setSortQuery={setSortQuery}
+							setSortQuerySelected={setSortQuerySelected}
+						/>
+					)}
+					{isAdult && (
+						<AdultButton
+							isAdult={isAdult}
+							setIsAdult={setIsAdult}
+							setIsAdultSelected={setIsAdultSelected}
+						/>
+					)}
+					{movieLength === 180 && (
+						<EpicsButton
+							movieLength={movieLength}
+							setMovieLength={setMovieLength}
+							setMovieLengthSelected={setMovieLengthSelected}
+						/>
+					)}
 				</div>
 				{/* <p className="text-lg text-white font-medium mt-1">
 					{startYear} - {endYear}

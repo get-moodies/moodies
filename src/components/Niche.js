@@ -12,6 +12,12 @@ export default function Niche({
 	setMovieLength,
 	sortQuery,
 	setSortQuery,
+	sortQuerySelected,
+	setSortQuerySelected,
+	isAdultSelected,
+	setIsAdultSelected,
+	movieLengthSelected,
+	setMovieLengthSelected,
 }) {
 	return (
 		<>
@@ -20,15 +26,42 @@ export default function Niche({
 					in the mood for something more niche?
 				</h3>
 
-				<StinkersButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
-				<GemsButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
-				<FlopsButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
-				<BlockbusterButton sortQuery={sortQuery} setSortQuery={setSortQuery} />
+				<StinkersButton
+					sortQuery={sortQuery}
+					setSortQuery={setSortQuery}
+					sortQuerySelected={sortQuerySelected}
+					setSortQuerySelected={setSortQuerySelected}
+				/>
+				<GemsButton
+					sortQuery={sortQuery}
+					setSortQuery={setSortQuery}
+					sortQuerySelected={sortQuerySelected}
+					setSortQuerySelected={setSortQuerySelected}
+				/>
+				<FlopsButton
+					sortQuery={sortQuery}
+					setSortQuery={setSortQuery}
+					sortQuerySelected={sortQuerySelected}
+					setSortQuerySelected={setSortQuerySelected}
+				/>
+				<BlockbusterButton
+					sortQuery={sortQuery}
+					setSortQuery={setSortQuery}
+					sortQuerySelected={sortQuerySelected}
+					setSortQuerySelected={setSortQuerySelected}
+				/>
 				<EpicsButton
 					movieLength={movieLength}
 					setMovieLength={setMovieLength}
+					movieLengthSelected={movieLengthSelected}
+					setMovieLengthSelected={setMovieLengthSelected}
 				/>
-				<AdultButton isAdult={isAdult} setIsAdult={setIsAdult} />
+				<AdultButton
+					isAdult={isAdult}
+					setIsAdult={setIsAdult}
+					isAdultSelected={isAdultSelected}
+					setIsAdultSelected={setIsAdultSelected}
+				/>
 			</div>
 		</>
 	);

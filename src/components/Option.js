@@ -1,4 +1,4 @@
-export default function Option({ element, handler, index, isSelected }) {
+export default function OptionButton({ element, handler, index, isSelected }) {
 	return (
 		<button
 			className={
