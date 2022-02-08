@@ -33,6 +33,8 @@ export default function User() {
 		getAllLists(user);
 	}, []);
 
+	console.log(allLists);
+
 	return (
 		<>
 			<h1 className="text-2xl font-medium text-white text-left mt-12   ">

@@ -40,6 +40,10 @@ function useLists() {
 	const { token, setToken } = useAuth();
 	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 
+	////
+
+	////
+
 	function getPublicLists(userName) {
 		fetch(urlProfile + userName + list)
 			.then((res) => res.json())
