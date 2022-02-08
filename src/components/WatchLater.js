@@ -65,10 +65,10 @@ export default function WatchLater() {
 	return (
 		<>
 			<div className="mb-4 mt-6 ">
-				<h2 className="text-lg font-medium text-white  mb-2 text-center">
+				<h2 className="text-lg font-medium text-white  mb-5 text-center">
 					watch later
 				</h2>
-				<h2 className={"text-base font-medium text-white mb-2 my-auto"}>
+				<h2 className={"text-base font-medium text-white mb-8 my-auto"}>
 					{" "}
 					movies saved to your watch later list
 				</h2>

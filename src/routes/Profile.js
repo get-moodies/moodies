@@ -3,6 +3,7 @@ import face from "../images/face.png";
 import { useParams } from "react-router-dom";
 import useUsers from "../components/useUsers";
 import useLists from "../components/useLists";
+import moodiescover from "../images/moodiescover.jpeg";
 
 const moviesTemplate = [
 	{
@@ -75,6 +76,10 @@ export default function Profile() {
 	const { user } = useParams();
 	const { getUserPublic, publicUserData } = useUsers();
 
+	const apiImage = publicUserData.image;
+	// const apiImage =
+	// 	"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.doblu.com%2Fwp-content%2Fuploads%2F2018%2F12%2FEVIL-DEAD-2_t00.mkv_snapshot_00.59.09_2018.12.16_14.15.38.jpg";
+
 	const {
 		getPublicLists,
 		getAllLists,
@@ -93,34 +98,62 @@ export default function Profile() {
 		getPublicLists(user);
 	}, []);
 
-	console.log(publicUserData);
+	console.log(apiImage);
 
 	return (
 		<>
-			<h1 className="text-2xl font-medium text-white text-left mt-12   ">
-				profile
-			</h1>
-			<div className="flex flex-col justify-center w-[180px] mt-6 border-b-2">
-				<div className="flex justify-center w-full">
-					<img className="h-40" src={face} alt="user avatar" />
-				</div>
+			<div className="flex mb-4">
 				<div>
-					<h1 className="text-lg font-normal text-white text-center mt-3">
-						{publicUserData.userName}
+					<h1 className="text-2xl font-medium text-white text-left mt-12   ">
+						profile
 					</h1>
+					<div className="flex flex-col justify-center w-[180px] mt-6 border-b-2">
+						<div className="flex justify-center w-full">
+							<img className="h-40" src={face} alt="user avatar" />
+						</div>
+						<div>
+							<h1 className="text-lg font-normal text-white text-center mt-3">
+								{publicUserData.userName}
+							</h1>
 
-					{publicUserData.info ? (
-						<p className="text-md font-medium text-white mt-2 mb-8">
-							{publicUserData.info}
-						</p>
-					) : (
-						<p className="text-md font-medium text-white mt-2 mb-8">
-							i am an awesome moodies user
-						</p>
-					)}
+							{publicUserData.info ? (
+								<p className="text-md font-medium text-white mt-2 mb-8">
+									{publicUserData.info}
+								</p>
+							) : (
+								<p className="text-md font-medium text-white mt-2 mb-8">
+									i am an awesome moodies user
+								</p>
+							)}
+						</div>
+					</div>
+				</div>
+				<div className="mt-12 px-12 w-full  border-b-2 ">
+					{" "}
+					<h1 className="text-2xl font-medium text-white text-left ">
+						cover image
+					</h1>
+					<div className="flex justify-center w-full">
+						<div
+							className="shadow-lg bg-center mt-9 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
+							style={
+								!apiImage
+									? {
+											backgroundImage: `url(${apiImage})`,
+											backgroundSize: "cover",
+											overflow: "hidden",
+									  }
+									: {
+											backgroundImage: `url(${moodiescover})`,
+											backgroundSize: "cover",
+											overflow: "hidden",
+									  }
+							}
+						></div>
+						{/* <img className="h-40" src={apiImage} alt="test cover fetch" /> */}
+					</div>
 				</div>
 			</div>
-
 			<div className="flex flex-col sm:flex-row">
 				<div className="flex flex-col">
 					<h1 className="text-2xl font-medium text-white text-left mt-8">
@@ -163,10 +196,10 @@ export default function Profile() {
 					</h1>
 
 					<div className="mb-4 mt-6 ">
-						<h2 className="text-lg font-medium text-white  mb-2 text-center">
+						<h2 className="text-lg font-medium text-white  mb-5 text-center">
 							{publicLists.public[selectedIndex].name}
 						</h2>
-						<h2 className={"text-base font-medium text-white mb-2 my-auto"}>
+						<h2 className={"text-base font-medium text-white mb-8 my-auto"}>
 							{publicLists.public[selectedIndex].tags.map((tag, index) => (
 								<>#{tag} </>
 							))}
