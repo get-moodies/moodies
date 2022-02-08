@@ -33,8 +33,6 @@ function useResults() {
 		&with_watch_providers=${provider_URL}
 		&watch_region=${region}
         `;
-		console.log(adult_URL);
-		console.log(url);
 
 		// removed from url in case people want to search full database:
 		// &with_watch_monetization_types=flatrate

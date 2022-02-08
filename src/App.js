@@ -41,15 +41,7 @@ function App() {
 	const [sortQuery, setSortQuery] = useState("popularity.desc");
 	const [sortQuerySelected, setSortQuerySelected] = useState("popularity.desc");
 
-	console.log(sortQuerySelected);
-	console.log(movieLength);
-
 	const adult_URL = isAdult;
-
-	// console.log(sortQuery);
-	// console.log(movieLength);
-	// console.log(isAdult);
-	// console.log(userRegion);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
