@@ -9,6 +9,23 @@ const urlUser = url + "users/"
 const list = "/playlists/"
 
 const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
+
+const [movieData, setMovieData] = useState([
+	{
+		_id: "",
+		movie_id: "",
+		data: {
+			adult: "",
+			backdrop_path: "",
+			genre_ids: [],
+			id: 0,
+			original_title: "",
+			poster_path: "",
+			release_date: "",
+		},
+	},
+]);
+
 const [publicLists, setPublicLists] = useState({
     _id: "",
     publicLists: [],
@@ -46,7 +63,13 @@ const {token, setToken} = useAuth( );
 
 
 
-
+function getMovies(userName, playlistId) {
+	fetch(urlUser + userName + list + playlistId)
+		.then((res) => res.json())
+		.then((result) => {
+			setMovieData(result.public);
+		});
+}
 
 function getPublicLists( userName ) {
     
@@ -137,7 +160,10 @@ return {
     deleteList, 
     editList,
     addList,
+	getMovies,
+	movieData,
     publicLists,
+	allLists
     getAllPublicAllUsers,
     searchByTags,
     allPublicAllUsers
