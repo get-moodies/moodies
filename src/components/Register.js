@@ -22,7 +22,7 @@ export default function Register({ screenHandler }) {
 
     useEffect( () => {
         if (isLoggedIn()) 
-            {return  navigate(`profiles/${data.userName}`)}}
+            {return  navigate(`/moodies/profiles/${data.userName}`)}}
         ,[isLoggedIn])
 
 	return (
