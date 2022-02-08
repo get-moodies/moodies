@@ -14,6 +14,7 @@ import Layout from "./routes/Layout";
 import Error from "./routes/Error";
 import Profile from "./routes/Profile";
 import User from "./routes/User";
+import Playlists from "./routes/Playlists";
 
 import face from "./images/face.png";
 import { ContextProvider } from "./components/ContextProvider";
@@ -185,10 +186,15 @@ ReactDOM.render(
 					<Route path="users/:user" element={<User />} />
 					<Route path="profiles/:user" element={<Profile />} />
 					<Route path="*" element={<Error />} />
+					<Route path="playlists" element={<Playlists />} />
+
 				</Route>
 				<Route path="*" element={<Error />} />
-			</Routes>
-		</BrowserRouter>
-	</ContextProvider>,
+
+			
+		</Routes>
+	</BrowserRouter>
+</ContextProvider>,
+
 	document.getElementById("root")
 );
