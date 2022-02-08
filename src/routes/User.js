@@ -7,14 +7,21 @@ import WatchLater from "../components/WatchLater";
 import HiddenList from "../components/HiddenList";
 import PrivateList from "../components/PrivateList";
 import PublicList from "../components/PublicList";
+import moodiescover from "../images/moodiescover.jpeg";
 
 export default function User() {
 	const [activeList, setActiveList] = useState("WatchLater");
 	const [isEdit, setIsEdit] = useState(false);
+	const [isUpload, setIsUpload] = useState(false);
 	const [selectedIndex, setSelectedIndex] = useState();
 
 	const { user } = useParams();
 	const { getUser, userData } = useUsers();
+
+	const apiImage = userData.image;
+	// const apiImage =
+	// 	"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.doblu.com%2Fwp-content%2Fuploads%2F2018%2F12%2FEVIL-DEAD-2_t00.mkv_snapshot_00.59.09_2018.12.16_14.15.38.jpg";
+
 	const {
 		getPublicLists,
 		getAllLists,
@@ -33,27 +40,29 @@ export default function User() {
 		getAllLists(user);
 	}, []);
 
-	console.log(allLists);
+	// console.log(allLists);
 
 	return (
 		<>
-			<h1 className="text-2xl font-medium text-white text-left mt-12   ">
-				profile
-			</h1>
-			<div className="flex flex-col justify-center w-[180px] mt-6 border-b-2">
-				<div className="flex justify-center w-full">
-					<img className="h-40" src={face} alt="user avatar" />
-				</div>
+			<div className="flex mb-4">
 				<div>
-					<h1 className="text-lg font-normal text-white text-center mt-3">
-						{" "}
-						{userData.userName}{" "}
+					<h1 className="text-2xl font-medium text-white text-left mt-12   ">
+						profile
 					</h1>
+					<div className="flex flex-col justify-center w-[180px] mt-6 border-b-2">
+						<div className="flex justify-center w-full">
+							<img className="h-40" src={face} alt="user avatar" />
+						</div>
+						<div>
+							<h1 className="text-lg font-normal text-white text-center mt-3">
+								{" "}
+								{userData.userName}{" "}
+							</h1>
 
-					{isEdit ? (
-						<>
-							<input
-								className="
+							{isEdit ? (
+								<>
+									<input
+										className="
                                 form-control
                                 block
                                 w-full
@@ -69,37 +78,108 @@ export default function User() {
                                 ease-in-out
                                 mt-2
                                 focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
-								id="info"
-								type="info"
-								name="info"
-								placeholder={"i am ghost type..."}
-							/>
-							<button
-								className="btn-primary mt-4 mb-8"
-								onClick={() => setIsEdit(!isEdit)}
-							>
-								submit
-							</button>
-						</>
-					) : (
-						<>
-							{userData.info ? (
-								<p className="text-md font-medium text-white mt-2">
-									{userData.info}
-								</p>
+										id="info"
+										type="info"
+										name="info"
+										placeholder={"i am ghost type..."}
+									/>
+									<button
+										className="btn-primary mt-4 mb-8"
+										onClick={() => setIsEdit(!isEdit)}
+									>
+										submit
+									</button>
+								</>
 							) : (
-								<p className="text-md font-medium text-white mt-2">
-									write something nice
-								</p>
+								<>
+									{userData.info ? (
+										<p className="text-md font-medium text-white mt-2">
+											{userData.info}
+										</p>
+									) : (
+										<p className="text-md font-medium text-white mt-2">
+											write something nice
+										</p>
+									)}
+									<button
+										className="btn-primary mt-4 mb-8"
+										onClick={() => setIsEdit(!isEdit)}
+									>
+										edit
+									</button>
+								</>
 							)}
-							<button
-								className="btn-primary mt-4 mb-8"
-								onClick={() => setIsEdit(!isEdit)}
-							>
-								edit
-							</button>
-						</>
-					)}
+						</div>
+					</div>
+				</div>
+				<div className="mt-12 px-12 w-full  border-b-2 ">
+					{" "}
+					<h1 className="text-2xl font-medium text-white text-left ">
+						cover image
+					</h1>
+					<div className="flex justify-center w-full">
+						<div
+							className="shadow-lg bg-center mt-9 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
+							style={
+								!apiImage
+									? {
+											backgroundImage: `url(${apiImage})`,
+											backgroundSize: "cover",
+											overflow: "hidden",
+									  }
+									: {
+											backgroundImage: `url(${moodiescover})`,
+											backgroundSize: "cover",
+											overflow: "hidden",
+									  }
+							}
+						></div>
+
+						{/* <img className="h-40" src={apiImage} alt="test cover fetch" /> */}
+					</div>
+					<div className="flex justify-end">
+						{isUpload ? (
+							<>
+								<input
+									className="
+                                form-control
+                                block
+                                w-lg
+                              h-10
+                                text-base
+                                font-normal
+                                text-gray-700
+                                bg-white bg-clip-padding
+                                border border-solid border-gray-300
+                                rounded
+                                transition
+                                ease-in-out
+								mr-3
+                                mt-5
+                                focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
+									id="info"
+									type="info"
+									name="info"
+									placeholder={" paste an image url..."}
+								/>
+								<button
+									className="btn-primary mt-5 w-32"
+									onClick={() => setIsUpload(!isUpload)}
+								>
+									submit
+								</button>
+							</>
+						) : (
+							<>
+								<button
+									className="btn-primary mt-5 w-32"
+									onClick={() => setIsUpload(!isUpload)}
+								>
+									update cover
+								</button>
+							</>
+						)}
+					</div>
 				</div>
 			</div>
 			<div className="flex flex-col sm:flex-row">
