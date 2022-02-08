@@ -145,7 +145,7 @@ export default function User() {
                                 form-control
                                 block
                                 w-lg
-                              h-10
+                                h-10
                                 text-base
                                 font-normal
                                 text-gray-700

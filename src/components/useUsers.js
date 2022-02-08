@@ -39,8 +39,6 @@ function useUsers() {
 			});
 	}
 
-	console.log(publicUserData);
-
 	function getUser(userName) {
 		fetch(urlUser + userName, {
 			headers: {

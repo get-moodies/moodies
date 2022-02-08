@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "./ContextProvider";
 
 function useLists() {
@@ -6,6 +6,22 @@ function useLists() {
 	const urlProfile = url + "profiles/";
 	const urlUser = url + "users/";
 	const list = "/playlists/";
+
+	const [movieData, setMovieData] = useState([
+		{
+			_id: "",
+			movie_id: "",
+			data: {
+				adult: "",
+				backdrop_path: "",
+				genre_ids: [],
+				id: 0,
+				original_title: "",
+				poster_path: "",
+				release_date: "",
+			},
+		},
+	]);
 
 	const [publicLists, setPublicLists] = useState({
 		_id: "",
@@ -42,7 +58,16 @@ function useLists() {
 
 	////
 
+	function getMovies(userName, playlistId) {
+		fetch(urlUser + userName + list + playlistId)
+			.then((res) => res.json())
+			.then((result) => {
+				setMovieData(result.public);
+			});
+	}
 	////
+
+	// console.log(movieData[0].data);
 
 	function getPublicLists(userName) {
 		fetch(urlProfile + userName + list)
@@ -109,6 +134,8 @@ function useLists() {
 		deleteList,
 		editList,
 		addList,
+		getMovies,
+		movieData,
 		publicLists,
 		allLists,
 	};
