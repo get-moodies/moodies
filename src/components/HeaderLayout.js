@@ -30,8 +30,6 @@ export default function Header({ region, regionHandler }) {
 	const { isLoggedIn } = useAuth();
 	const [data] = useFormData(defaultData);
 
-	console.log(isLoggedIn());
-
 	return (
 		<div className="flex mb-5 justify-between">
 			<h1 className="text-4xl sm:text-5xl mt-2 sm:mt-0 text-white font-medium">

@@ -1,223 +1,217 @@
-import { useState } from "react"
-import {useAuth} from "./ContextProvider"
+import { useState } from "react";
+import { useAuth } from "./ContextProvider";
 
-function useLists  () {
+function useLists() {
+	const url = "https://get-moodies.herokuapp.com/";
+	const urlProfile = url + "profiles/";
+	const urlUser = url + "users/";
+	const list = "/playlists/";
 
-const url = "https://get-moodies.herokuapp.com/"
-const urlProfile = url + "profiles/"
-const urlUser = url + "users/"
-const list = "/playlists/"
+	const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
 
-const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
-
-const [movieData, setMovieData] = useState([
-	{
-		_id: "",
-		movie_id: "",
-		data: {
-			adult: "",
-			backdrop_path: "",
-			genre_ids: [],
-			id: 0,
-			original_title: "",
-			poster_path: "",
-			release_date: "",
+	const [movieData, setMovieData] = useState([
+		{
+			_id: "",
+			movie_id: "",
+			data: {
+				adult: "",
+				backdrop_path: "",
+				genre_ids: [],
+				id: 0,
+				original_title: "",
+				poster_path: "",
+				release_date: "",
+			},
 		},
-	},
-]);
+	]);
 
+	const [publicLists, setPublicLists] = useState({
+		_id: "",
+		publicLists: [],
+		public: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+	});
 
-const [publicLists, setPublicLists] = useState({
-    _id: "",
-    publicLists: [],
-    public: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-});
+	const [allLists, setAllLists] = useState({
+		_id: "",
+		watchlist: [],
+		publicLists: [],
+		privateLists: [],
+		blacklist: [],
+		public: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+		private: [{ _id: "", name: "", movies: [], tags: [] }],
+	});
 
-const [allLists, setAllLists] = useState({
-    _id: "",
-    watchlist: [],
-    publicLists: [],
-    privateLists: [],
-    blacklist: [],
-    public: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-    private: [{ _id: "", name: "", movies: [], tags: [] }],
-});
+	const [userPrivateComplete, setUserPrivateComplete] = useState({
+		_id: "",
+		publicLists: [],
+		private: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+	});
 
-const [userPrivateComplete, setUserPrivateComplete] = useState({
-    _id: "",
-    publicLists: [],
-    private: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-});
+	const [userPublicComplete, setUserPublicComplete] = useState({
+		_id: "",
+		publicLists: [],
+		private: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+	});
 
-const [userPublicComplete, setUserPublicComplete] = useState({
-    _id: "",
-    publicLists: [],
-    private: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-});
+	const { token, setToken } = useAuth();
+	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 
+	function getMovies(userName, playlistId) {
+		fetch(urlUser + userName + list + playlistId)
+			.then((res) => res.json())
+			.then((result) => {
+				setMovieData(result.public);
+			});
+	}
 
-const {token, setToken} = useAuth( );
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
+	function getPublicLists(userName) {
+		fetch(urlProfile + userName + list)
+			.then((res) => res.json())
+			.then((result) => {
+				setPublicLists(result);
+			});
+	}
 
-function getMovies(userName, playlistId) {
-	fetch(urlUser + userName + list + playlistId)
-		.then((res) => res.json())
-		.then((result) => {
-			setMovieData(result.public);
+	function getAllLists(userName) {
+		fetch(urlUser + userName + list, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				setAllLists(result);
+			});
+	}
+
+	function deleteList(userName, listId) {
+		fetch(urlUser + userName + list + listId, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+		}).then((result) => {
+			console.log(result);
 		});
-}
+	}
 
-function getPublicLists( userName ) {
-    
-    fetch( urlProfile + userName + list)
-        .then((res) => res.json())
-        .then((result) => {
-            setPublicLists(result)
-        })
-}
+	function addList(post, userName) {
+		fetch(urlUser + userName + list, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+			method: "POST",
+			body: JSON.stringify(post),
+		}).then((res) => res.json());
+	}
 
-function getAllLists( userName ) {
-    
-    fetch( urlUser + userName + list,
-            {headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            }})
-        .then((res) => res.json())
-        .then((result) => {
-            setAllLists(result);
-        })
-}
+	function editList(userName, listId, put) {
+		fetch(urlUser + userName + list + listId, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+			method: "PUT",
+			body: JSON.stringify(put),
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				console.log(result);
+			});
+	}
 
-function deleteList ( userName, listId ) {
-   
-    fetch(urlUser + userName + list + listId , {
-        method: "DELETE",
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-        }})
-    .then((result) => {console.log(result)});
-}
+	function getAllPublicAllUsers() {
+		fetch("https://get-moodies.herokuapp.com/playlists/getpublic")
+			.then((res) => res.json())
+			.then((result) => {
+				// console.log(result)
+				setAllPublicAllUsers(result.result);
+			})
+			.catch((e) => console.log(e));
+	}
 
-function addList (post, userName) {
-    
-    fetch(urlUser + userName + list, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-            },
-        method: "POST",
-        body: JSON.stringify(post)
-        })
-        .then((res) => res.json())
-}
+	function searchByTags(tags) {
+		const tagsURL = tags.split(", ").join("&");
 
-function editList ( userName, listId, put) {
+		fetch("http://localhost:4000/playlists/bytag/" + tagsURL)
+			.then((res) => res.json())
+			.then((result) => {
+				console.log("tags:", result);
+			})
+			.catch((e) => console.log(e));
+	}
 
-    fetch(urlUser + userName + list + listId, {
-        headers: {
-            "Content-Type": "application/json",
-            'Authorization': 'Bearer ' + token},
-        method: "PUT",
-        body: JSON.stringify(put)
-        })
-    .then((res) => res.json())
-    .then((result) => {console.log(result)});
-}
+	function getAllPrivate(user) {
+		fetch(
+			"https://get-moodies.herokuapp.com/users/" + user + "/privateComplete"
+		)
+			.then((res) => res.json())
+			.then((result) => {
+				// console.log(result)
+				setUserPrivateComplete(result);
+			})
+			.catch((e) => console.log(e));
+	}
+	function getAllPublic(user) {
+		// console.log("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
+		fetch("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
+			.then((res) => res.json())
+			.then((result) => {
+				//console.log(result)
+				setUserPublicComplete(result);
+			})
+			.catch((e) => console.log(e));
+	}
 
-function getAllPublicAllUsers(  ) {
-    
-    fetch('https://get-moodies.herokuapp.com/playlists/getpublic')
-        .then((res) => res.json())
-        .then((result) => {
-            // console.log(result)
-            setAllPublicAllUsers(result.result)
-        })
-        .catch((e)=> console.log(e))
-}
-
-function searchByTags ( tags ) {
-    
-    const tagsURL = tags.split(', ').join('&')
-    
-    fetch('http://localhost:4000/playlists/bytag/' + tagsURL )
-        .then((res) => res.json())
-        .then((result) => {
-            console.log("tags:",result)
-        })
-        .catch((e)=> console.log(e))
-
-}
-
-function getAllPrivate ( user ) {
-    
-    fetch("https://get-moodies.herokuapp.com/users/" + user + "/privateComplete")
-        .then((res) => res.json())
-        .then((result) => {
-            // console.log(result)
-            setUserPrivateComplete(result)
-        })
-        .catch((e)=> console.log(e))
-}
-function getAllPublic ( user ) {
-    // console.log("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
-    fetch("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
-        .then((res) => res.json())
-        .then((result) => {
-            //console.log(result)
-            setUserPublicComplete(result)
-        })
-        .catch((e)=> console.log(e))
-}
-
-return {
-    getPublicLists, 
-    getAllLists, 
-    deleteList, 
-    editList,
-    addList,
-	getMovies,
-	movieData,
-    publicLists,
-	allLists,
-    getAllPublicAllUsers,
-    searchByTags,
-    allPublicAllUsers,
-	getAllPrivate,
-	userPrivateComplete,
-	getAllPublic,
-	userPublicComplete
-}
-
+	return {
+		getPublicLists,
+		getAllLists,
+		deleteList,
+		editList,
+		addList,
+		getMovies,
+		movieData,
+		publicLists,
+		allLists,
+		getAllPublicAllUsers,
+		searchByTags,
+		allPublicAllUsers,
+		getAllPrivate,
+		userPrivateComplete,
+		getAllPublic,
+		userPublicComplete,
+	};
 }
 
 export default useLists;
