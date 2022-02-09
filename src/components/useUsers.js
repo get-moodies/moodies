@@ -60,7 +60,6 @@ function useUsers() {
 			})
 			.catch((e) =>  {
 				console.log(e)
-				res.status(500).send() 
 			})
 	}
 
@@ -93,7 +92,6 @@ function useUsers() {
 			})
 			.catch((e) =>  {
 				console.log(e)
-				res.status(500).send() 
 			})
 	}
 
@@ -114,7 +112,7 @@ function useUsers() {
 			})
 			.catch((e) =>  {
 				console.log(e)
-				res.status(500).send() 
+
 			})
 	}
 

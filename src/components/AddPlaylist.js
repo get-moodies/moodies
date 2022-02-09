@@ -100,7 +100,7 @@ export default function AddPlaylist({handleClose, movieId, user, putMovie}) {
                                 //     "movies": [movieId.toString()]
                                 // })
 								const post = {...data ,
-                                                "editRight": ["gerardo"],
+                                                "editRight": [user],
                                                 "movies": [movieId.toString()]
                                             }
                                 addList(post, user)
