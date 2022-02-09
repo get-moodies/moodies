@@ -27,13 +27,15 @@ function useUsers() {
 	});
 
 	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
-	const { token, setToken } = useAuth();
+	const { token, setToken, setCurrentUserName } = useAuth();
 
 	const [allUsers, setAllUsers] = useState([]);
 
 	const logout = () => {
 		setToken(false);
+		setCurrentUserName(false);
 		localStorage.setItem("token", JSON.stringify(false));
+		localStorage.setItem("userName", JSON.stringify(false));
 		navigate("/");
 	};
 
@@ -97,6 +99,8 @@ function useUsers() {
 			.then((result) => {
 				if (result.success) {
 					setToken(result.token);
+					setCurrentUserName(post.userName);
+					localStorage.setItem("userName", JSON.stringify(post.userName));
 					localStorage.setItem("token", JSON.stringify(result.token));
 				}
 			});

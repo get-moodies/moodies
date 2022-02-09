@@ -3,7 +3,7 @@
 export default function RenderLists( {listInfo, listHandler}) {
 	console.log("inside render",listInfo)
 	const list = listInfo.movies_full
-	
+	console.log("list",list)
 	//const [editDisplay, setEditDisplay] = useState("default");
 	return (
 		<>

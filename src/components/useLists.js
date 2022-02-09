@@ -199,6 +199,19 @@ function getAllPublic ( user ) {
         .catch((e)=> console.log(e))
 }
 
+function addMovie (post) {
+    
+    fetch("https://get-moodies.herokuapp.com/movies", {
+        headers: {
+            'Content-Type': 'application/json'
+            },
+        method: "POST",
+        body: JSON.stringify(post)
+        })
+        .then((res) => res.json())
+}
+
+
 return {
     getPublicLists, 
     getAllLists, 
@@ -215,7 +228,8 @@ return {
 	getAllPrivate,
 	userPrivateComplete,
 	getAllPublic,
-	userPublicComplete
+	userPublicComplete,
+	addMovie
 }
 
 }
