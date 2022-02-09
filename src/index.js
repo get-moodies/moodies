@@ -21,7 +21,7 @@ import { ContextProvider } from "./components/ContextProvider";
 
 ReactDOM.render(
 	<ContextProvider>
-		<BrowserRouter>
+		<HashRouter>
 			<Routes>
 				<Route path="/" element={<App />}>
 					<Route
@@ -187,14 +187,11 @@ ReactDOM.render(
 					<Route path="profiles/:user" element={<Profile />} />
 					<Route path="*" element={<Error />} />
 					<Route path="playlists" element={<Playlists />} />
-
 				</Route>
 				<Route path="*" element={<Error />} />
-
-			
-		</Routes>
-	</BrowserRouter>
-</ContextProvider>,
+			</Routes>
+		</HashRouter>
+	</ContextProvider>,
 
 	document.getElementById("root")
 );

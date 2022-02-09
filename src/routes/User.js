@@ -7,28 +7,31 @@ import WatchLater from "../components/WatchLater";
 import HiddenList from "../components/HiddenList";
 import PrivateList from "../components/PrivateList";
 import PublicList from "../components/PublicList";
-import PlaylistHeader from "../components/PlaylistHeader"
-import RenderList from "../components/RenderList"
-
+import PlaylistHeader from "../components/PlaylistHeader";
+import RenderList from "../components/RenderList";
 
 import moodiescover from "../images/moodiescover.jpeg";
-
+import ProfileList from "../components/ProfileList";
 
 export default function User() {
-	const [activeList, setActiveList] = useState(`public1`);
+	const [activeList, setActiveList] = useState(`public0`);
 	const [isEdit, setIsEdit] = useState(false);
 	const [isUpload, setIsUpload] = useState(false);
 	const [selectedIndex, setSelectedIndex] = useState(0);
-	const [newInfo, setNewInfo] = useState('');
-	const [newImage, setNewImage] = useState('');
-	const [listInfo, setListInfo] = useState('');
-
+	const [newInfo, setNewInfo] = useState("");
+	const [newImage, setNewImage] = useState("");
+	const [listInfo, setListInfo] = useState("");
+	const [playlistId, setPlaylistId] = useState("");
 	const { user } = useParams();
 	const { getUser, userData, editUser } = useUsers();
+	const [isPublic, setIsPublic] = useState(true);
 
-	const defaultImage =
-	 	"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.doblu.com%2Fwp-content%2Fuploads%2F2018%2F12%2FEVIL-DEAD-2_t00.mkv_snapshot_00.59.09_2018.12.16_14.15.38.jpg";
-	const apiImage = userData.image || defaultImage ;
+	console.log(activeList);
+	console.log(selectedIndex);
+	console.log(playlistId);
+
+	const defaultImage = moodiescover;
+	const apiImage = userData.image || defaultImage;
 
 	const {
 		getPublicLists,
@@ -43,53 +46,60 @@ export default function User() {
 		getAllPublic,
 		userPublicComplete,
 		getMovies,
-		movieData
+		movieData,
 	} = useLists();
 
 	useEffect(() => {
-		getUser(user)
-		getAllLists(user)
-		// getAllPrivate(user),	
+		getUser(user);
+		getAllLists(user);
+		// getAllPrivate(user),
 		// getAllPublic(user)
 	}, []);
 
-const editInfoHandler = {
-	info:	() => {	const put = { info: newInfo ,
-									image: userData.image
-									}
-							editUser( user, put )
-							setIsUpload(false)
-							setIsEdit(false)
-							getUser(user)
-					},
-	image: 	() => {	const put = { info: userData.info ,
-									image: newImage
-									}
-						editUser( user, put );
-						setIsUpload(false)
-						setIsEdit(false)
-						getUser(user)
-					}
-}
+	useEffect(() => {
+		getPublicLists(user);
+	}, []);
 
-const editListHandler = (id) => {
-	editList(userData.userName, id , listInfo )	
-	setListInfo(null)								
-}
+	useEffect(() => {
+		setPlaylistId(publicLists.public[0]._id);
+	}, [publicLists]);
 
-// const listHandler = () => {
-//   console.log("click")
-// };
+	useEffect(() => {
+		getMovies(user, playlistId);
+	}, [playlistId]);
 
+	const editInfoHandler = {
+		info: () => {
+			const put = { info: newInfo, image: userData.image };
+			editUser(user, put);
+			setIsUpload(false);
+			setIsEdit(false);
+			getUser(user);
+		},
+		image: () => {
+			const put = { info: userData.info, image: newImage };
+			editUser(user, put);
+			setIsUpload(false);
+			setIsEdit(false);
+			getUser(user);
+		},
+	};
 
-useEffect(() => {
- () => { getUser(user)
-	getAllLists(user)
- }
-}, [listInfo]);
+	const editListHandler = (id) => {
+		editList(userData.userName, id, listInfo);
+		setListInfo(null);
+	};
 
+	// const listHandler = () => {
+	//   console.log("click")
+	// };
 
-// console.log("public",		userPublicComplete, 		userPrivateComplete)
+	useEffect(() => {
+		getUser(user);
+		getAllLists(user);
+	}, [listInfo]);
+
+	// console.log("public",		userPublicComplete, 		userPrivateComplete)
 	return (
 		<>
 			<div className="flex mb-4">
@@ -131,7 +141,7 @@ useEffect(() => {
 										name="info"
 										placeholder={"i am ghost type..."}
 										onChange={(e) => {
-										  setNewInfo(e.target.value)
+											setNewInfo(e.target.value);
 										}}
 									/>
 									<button
@@ -154,8 +164,10 @@ useEffect(() => {
 									)}
 									<button
 										className="btn-primary mt-4 mb-8"
-										onClick={() => {setIsUpload(false)
-											setIsEdit(!isEdit)}}
+										onClick={() => {
+											setIsUpload(false);
+											setIsEdit(!isEdit);
+										}}
 									>
 										edit
 									</button>
@@ -171,7 +183,7 @@ useEffect(() => {
 					</h1> */}
 					<div className="flex justify-center w-full">
 						<div
-							className="shadow-lg bg-center mt-9 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
+							className="shadow-lg bg-center mt-12 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
 							style={
 								apiImage
 									? {
@@ -214,8 +226,8 @@ useEffect(() => {
 									name="info"
 									placeholder={" paste an image url..."}
 									onChange={(e) => {
-										setNewImage(e.target.value)
-									  }}
+										setNewImage(e.target.value);
+									}}
 								/>
 								<button
 									className="btn-primary mt-5 w-32"
@@ -228,8 +240,9 @@ useEffect(() => {
 							<>
 								<button
 									className="btn-primary mt-5 w-32"
-									onClick={() => {setIsUpload(!isUpload)
-										setIsEdit(false)
+									onClick={() => {
+										setIsUpload(!isUpload);
+										setIsEdit(false);
 									}}
 								>
 									update cover
@@ -292,6 +305,8 @@ useEffect(() => {
 										onClick={() => {
 											setActiveList(`public${index}`);
 											setSelectedIndex(index);
+											setPlaylistId(allLists.public[index]._id);
+											setIsPublic(true);
 										}}
 									>
 										{list.name}
@@ -322,6 +337,8 @@ useEffect(() => {
 											onClick={() => {
 												setActiveList(`private${index}`);
 												setSelectedIndex(index);
+												setPlaylistId(allLists.private[index]._id);
+												setIsPublic(false);
 											}}
 										>
 											{list.name}
@@ -337,10 +354,11 @@ useEffect(() => {
 					</div>
 				</div>
 
-				<div className="px-8 h-[600px] pt-0 pb-8 ml-0 md:ml-6 mb-4 border-0 border-white w-full mt-0">
+				<div className="px-8 h-[600px] pt-0 pb-8 ml-0 md:ml-6 mb-12 border-0 border-white w-full mt-0">
 					<h1 className="text-2xl font-medium text-white text-left mt-8 mb-3 ">
 						selected playlist
 					</h1>
+<<<<<<< HEAD
 					
 					{allLists._id &&  <div>
 										<PlaylistHeader 
@@ -350,30 +368,25 @@ useEffect(() => {
 											setListInfo={setListInfo}
 										/>
 										{/* <RenderList 
+=======
+					{/* <p>{allLists.public[selectedIndex]?.name}</p> */}
+					{allLists._id && (
+						<div>
+							<PlaylistHeader
+								selectedIndex={selectedIndex}
+								allLists={allLists}
+								editListHandler={editListHandler}
+								setListInfo={setListInfo}
+								isPublic={isPublic}
+							/>
+							{/* <RenderList 
+>>>>>>> main
 										listInfo={allLists.public[ 0 ]}
 										listHandler={listHandler}
 													/>	 */}
-										</div>
-					}
-					
-					{/* {(() => {
-						if (activeList === "WatchLater") {
-							return <WatchLater />;
-						} else if (activeList === "HiddenList") {
-							return <HiddenList />;
-						} else if (activeList === `public${selectedIndex}`) {
-							return (
-								<PublicList selectedIndex={selectedIndex} allLists={allLists} />
-							);
-						} else if (activeList === `private${selectedIndex}`) {
-							return (
-								<PrivateList
-									selectedIndex={selectedIndex}
-									allLists={allLists}
-								/>
-							);
-						}
-					})()} */}
+						</div>
+					)}
+					<ProfileList movieData={movieData} />
 				</div>
 			</div>
 		</>

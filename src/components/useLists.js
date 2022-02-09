@@ -1,97 +1,127 @@
-import { useState } from "react"
-import {useAuth} from "./ContextProvider"
+import { useState } from "react";
+import { useAuth } from "./ContextProvider";
 
-function useLists  () {
+function useLists() {
+	const url = "https://get-moodies.herokuapp.com/";
+	const urlProfile = url + "profiles/";
+	const urlUser = url + "users/";
+	const list = "/playlists/";
 
-const url = "https://get-moodies.herokuapp.com/"
-const urlProfile = url + "profiles/"
-const urlUser = url + "users/"
-const list = "/playlists/"
+	const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
 
-const [allPublicAllUsers, setAllPublicAllUsers] = useState([]);
-
-const [movieData, setMovieData] = useState([
-	{
-		_id: "",
-		movie_id: "",
-		data: {
-			adult: "",
-			backdrop_path: "",
-			genre_ids: [],
-			id: 0,
-			original_title: "",
-			poster_path: "",
-			release_date: "",
+	const [movieData, setMovieData] = useState([
+		{
+			_id: "",
+			movie_id: "",
+			data: {
+				adult: "",
+				backdrop_path: "",
+				genre_ids: [],
+				id: 0,
+				original_title: "",
+				poster_path: "",
+				release_date: "",
+			},
 		},
-	},
-]);
+	]);
 
+	const [publicLists, setPublicLists] = useState({
+		_id: "",
+		publicLists: [],
+		public: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+	});
 
-const [publicLists, setPublicLists] = useState({
-    _id: "",
-    publicLists: [],
-    public: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-});
+	const [allLists, setAllLists] = useState({
+		_id: "",
+		watchlist: [],
+		publicLists: [],
+		privateLists: [],
+		blacklist: [],
+		public: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+		private: [{ _id: "", name: "", movies: [], tags: [] }],
+	});
 
-const [allLists, setAllLists] = useState({
-    _id: "",
-    watchlist: [],
-    publicLists: [],
-    privateLists: [],
-    blacklist: [],
-    public: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-    private: [{ _id: "", name: "", movies: [], tags: [] }],
-});
+	const [userPrivateComplete, setUserPrivateComplete] = useState({
+		_id: "",
+		publicLists: [],
+		private: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+	});
 
-const [userPrivateComplete, setUserPrivateComplete] = useState({
-    _id: "",
-    publicLists: [],
-    private: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-});
+	const [userPublicComplete, setUserPublicComplete] = useState({
+		_id: "",
+		publicLists: [],
+		private: [
+			{
+				_id: "",
+				name: "",
+				movies: [],
+				tags: [],
+			},
+		],
+	});
 
-const [userPublicComplete, setUserPublicComplete] = useState({
-    _id: "",
-    publicLists: [],
-    private: [
-        {
-            _id: "",
-            name: "",
-            movies: [],
-            tags: [],
-        },
-    ],
-});
+	const { token, setToken } = useAuth();
+	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 
+	function getMovies(userName, playlistId) {
+		fetch(urlUser + userName + list + playlistId)
+			.then((res) => res.json())
+			.then((result) => {
+				setMovieData(result.public);
+			});
+	}
 
-const {token, setToken} = useAuth( );
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
+	function getPublicLists(userName) {
+		fetch(urlProfile + userName + list)
+			.then((res) => res.json())
+			.then((result) => {
+				setPublicLists(result);
+			});
+	}
 
-function getMovies(userName, playlistId) {
-	fetch(urlUser + userName + list + playlistId)
-		.then((res) => res.json())
-		.then((result) => {
-			setMovieData(result.public);
+	function getAllLists(userName) {
+		fetch(urlUser + userName + list, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				setAllLists(result);
+			});
+	}
+
+	function deleteList(userName, listId) {
+		fetch(urlUser + userName + list + listId, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+		}).then((result) => {
+			console.log(result);
 		});
 }
 

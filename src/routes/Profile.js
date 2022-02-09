@@ -5,69 +5,6 @@ import useUsers from "../components/useUsers";
 import useLists from "../components/useLists";
 import moodiescover from "../images/moodiescover.jpeg";
 
-// const moviesTemplate = [
-// 	{
-// 		title: "The Good Movie To Watch",
-// 		overview:
-// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-// 		backdrop_path:
-// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-// 		poster_path:
-// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-// 		release_date: "1994 05 26",
-// 	},
-// 	{
-// 		title: "The Good Movie To Watch",
-// 		overview:
-// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-// 		backdrop_path:
-// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-// 		poster_path:
-// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-// 		release_date: "1994 05 26",
-// 	},
-// 	{
-// 		title: "The Good Movie To Watch",
-// 		overview:
-// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-// 		backdrop_path:
-// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-// 		poster_path:
-// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-// 		release_date: "1994 05 26",
-// 	},
-// 	{
-// 		title: "The Good Movie To Watch",
-// 		overview:
-// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-// 		backdrop_path:
-// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-// 		poster_path:
-// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-// 		release_date: "1994 05 26",
-// 	},
-// 	{
-// 		title: "The Good Movie To Watch",
-// 		overview:
-// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-// 		backdrop_path:
-// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-// 		poster_path:
-// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-// 		release_date: "1994 05 26",
-// 	},
-// 	{
-// 		title: "The Good Movie To Watch",
-// 		overview:
-// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
-// 		backdrop_path:
-// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
-// 		poster_path:
-// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
-// 		release_date: "1994 05 26",
-// 	},
-// ];
-
 export default function Profile() {
 	const [activeList, setActiveList] = useState("public0");
 
@@ -78,7 +15,8 @@ export default function Profile() {
 	const { user } = useParams();
 	const { getUserPublic, publicUserData } = useUsers();
 
-	const apiImage = publicUserData.image;
+	const defaultImage = moodiescover;
+	const apiImage = publicUserData.image || defaultImage;
 	// const apiImage =
 	// 	"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.doblu.com%2Fwp-content%2Fuploads%2F2018%2F12%2FEVIL-DEAD-2_t00.mkv_snapshot_00.59.09_2018.12.16_14.15.38.jpg";
 
@@ -146,12 +84,12 @@ export default function Profile() {
 				</div>
 				<div className="mt-12 px-12 w-full  border-b-2 ">
 					{" "}
-					<h1 className="text-2xl font-medium text-white text-left ">
+					{/* <h1 className="text-2xl font-medium text-white text-left ">
 						cover image
-					</h1>
+					</h1> */}
 					<div className="flex justify-center w-full">
 						<div
-							className="shadow-lg bg-center mt-9 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
+							className="shadow-lg bg-center mt-12 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
 							style={
 								!apiImage
 									? {
@@ -207,7 +145,7 @@ export default function Profile() {
 					</div>
 				</div>
 
-				<div className="px-8 h-[600px] pt-0 pb-8 mb-4 border-0 border-white w-full  mt-0 ">
+				<div className="px-8 h-[600px] pt-0 pb-8 mb-12 border-0 border-white w-full  mt-0 ">
 					<h1 className="text-2xl font-medium text-white text-left mt-8 mb-3 ">
 						selected playlist
 					</h1>

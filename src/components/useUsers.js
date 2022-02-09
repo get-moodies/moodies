@@ -8,7 +8,7 @@ function useUsers() {
 	const urlUser = url + "users/";
 	const navigate = useNavigate();
 	const urlUserLocal = "http://localhost:4000/users";
-
+	
 	const [userData, setUserData] = useState({
 		info: "",
 		_id: "",
@@ -122,7 +122,7 @@ function useUsers() {
 	}
 
 	function getAllUsers() {
-		fetch(urlUserLocal)
+		fetch("https://get-moodies.herokuapp.com/users")
 			.then((res) => res.json())
 			.then((result) => {
 				setAllUsers(result);
@@ -140,7 +140,7 @@ function useUsers() {
 		userData,
 		publicUserData,
 		getAllUsers,
-		allUsers
+		allUsers,
 	};
 }
 

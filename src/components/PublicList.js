@@ -68,7 +68,7 @@ export default function PublicList({ allLists, selectedIndex }) {
 
 	return (
 		<>
-			{(() => {
+			{/* {(() => {
 				if (editDisplay === "default") {
 					return (
 						<>
@@ -194,7 +194,7 @@ export default function PublicList({ allLists, selectedIndex }) {
 						</>
 					);
 				}
-			})()}
+			})()} */}
 
 			<div className=" justify-center w-full border-4 border-white h-[390px] overflow-scroll p-4 rounded-xl">
 				{moviesTemplate.map(
