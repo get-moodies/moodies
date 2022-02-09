@@ -57,6 +57,33 @@ const [allLists, setAllLists] = useState({
     private: [{ _id: "", name: "", movies: [], tags: [] }],
 });
 
+const [userPrivateComplete, setUserPrivateComplete] = useState({
+    _id: "",
+    publicLists: [],
+    private: [
+        {
+            _id: "",
+            name: "",
+            movies: [],
+            tags: [],
+        },
+    ],
+});
+
+const [userPublicComplete, setUserPublicComplete] = useState({
+    _id: "",
+    publicLists: [],
+    private: [
+        {
+            _id: "",
+            name: "",
+            movies: [],
+            tags: [],
+        },
+    ],
+});
+
+
 const {token, setToken} = useAuth( );
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImdlcmFyZG8iLCJpYXQiOjE2NDQwMDQ2NzV9.D89LTNnixj8MExiPXYBP5uZGvCvocJ2MKYWbqZCqXaE'
 
@@ -151,6 +178,27 @@ function searchByTags ( tags ) {
 
 }
 
+function getAllPrivate ( user ) {
+    
+    fetch("https://get-moodies.herokuapp.com/users/" + user + "/privateComplete")
+        .then((res) => res.json())
+        .then((result) => {
+            // console.log(result)
+            setUserPrivateComplete(result)
+        })
+        .catch((e)=> console.log(e))
+}
+function getAllPublic ( user ) {
+    // console.log("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
+    fetch("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
+        .then((res) => res.json())
+        .then((result) => {
+            //console.log(result)
+            setUserPublicComplete(result)
+        })
+        .catch((e)=> console.log(e))
+}
+
 return {
     getPublicLists, 
     getAllLists, 
@@ -163,7 +211,11 @@ return {
 	allLists,
     getAllPublicAllUsers,
     searchByTags,
-    allPublicAllUsers
+    allPublicAllUsers,
+	getAllPrivate,
+	userPrivateComplete,
+	getAllPublic,
+	userPublicComplete
 }
 
 }

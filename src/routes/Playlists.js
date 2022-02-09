@@ -34,6 +34,7 @@ export default function Playlists() {
         index === null ?   setSelectedList(null) : setSelectedList(index)
     }
     
+
 return (
   <>
     <h1 className="text-2xl font-bold text-white text-left mt-12 ">Browse Playlists</h1>

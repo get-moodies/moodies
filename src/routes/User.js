@@ -7,20 +7,28 @@ import WatchLater from "../components/WatchLater";
 import HiddenList from "../components/HiddenList";
 import PrivateList from "../components/PrivateList";
 import PublicList from "../components/PublicList";
+import PlaylistHeader from "../components/PlaylistHeader"
+import RenderList from "../components/RenderList"
+
+
 import moodiescover from "../images/moodiescover.jpeg";
 
+
 export default function User() {
-	const [activeList, setActiveList] = useState("WatchLater");
+	const [activeList, setActiveList] = useState(`public1`);
 	const [isEdit, setIsEdit] = useState(false);
 	const [isUpload, setIsUpload] = useState(false);
-	const [selectedIndex, setSelectedIndex] = useState();
+	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [newInfo, setNewInfo] = useState('');
+	const [newImage, setNewImage] = useState('');
+	const [listInfo, setListInfo] = useState('');
 
 	const { user } = useParams();
-	const { getUser, userData } = useUsers();
+	const { getUser, userData, editUser } = useUsers();
 
-	const apiImage = userData.image;
-	// const apiImage =
-	// 	"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.doblu.com%2Fwp-content%2Fuploads%2F2018%2F12%2FEVIL-DEAD-2_t00.mkv_snapshot_00.59.09_2018.12.16_14.15.38.jpg";
+	const defaultImage =
+	 	"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.doblu.com%2Fwp-content%2Fuploads%2F2018%2F12%2FEVIL-DEAD-2_t00.mkv_snapshot_00.59.09_2018.12.16_14.15.38.jpg";
+	const apiImage = userData.image || defaultImage ;
 
 	const {
 		getPublicLists,
@@ -30,18 +38,58 @@ export default function User() {
 		addList,
 		publicLists,
 		allLists,
+		getAllPrivate,
+		userPrivateComplete,
+		getAllPublic,
+		userPublicComplete,
+		getMovies,
+		movieData
 	} = useLists();
 
 	useEffect(() => {
-		getUser(user);
+		getUser(user)
+		getAllLists(user)
+		// getAllPrivate(user),	
+		// getAllPublic(user)
 	}, []);
 
-	useEffect(() => {
-		getAllLists(user);
-	}, []);
+const editInfoHandler = {
+	info:	() => {	const put = { info: newInfo ,
+									image: userData.image
+									}
+							editUser( user, put )
+							setIsUpload(false)
+							setIsEdit(false)
+							getUser(user)
+					},
+	image: 	() => {	const put = { info: userData.info ,
+									image: newImage
+									}
+						editUser( user, put );
+						setIsUpload(false)
+						setIsEdit(false)
+						getUser(user)
+					}
+}
 
-	// console.log(allLists);
+const editListHandler = (id) => {
+	editList(userData.userName, id , listInfo )	
+	setListInfo(null)								
+}
 
+// const listHandler = () => {
+//   console.log("click")
+// };
+
+
+useEffect(() => {
+ () => { getUser(user)
+	getAllLists(user)
+ }
+}, [listInfo]);
+
+
+// console.log("public",		userPublicComplete, 		userPrivateComplete)
 	return (
 		<>
 			<div className="flex mb-4">
@@ -82,10 +130,13 @@ export default function User() {
 										type="info"
 										name="info"
 										placeholder={"i am ghost type..."}
+										onChange={(e) => {
+										  setNewInfo(e.target.value)
+										}}
 									/>
 									<button
 										className="btn-primary mt-4 mb-8"
-										onClick={() => setIsEdit(!isEdit)}
+										onClick={() => editInfoHandler.info()}
 									>
 										submit
 									</button>
@@ -103,7 +154,8 @@ export default function User() {
 									)}
 									<button
 										className="btn-primary mt-4 mb-8"
-										onClick={() => setIsEdit(!isEdit)}
+										onClick={() => {setIsUpload(false)
+											setIsEdit(!isEdit)}}
 									>
 										edit
 									</button>
@@ -114,14 +166,14 @@ export default function User() {
 				</div>
 				<div className="mt-12 px-12 w-full  border-b-2 ">
 					{" "}
-					<h1 className="text-2xl font-medium text-white text-left ">
+					{/* <h1 className="text-2xl font-medium text-white text-left ">
 						cover image
-					</h1>
+					</h1> */}
 					<div className="flex justify-center w-full">
 						<div
 							className="shadow-lg bg-center mt-9 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
 							style={
-								!apiImage
+								apiImage
 									? {
 											backgroundImage: `url(${apiImage})`,
 											backgroundSize: "cover",
@@ -161,10 +213,13 @@ export default function User() {
 									type="info"
 									name="info"
 									placeholder={" paste an image url..."}
+									onChange={(e) => {
+										setNewImage(e.target.value)
+									  }}
 								/>
 								<button
 									className="btn-primary mt-5 w-32"
-									onClick={() => setIsUpload(!isUpload)}
+									onClick={() => editInfoHandler.image()}
 								>
 									submit
 								</button>
@@ -173,7 +228,9 @@ export default function User() {
 							<>
 								<button
 									className="btn-primary mt-5 w-32"
-									onClick={() => setIsUpload(!isUpload)}
+									onClick={() => {setIsUpload(!isUpload)
+										setIsEdit(false)
+									}}
 								>
 									update cover
 								</button>
@@ -284,8 +341,22 @@ export default function User() {
 					<h1 className="text-2xl font-medium text-white text-left mt-8 mb-3 ">
 						selected playlist
 					</h1>
-
-					{(() => {
+					<p>{allLists.public[selectedIndex]?.name}</p>
+					{allLists._id &&  <div>
+										<PlaylistHeader 
+											selectedIndex={selectedIndex} 
+											allLists={allLists}
+											editListHandler={editListHandler}
+											setListInfo={setListInfo}
+										/>
+										{/* <RenderList 
+										listInfo={allLists.public[ 0 ]}
+										listHandler={listHandler}
+													/>	 */}
+										</div>
+					}
+					
+					{/* {(() => {
 						if (activeList === "WatchLater") {
 							return <WatchLater />;
 						} else if (activeList === "HiddenList") {
@@ -302,7 +373,7 @@ export default function User() {
 								/>
 							);
 						}
-					})()}
+					})()} */}
 				</div>
 			</div>
 		</>
