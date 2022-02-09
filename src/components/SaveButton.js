@@ -4,7 +4,7 @@ import RegisterLoginLayout from "../components/RegisterLoginLayout";
 
 import { useAuth } from "./ContextProvider";
 import useLists from "../components/useLists";
-import AddPlaylist from "../components/AddPlaylist"
+import AddPlaylist from "../components/AddPlaylist";
 
 const style = {
 	position: "absolute",
@@ -20,11 +20,12 @@ const style = {
 export default function SaveButton({ movieId, movieInfo }) {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
-	const handleClose = () => {setOpen(false)
-		setIsNewPlaylistActive(false)
+	const handleClose = () => {
+		setOpen(false);
+		setIsNewPlaylistActive(false);
 	};
 	const [selectedList, setSelectedList] = useState(null);
-	const [isNewPlaylistActive, setIsNewPlaylistActive] = useState(false)
+	const [isNewPlaylistActive, setIsNewPlaylistActive] = useState(false);
 
 	const { currentUserName, getUserName } = useAuth();
 	const { getAllLists, allLists, editList, addMovie } = useLists();
@@ -105,9 +106,8 @@ export default function SaveButton({ movieId, movieInfo }) {
 											setSelectedList(e.target.value);
 										}}
 									>
-
 										{/* below code was causing an error */}
-										<option >choose a playlist</option>
+										<option>choose a playlist</option>
 										{[...allLists.private, ...allLists.public]?.map(
 											(playlist, index) => {
 												return (
@@ -119,13 +119,22 @@ export default function SaveButton({ movieId, movieInfo }) {
 										)}
 									</select>
 								</div>
-
+								<div className="flex justify-center">
+									<button
+										className="
+                            mr-2 bg-gray-400 hover:bg-gray-300 mb-5  px-4 py-2 rounded-full font-medium text-sm  text-slate-900"
+										type="button"
+										onClick={() => submitHandler()}
+									>
+										submit
+									</button>
+								</div>
 								<div className="mb-8">
 									<label
 										className="block text-white text-sm font-base mb-2"
 										htmlFor="password"
 									>
-									or...
+										or...
 									</label>
 									<button
 										className="
@@ -147,28 +156,22 @@ export default function SaveButton({ movieId, movieInfo }) {
 										// id="playlist name..."
 										// name="playlist name..."
 										// placeholder="playlist name..."
-									onClick={() => { setIsNewPlaylistActive(! isNewPlaylistActive) } }
+										onClick={() => {
+											setIsNewPlaylistActive(!isNewPlaylistActive);
+										}}
 									>
-									Create new Playlist
-									</button>	
-									<div className={isNewPlaylistActive ?"text-white" : "hidden"  }>
-										<AddPlaylist 
-											handleClose = {handleClose}
+										create new playlist
+									</button>
+									<div
+										className={isNewPlaylistActive ? "text-white" : "hidden"}
+									>
+										<AddPlaylist
+											handleClose={handleClose}
 											user={userNameNow}
 											movieId={movieId}
 											putMovie={putMovie}
 										/>
 									</div>
-								</div>
-								<div className="flex justify-center">
-									<button
-										className="
-                            mr-2 bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-full font-medium text-sm  text-slate-900"
-										type="button"
-										onClick={() => submitHandler()}
-									>
-										submit
-									</button>
 								</div>
 							</div>
 						</div>

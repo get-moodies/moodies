@@ -123,151 +123,148 @@ function useLists() {
 		}).then((result) => {
 			console.log(result);
 		});
-}
+	}
 
-function getPublicLists( userName ) {
-    
-    fetch( urlProfile + userName + list)
-        .then((res) => res.json())
-        .then((result) => {
-            setPublicLists(result)
-        })
-}
+	function getPublicLists(userName) {
+		fetch(urlProfile + userName + list)
+			.then((res) => res.json())
+			.then((result) => {
+				setPublicLists(result);
+			});
+	}
 
-function getAllLists( userName ) {
-    
-    fetch( urlUser + userName + list,
-            {headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            }})
-        .then((res) => res.json())
-        .then((result) => {
-            setAllLists(result);
-        })
-}
-
-function deleteList ( userName, listId ) {
-   
-    fetch(urlUser + userName + list + listId , {
-        method: "DELETE",
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-        }})
-    .then((result) => {console.log(result)});
-}
-
-function addList (post, userName) {
-    console.log("inside addList" )
-    fetch(urlUser + userName + list, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-            },
-        method: "POST",
-        body: JSON.stringify(post)
-        })
-        .then((res) =>  {console.log("inside addList", res )
-		res.json()
-	})
-		.catch((e) =>  {
-			console.log(e)
-			res.status(500).send() 
+	function getAllLists(userName) {
+		fetch(urlUser + userName + list, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
 		})
-}
+			.then((res) => res.json())
+			.then((result) => {
+				setAllLists(result);
+			});
+	}
 
-function editList ( userName, listId, put) {
+	function deleteList(userName, listId) {
+		fetch(urlUser + userName + list + listId, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+		}).then((result) => {
+			console.log(result);
+		});
+	}
 
-    fetch(urlUser + userName + list + listId, {
-        headers: {
-            "Content-Type": "application/json",
-            'Authorization': 'Bearer ' + token},
-        method: "PUT",
-        body: JSON.stringify(put)
-        })
-    .then((res) => res.json())
-    .then((result) => {console.log(result)});
-}
+	function addList(post, userName) {
+		console.log("inside addList");
+		fetch(urlUser + userName + list, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+			method: "POST",
+			body: JSON.stringify(post),
+		})
+			.then((res) => {
+				console.log("inside addList", res);
+				res.json();
+			})
+			.catch((e) => {
+				console.log(e);
+				res.status(500).send();
+			});
+	}
 
-function getAllPublicAllUsers(  ) {
-    
-    fetch('https://get-moodies.herokuapp.com/playlists/getpublic')
-        .then((res) => res.json())
-        .then((result) => {
-            // console.log(result)
-            setAllPublicAllUsers(result.result)
-        })
-        .catch((e)=> console.log(e))
-}
+	function editList(userName, listId, put) {
+		fetch(urlUser + userName + list + listId, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
+			method: "PUT",
+			body: JSON.stringify(put),
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				console.log(result);
+			});
+	}
 
-function searchByTags ( tags ) {
-    
-    const tagsURL = tags.split(', ').join('&')
-    
-    fetch('http://localhost:4000/playlists/bytag/' + tagsURL )
-        .then((res) => res.json())
-        .then((result) => {
-            console.log("tags:",result)
-        })
-        .catch((e)=> console.log(e))
+	function getAllPublicAllUsers() {
+		fetch("https://get-moodies.herokuapp.com/playlists/getpublic")
+			.then((res) => res.json())
+			.then((result) => {
+				// console.log(result)
+				setAllPublicAllUsers(result.result);
+			})
+			.catch((e) => console.log(e));
+	}
 
-}
+	function searchByTags(tags) {
+		const tagsURL = tags.split(", ").join("&");
 
-function getAllPrivate ( user ) {
-    
-    fetch("https://get-moodies.herokuapp.com/users/" + user + "/privateComplete")
-        .then((res) => res.json())
-        .then((result) => {
-            // console.log(result)
-            setUserPrivateComplete(result)
-        })
-        .catch((e)=> console.log(e))
-}
-function getAllPublic ( user ) {
-    // console.log("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
-    fetch("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
-        .then((res) => res.json())
-        .then((result) => {
-            //console.log(result)
-            setUserPublicComplete(result)
-        })
-        .catch((e)=> console.log(e))
-}
+		fetch("http://localhost:4000/playlists/bytag/" + tagsURL)
+			.then((res) => res.json())
+			.then((result) => {
+				console.log("tags:", result);
+			})
+			.catch((e) => console.log(e));
+	}
 
-function addMovie (post) {
-    
-    fetch("https://get-moodies.herokuapp.com/movies", {
-        headers: {
-            'Content-Type': 'application/json'
-            },
-        method: "POST",
-        body: JSON.stringify(post)
-        })
-        .then((res) => res.json())
-}
+	function getAllPrivate(user) {
+		fetch(
+			"https://get-moodies.herokuapp.com/users/" + user + "/privateComplete"
+		)
+			.then((res) => res.json())
+			.then((result) => {
+				// console.log(result)
+				setUserPrivateComplete(result);
+			})
+			.catch((e) => console.log(e));
+	}
+	function getAllPublic(user) {
+		// console.log("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
+		fetch("https://get-moodies.herokuapp.com/users/" + user + "/publicComplete")
+			.then((res) => res.json())
+			.then((result) => {
+				//console.log(result)
+				setUserPublicComplete(result);
+			})
+			.catch((e) => console.log(e));
+	}
 
+	function addMovie(post) {
+		fetch("https://get-moodies.herokuapp.com/movies", {
+			headers: {
+				"Content-Type": "application/json",
+			},
+			method: "POST",
+			body: JSON.stringify(post),
+		}).then((res) => res.json());
+	}
 
-return {
-    getPublicLists, 
-    getAllLists, 
-    deleteList, 
-    editList,
-    addList,
-	getMovies,
-	movieData,
-    publicLists,
-	allLists,
-    getAllPublicAllUsers,
-    searchByTags,
-    allPublicAllUsers,
-	getAllPrivate,
-	userPrivateComplete,
-	getAllPublic,
-	userPublicComplete,
-	addMovie
-}
-
+	return {
+		getPublicLists,
+		getAllLists,
+		deleteList,
+		editList,
+		addList,
+		getMovies,
+		movieData,
+		publicLists,
+		allLists,
+		getAllPublicAllUsers,
+		searchByTags,
+		allPublicAllUsers,
+		getAllPrivate,
+		userPrivateComplete,
+		getAllPublic,
+		userPublicComplete,
+		addMovie,
+	};
 }
 
 export default useLists;
