@@ -3,6 +3,9 @@ import RegisterLoginLayout from "../components/RegisterLoginLayout";
 import { Box, Modal, Fade } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "./ContextProvider";
+import Logout from "../components/Logout";
+import useFormData from "./useFormData";
 
 const style = {
 	position: "absolute",
@@ -15,10 +18,19 @@ const style = {
 	textAlign: "center",
 };
 
+const defaultData = {
+	userName: "gerardo",
+	password: "",
+};
+
 export default function Header({ region, regionHandler }) {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const { isLoggedIn } = useAuth();
+	const [data] = useFormData(defaultData);
+
+	console.log(isLoggedIn());
 
 	return (
 		<div className="flex mb-5 justify-between">
@@ -27,29 +39,47 @@ export default function Header({ region, regionHandler }) {
 			</h1>
 			<div className="flex ">
 				<Dropdown region={region} regionHandler={regionHandler} />
+				<div className={isLoggedIn() ? "" : "hidden"}>
+					<Logout />
+				</div>
 
-				<button
-					className="btn-primary
+				{isLoggedIn() ? (
+					<Link to={`/moodies/users/${data.userName}`}>
+						<button
+							className="btn-primary
+							mt-1
+							ml-0
+                        "
+						>
+							account
+						</button>
+					</Link>
+				) : (
+					<>
+						<button
+							className="btn-primary
 							mt-1
 							ml-0
 							
                         "
-					onClick={handleOpen}
-				>
-					account
-				</button>
-				<Modal
-					open={open}
-					onClose={handleClose}
-					aria-labelledby="modal-modal-title"
-					aria-describedby="modal-modal-description"
-				>
-					<Fade in={open} timeout={500}>
-						<Box sx={style}>
-							<RegisterLoginLayout />
-						</Box>
-					</Fade>
-				</Modal>
+							onClick={handleOpen}
+						>
+							log in
+						</button>
+						<Modal
+							open={open}
+							onClose={handleClose}
+							aria-labelledby="modal-modal-title"
+							aria-describedby="modal-modal-description"
+						>
+							<Fade in={open} timeout={500}>
+								<Box sx={style}>
+									<RegisterLoginLayout handleClose={handleClose} />
+								</Box>
+							</Fade>
+						</Modal>
+					</>
+				)}
 			</div>
 		</div>
 	);

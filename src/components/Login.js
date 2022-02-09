@@ -1,30 +1,29 @@
-
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import useUsers from "../components/useUsers"
-import useFormData from "./useFormData"
+import useUsers from "../components/useUsers";
+import useFormData from "./useFormData";
 import { useAuth } from "./ContextProvider";
 
 const defaultData = {
-        userName: '',
-        password: ''
+	userName: "",
+	password: "",
 };
 
-export default function Login({ screenHandler }) {
+export default function Login({ screenHandler, handleClose }) {
+	const [data, handleChange] = useFormData(defaultData);
+	const { login } = useUsers();
+	const { isLoggedIn } = useAuth();
+	const navigate = useNavigate();
 
-const [ data, handleChange ] = useFormData(defaultData)
-const {login} = useUsers()
-const {isLoggedIn} = useAuth()
-const navigate = useNavigate();
-
-useEffect( () => {
-    if (isLoggedIn()) 
-        {return  navigate(`profiles/${data.userName}`)}}
-    ,[isLoggedIn])
-
-
-return (<>
+	// useEffect(() => {
+	// 	if (isLoggedIn()) {
+	// 		return navigate(`/moodies/users/${data.userName}`);
+	// 	}
+	// }, [isLoggedIn]);
+	console.log(data.userName);
+	return (
+		<>
 			<div className="max-w-xs ">
 				<div className="bg-black shadow-lg rounded-xl px-8 pt-2 pb-8 bg-opacity-80">
 					<div className="text-xl text-white font-medium m-5">login</div>
@@ -54,7 +53,7 @@ return (<>
                                 focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
 							id="username"
 							type="text"
-                            name="userName" 
+							name="userName"
 							placeholder={"nickcage64"}
 							onChange={handleChange}
 						/>
@@ -85,7 +84,7 @@ return (<>
                                 focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
 							id="password"
 							type="password"
-                            name="password" 
+							name="password"
 							placeholder={"magicword22"}
 							onChange={handleChange}
 						/>
@@ -98,12 +97,13 @@ return (<>
 							className="
                             mr-2 bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-full font-medium text-sm  text-slate-900"
 							type="button"
-                            onClick={()=> {
-                                login({
-                                    userName:data.userName,
-                                    magicword:data.password
-                                }) 
-                            }}
+							onClick={() => {
+								login({
+									userName: data.userName,
+									magicword: data.password,
+								});
+								handleClose();
+							}}
 						>
 							sign in
 						</button>
@@ -124,5 +124,4 @@ return (<>
 			</div>
 		</>
 	);
-
 }

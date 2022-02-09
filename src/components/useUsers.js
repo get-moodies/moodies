@@ -1,12 +1,12 @@
 import { useState } from "react";
-
+import { useNavigate, Outlet } from "react-router-dom";
 import { useAuth } from "./ContextProvider";
 
 function useUsers() {
 	const url = "https://get-moodies.herokuapp.com/";
 	const urlProfile = url + "profile/";
 	const urlUser = url + "users/";
-
+	const navigate = useNavigate();
 	const urlUserLocal = "http://localhost:4000/users";
 
 	const [userData, setUserData] = useState({
@@ -34,6 +34,7 @@ function useUsers() {
 	const logout = () => {
 		setToken(false);
 		localStorage.setItem("token", JSON.stringify(false));
+		navigate("/");
 	};
 
 	function getUserPublic(userName) {
