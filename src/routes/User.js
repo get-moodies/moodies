@@ -57,8 +57,10 @@ export default function User() {
 	}, []);
 
 	useEffect(() => {
-		setPlaylistId(publicLists.public[0]._id);
+		publicLists.public.length && setPlaylistId(publicLists.public[0]._id);
 	}, [publicLists]);
+
+	console.log(publicLists);
 
 	useEffect(() => {
 		getMovies(user, playlistId);
@@ -355,22 +357,29 @@ export default function User() {
 						selected playlist
 					</h1>
 					{/* <p>{allLists.public[selectedIndex]?.name}</p> */}
-					{allLists._id && (
-						<div>
-							<PlaylistHeader
-								selectedIndex={selectedIndex}
-								allLists={allLists}
-								editListHandler={editListHandler}
-								setListInfo={setListInfo}
-								isPublic={isPublic}
-							/>
-							{/* <RenderList 
+					{publicLists.public.length ? (
+						<>
+							{allLists._id && (
+								<div>
+									<PlaylistHeader
+										selectedIndex={selectedIndex}
+										allLists={allLists}
+										editListHandler={editListHandler}
+										setListInfo={setListInfo}
+										isPublic={isPublic}
+									/>
+									{/* <RenderList 
 										listInfo={allLists.public[ 0 ]}
 										listHandler={listHandler}
 													/>	 */}
-						</div>
+								</div>
+							)}
+						</>
+					) : (
+						<></>
 					)}
-					<ProfileList movieData={movieData} />
+
+					<ProfileList movieData={movieData} publicLists={publicLists} />
 				</div>
 			</div>
 		</>
