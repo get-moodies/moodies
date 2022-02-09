@@ -358,6 +358,17 @@ export default function User() {
 					<h1 className="text-2xl font-medium text-white text-left mt-8 mb-3 ">
 						selected playlist
 					</h1>
+<<<<<<< HEAD
+					
+					{allLists._id &&  <div>
+										<PlaylistHeader 
+											selectedIndex={selectedIndex} 
+											allLists={allLists}
+											editListHandler={editListHandler}
+											setListInfo={setListInfo}
+										/>
+										{/* <RenderList 
+=======
 					{/* <p>{allLists.public[selectedIndex]?.name}</p> */}
 					{allLists._id && (
 						<div>
@@ -369,6 +380,7 @@ export default function User() {
 								isPublic={isPublic}
 							/>
 							{/* <RenderList 
+>>>>>>> main
 										listInfo={allLists.public[ 0 ]}
 										listHandler={listHandler}
 													/>	 */}

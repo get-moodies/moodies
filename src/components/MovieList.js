@@ -50,10 +50,7 @@ export default function MovieList({ movies, watchProvider }) {
 		}
 	}, [movies]);
 
-	console.log(`start index is ${startIndex}`);
 
-	console.log(`array length is ${arrayLength}`);
-	console.log(`disabled is ${disabled}`);
 
 	const shuffleLong = () => {
 		switch (startIndex) {
@@ -95,7 +92,7 @@ export default function MovieList({ movies, watchProvider }) {
 				.slice(startIndex, endPoint)
 				.map(
 					(
-						{ title, overview, backdrop_path, poster_path, release_date },
+						{ title, overview, backdrop_path, poster_path, release_date, id },
 						index
 					) => {
 						const netflixQuery = title.split(" ").join("%20");
@@ -142,7 +139,7 @@ export default function MovieList({ movies, watchProvider }) {
 						// };
 
 						return (
-							<div>
+							<div key={index}>
 								{/* <Grow in={true} timeout={timeDelay}> */}
 								<div
 									// style={
@@ -184,7 +181,7 @@ export default function MovieList({ movies, watchProvider }) {
 													hide
 												</button>
 											</div>
-											<SaveButton />
+											<SaveButton movieId={id} movieInfo={movies[index]}/>
 
 											<Trailer title={title} />
 											<a

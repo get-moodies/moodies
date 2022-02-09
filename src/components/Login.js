@@ -21,7 +21,7 @@ export default function Login({ screenHandler, handleClose }) {
 	// 		return navigate(`/moodies/users/${data.userName}`);
 	// 	}
 	// }, [isLoggedIn]);
-	console.log(data.userName);
+	
 	return (
 		<>
 			<div className="max-w-xs ">

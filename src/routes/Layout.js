@@ -16,13 +16,13 @@ export default function Layout() {
     // editList(gerardo),
     // addList(gerardo))
 	
-const {token, setToken} = useAuth( );
-    
+const {token, setToken, currentUserName} = useAuth( );
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 justify-center text-center w-full">
 			<div className="hidden">
 				<Logout />
-				Token (please keep during development): {token}
+				 Token (please keep during development): {token} 
+				userName: {currentUserName}
 			</div>
 			<Header />
 			<Outlet />
