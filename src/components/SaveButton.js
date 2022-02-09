@@ -29,20 +29,22 @@ export default function SaveButton({ movieId, movieInfo }) {
 	//	console.log(movieInfo);
 
 	useEffect(() => {
-		getAllLists(userNameNow);
+		if (userNameNow) {
+			getAllLists(userNameNow);
+		}
 	}, []);
 
 	const submitHandler = () => {
 		const newObject = [...allLists.private, ...allLists.public][selectedList];
-		const updatedMovies = [...newObject.movies, movieId.toString()];	
+		const updatedMovies = [...newObject.movies, movieId.toString()];
 
 		const put = { ...newObject, movies: updatedMovies };
 		editList(userNameNow, put._id, put);
 
-		const putMovie = {"movie_id" :   movieInfo.id, movie: movieInfo}
-		addMovie(putMovie)
+		const putMovie = { movie_id: movieInfo.id, movie: movieInfo };
+		addMovie(putMovie);
 
-		setOpen(false)
+		setOpen(false);
 		// console.log(userNameNow, put._id , put )
 		// console.log("movie Info", movieInfo.id, movieId);
 	};
@@ -100,7 +102,7 @@ export default function SaveButton({ movieId, movieInfo }) {
 
 										{/* below code was causing an error */}
 
-										{[...allLists.private, ...allLists.public].map(
+										{[...allLists.private, ...allLists.public]?.map(
 											(playlist, index) => {
 												return (
 													<option key={index} value={index}>
