@@ -136,7 +136,7 @@ function useUsers() {
 		userData,
 		publicUserData,
 		getAllUsers,
-		allUsers,
+		allUsers
 	};
 }
 

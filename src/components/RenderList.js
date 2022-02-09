@@ -1,7 +1,7 @@
 //import { useState } from "react";
 
 export default function RenderLists( {listInfo, listHandler}) {
-	
+	console.log("inside render",listInfo)
 	const list = listInfo.movies_full
 	
 	//const [editDisplay, setEditDisplay] = useState("default");
