@@ -91,7 +91,7 @@ export default function Profile() {
 						<div
 							className="shadow-lg bg-center mt-12 ml-6 opacity-90 overflow-hidden text-justify h-[240px] rounded-lg w-full"
 							style={
-								!apiImage
+								apiImage
 									? {
 											backgroundImage: `url(${apiImage})`,
 											backgroundSize: "cover",
