@@ -179,9 +179,11 @@ export default function MovieList({ movies, watchProvider }) {
 											{overview}
 										</p>
 										<div className="mt-1">
-											<button className="-mb-10 w-20 mt-3 mr-2  hidden md:inline bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
-												hide
-											</button>
+											<div className="hidden">
+												<button className="-mb-10  w-20 mt-3 mr-2  hidden md:inline bg-opacity-40 bg-white hover:bg-white hover:bg-opacity-60 px-4 py-2 rounded-full font-medium text-sm outline outline-offset-0 outline-0 outline-white text-slate-900">
+													hide
+												</button>
+											</div>
 											<SaveButton />
 
 											<Trailer title={title} />

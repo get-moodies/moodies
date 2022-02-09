@@ -22,8 +22,10 @@ export default function Layout() {
 
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 justify-center text-center w-full">
-			<Logout />
-			<div>Token (please keep during development): {token}</div>
+			<div className="hidden">
+				<Logout />
+				Token (please keep during development): {token}
+			</div>
 			<Header />
 			<Outlet />
 			<div className="backGround"></div>
