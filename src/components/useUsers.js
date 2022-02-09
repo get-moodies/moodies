@@ -8,7 +8,7 @@ function useUsers() {
 	const urlUser = url + "users/";
 	const navigate = useNavigate();
 	const urlUserLocal = "http://localhost:4000/users";
-	
+
 	const [userData, setUserData] = useState({
 		info: "",
 		_id: "",
@@ -58,10 +58,9 @@ function useUsers() {
 			.then((result) => {
 				setUserData(result.result);
 			})
-			.catch((e) =>  {
-				console.log(e)
-				res.status(500).send() 
-			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}
 
 	function deleteUser(userName) {
@@ -91,10 +90,9 @@ function useUsers() {
 					});
 				}
 			})
-			.catch((e) =>  {
-				console.log(e)
-				res.status(500).send() 
-			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}
 
 	function login(post) {
@@ -112,10 +110,9 @@ function useUsers() {
 					localStorage.setItem("token", JSON.stringify(result.token));
 				}
 			})
-			.catch((e) =>  {
-				console.log(e)
-				res.status(500).send() 
-			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}
 
 	function editUser(userName, put) {
