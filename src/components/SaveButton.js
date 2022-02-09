@@ -16,35 +16,35 @@ const style = {
 	textAlign: "center",
 };
 
-
-export default function SaveButton({movieId,movieInfo}) {
+export default function SaveButton({ movieId, movieInfo }) {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	const [selectedList, setSelectedList] = useState(null);
 
 	const { currentUserName, getUserName } = useAuth();
-	const {getAllLists, allLists, editList, addMovie} = useLists();
-	const userNameNow = JSON.parse(localStorage.getItem('userName')) 
+	const { getAllLists, allLists, editList, addMovie } = useLists();
+	const userNameNow = JSON.parse(localStorage.getItem("userName"));
 
-	
-	useEffect(() => {	
-	getAllLists(userNameNow)}
-	, [])
+	//	console.log(movieInfo);
+
+	useEffect(() => {
+		getAllLists(userNameNow);
+	}, []);
 
 	const submitHandler = () => {
-		const newObject = [...allLists.private, ...allLists.public][selectedList]
-		const updatedMovies = [...newObject.movies, movieId.toString()]
-		//console.log( "updated", updatedMovies , "movie Info", movieInfo.id, movieId )
-		
-		const put = {...newObject , movies : updatedMovies }
-		editList(userNameNow, put._id , put )
-		
+		const newObject = [...allLists.private, ...allLists.public][selectedList];
+		const updatedMovies = [...newObject.movies, movieId.toString()];
+
+		// console.log("updated", updatedMovies, "movie Info", movieInfo.id, movieId);
+
+		const put = { ...newObject, movies: updatedMovies };
+		editList(userNameNow, put._id, put);
+
 		// const putMovie = {"movie_id" :   movieInfo.id, movie: movieInfo}
 		// addMovie(putMovie)
 		// console.log(userNameNow, put._id , put )
-	}
-
+	};
 
 	return (
 		<>
@@ -91,18 +91,23 @@ export default function SaveButton({movieId,movieInfo}) {
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
 										name="color"
-										onChange={(e)=> {setSelectedList(e.target.value)}}
+										onChange={(e) => {
+											setSelectedList(e.target.value);
+										}}
 									>
+										{/* {	<option value="public playlist 1"> {[...allLists.private, ...allLists.public][0].name}</option>} */}
 
-									
-								{/* {	<option value="public playlist 1"> {[...allLists.private, ...allLists.public][0].name}</option>} */}
-									
-									{[...allLists.private, ...allLists.public].map( (playlist,index) => {
-										return (
-										<option key={index} value={index}>
-											{playlist.name}
-										</option>)} )}
+										{/* below code was causing an error */}
 
+										{/* {[...allLists.private, ...allLists.public].map(
+											(playlist, index) => {
+												return (
+													<option key={index} value={index}>
+														{playlist.name}
+													</option>
+												);
+											}
+										)} */}
 
 										{/* <option value="watch later">watch later</option>
 										<option value="hidden">hidden</option>
@@ -152,7 +157,7 @@ export default function SaveButton({movieId,movieInfo}) {
 										className="
                             mr-2 bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-full font-medium text-sm  text-slate-900"
 										type="button"
-										onClick={()=> submitHandler()}
+										onClick={() => submitHandler()}
 									>
 										submit
 									</button>
