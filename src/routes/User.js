@@ -244,7 +244,7 @@ useEffect(() => {
 					<h1 className="text-2xl font-medium text-white text-left mt-8">
 						playlists
 					</h1>
-					<div>
+					{/* <div>
 						<h1 className="text-lg font-medium text-white mt-6 mb-3 ml-1 text-left">
 							main lists
 						</h1>
@@ -274,7 +274,7 @@ useEffect(() => {
 								hidden
 							</button>
 						</div>
-					</div>
+					</div> */}
 					<div>
 						<h1 className="text-lg font-medium text-white mt-6 mb-3 ml-1 text-left">
 							public lists

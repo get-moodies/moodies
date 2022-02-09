@@ -36,14 +36,12 @@ function App() {
 
 	const [isAdult, setIsAdult] = useState(false);
 	const [movieLength, setMovieLength] = useState(0);
+	const [isAdultSelected, setIsAdultSelected] = useState(false);
+	const [movieLengthSelected, setMovieLengthSelected] = useState(false);
 	const [sortQuery, setSortQuery] = useState("popularity.desc");
+	const [sortQuerySelected, setSortQuerySelected] = useState("popularity.desc");
 
 	const adult_URL = isAdult;
-
-	// console.log(sortQuery);
-	// console.log(movieLength);
-	// console.log(isAdult);
-	// console.log(userRegion);
 
 	const genreList_URL = [...genre]
 		.map((genre, index) => [genre, index])
@@ -196,7 +194,13 @@ function App() {
 						ageSelected={ageSelected}
 						sortQuery={sortQuery}
 						isAdult={isAdult}
+						setIsAdultSelected={setIsAdultSelected}
+						setMovieLengthSelected={setMovieLengthSelected}
 						movieLength={movieLength}
+						setIsAdult={setIsAdult}
+						setMovieLength={setMovieLength}
+						setSortQuery={setSortQuery}
+						setSortQuerySelected={setSortQuerySelected}
 					/>
 					<div className="flex w-full justify-center ">
 						<div className="flex flex-col sm:flex-row ">
@@ -253,6 +257,12 @@ function App() {
 								setMovieLength={setMovieLength}
 								sortQuery={sortQuery}
 								setSortQuery={setSortQuery}
+								sortQuerySelected={sortQuerySelected}
+								setSortQuerySelected={setSortQuerySelected}
+								isAdultSelected={isAdultSelected}
+								movieLengthSelected={movieLengthSelected}
+								setIsAdultSelected={setIsAdultSelected}
+								setMovieLengthSelected={setMovieLengthSelected}
 							/>
 							<Options handler={selectionHandler.genre} genre={genre} />
 							<TimeSlider

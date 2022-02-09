@@ -73,10 +73,10 @@ export default function PrivateList({ allLists, selectedIndex }) {
 						<>
 							<div className="mb-4 mt-6 ">
 								<h2 className="text-lg font-medium text-white  mb-5 text-center">
-									{allLists.public[selectedIndex].name}
+									{allLists.private[selectedIndex].name}
 								</h2>
 								<h2 className={"text-base font-medium text-white mb-6 my-auto"}>
-									{allLists.public[selectedIndex].tags.map((tag, index) => (
+									{allLists.private[selectedIndex].tags.map((tag, index) => (
 										<>#{tag} </>
 									))}
 								</h2>
@@ -132,7 +132,7 @@ export default function PrivateList({ allLists, selectedIndex }) {
 									placeholder={"change playlist name..."}
 								/>
 								<h2 className={"text-base font-medium text-white mb-2 my-auto"}>
-									{allLists.public[selectedIndex].tags.map((tag, index) => (
+									{allLists.private[selectedIndex].tags.map((tag, index) => (
 										<>#{tag} </>
 									))}
 								</h2>
@@ -154,7 +154,7 @@ export default function PrivateList({ allLists, selectedIndex }) {
 						<>
 							<div className="mb-4 mt-6 ">
 								<h2 className="text-lg font-medium text-white  mb-2 text-center">
-									{allLists.public[selectedIndex].name}
+									{allLists.private[selectedIndex].name}
 								</h2>
 								<input
 									className="

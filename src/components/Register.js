@@ -1,35 +1,33 @@
-
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import useUsers from "../components/useUsers"
-import useFormData from "./useFormData"
+import useUsers from "../components/useUsers";
+import useFormData from "./useFormData";
 import { useAuth } from "./ContextProvider";
 
 const defaultData = {
-        userName: '',
-        email: '',
-        password: ''
-      };
+	userName: "",
+	email: "",
+	password: "",
+};
 
-export default function Register({ screenHandler }) {
-	const [ data, handleChange ] = useFormData(defaultData)
-    const {register, logout} = useUsers()
-    const {isLoggedIn} = useAuth()
+export default function Register({ screenHandler, handleClose }) {
+	const [data, handleChange] = useFormData(defaultData);
+	const { register, logout } = useUsers();
+	const { isLoggedIn } = useAuth();
 
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-
-    useEffect( () => {
-        if (isLoggedIn()) 
-            {return  navigate(`/moodies/profiles/${data.userName}`)}}
-        ,[isLoggedIn])
+	// useEffect(() => {
+	// 	if (isLoggedIn()) {
+	// 		return navigate(`/moodies/users/${data.userName}`);
+	// 	}
+	// }, [isLoggedIn]);
 
 	return (
 		<>
-
-            {/* {isLoggedIn() && <h1>In register: Is logged in</h1>} */}
-            {/* <button className="btn-primary" onClick={()=>{logout()}}> Log out</button> */}
+			{/* {isLoggedIn() && <h1>In register: Is logged in</h1>} */}
+			{/* <button className="btn-primary" onClick={()=>{logout()}}> Log out</button> */}
 
 			<div className=" max-w-xs ">
 				<div className="bg-black shadow-lg rounded-xl px-8 pt-2 pb-8 bg-opacity-80">
@@ -58,11 +56,10 @@ export default function Register({ screenHandler }) {
               ease-in-out
               m-0
               focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
-							
 							type="text"
 							placeholder={"nickcage64"}
-							name="userName" 
-                            onChange={handleChange}
+							name="userName"
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="mb-6">
@@ -89,11 +86,10 @@ export default function Register({ screenHandler }) {
               ease-in-out
               m-0
               focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
-							
 							type="text"
 							placeholder={"ghost@rider.coppola"}
-							name="email" 
-                            onChange={handleChange}
+							name="email"
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="mb-8">
@@ -120,11 +116,10 @@ export default function Register({ screenHandler }) {
               ease-in-out
               m-0
               focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
-							
 							type="password"
 							placeholder={"magicword22"}
-							name="password" 
-                            onChange={handleChange}
+							name="password"
+							onChange={handleChange}
 						/>
 						{/* <p className="text-red-500 text-xs italic">
 							This we can activate/deactivete with a state if theres mistakes
@@ -135,13 +130,14 @@ export default function Register({ screenHandler }) {
 							className="
                             bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-full font-medium text-sm  text-slate-900"
 							type="button"
-                            onClick={()=> {
-                                register({
-                                    userName:data.userName,
-                                    email:data.email,
-                                    magicword:data.password
-                                }) 
-                            }}
+							onClick={() => {
+								register({
+									userName: data.userName,
+									email: data.email,
+									magicword: data.password,
+								});
+								handleClose();
+							}}
 						>
 							register
 						</button>
@@ -156,5 +152,4 @@ export default function Register({ screenHandler }) {
 			</div>
 		</>
 	);
-
 }

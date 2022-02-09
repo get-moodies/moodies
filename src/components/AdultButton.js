@@ -1,16 +1,24 @@
-export default function AdultButton({ isAdult, setIsAdult }) {
+export default function AdultButton({
+	isAdult,
+	setIsAdult,
+	isAdultSelected,
+	setIsAdultSelected,
+}) {
 	return (
 		<>
 			<button
 				className={
-					!isAdult
+					!isAdultSelected
 						? `mx-2 my-3
                                 btn-primary`
 						: `mx-2 my-3
                                 btn-primary-selected`
 				}
+				/* eslint-disable no-unused-expressions */
 				onClick={() => {
-					setIsAdult(!isAdult);
+					isAdult
+						? (setIsAdult(false), setIsAdultSelected(false))
+						: (setIsAdult(true), setIsAdultSelected(true));
 				}}
 				data-bs-toggle="tooltip"
 				data-bs-placement="right"
