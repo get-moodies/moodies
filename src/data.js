@@ -320,3 +320,66 @@ const providers = [
 ];
 
 export { generes, genresIcons, age, regions, providers };
+
+// const moviesTemplate = [
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// 	{
+// 		title: "The Good Movie To Watch",
+// 		overview:
+// 			"Some very long description of things and so on etc etc etc etc etc etc etc etc etc etc ",
+// 		backdrop_path:
+// 			"https://hdwallpaperim.com/wp-content/uploads/2017/08/24/107270-Interstellar_movie.jpg",
+// 		poster_path:
+// 			"http://www.slashfilm.com/wp/wp-content/images/2017-bestposter-hitmansbodyguard.jpg",
+// 		release_date: "1994 05 26",
+// 	},
+// ];
