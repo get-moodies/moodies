@@ -27,9 +27,10 @@ export default function Header({ region, regionHandler }) {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	const { isLoggedIn } = useAuth();
+	const { isLoggedIn, getUserName } = useAuth();
 	const [data] = useFormData(defaultData);
 
+	console.log(getUserName());
 
 	return (
 		<div className="flex mb-5 justify-between">
@@ -43,7 +44,7 @@ export default function Header({ region, regionHandler }) {
 				</div>
 
 				{isLoggedIn() ? (
-					<Link to={`/moodies/users/${data.userName}`}>
+					<Link to={`/moodies/users/${getUserName()}`}>
 						<button
 							className="btn-primary
 							mt-1

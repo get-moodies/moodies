@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Trailer from "./Trailer";
 import SaveButton from "./SaveButton";
 import { Menu } from "@headlessui/react";
-
+import { useAuth } from "./ContextProvider";
 import { useState, useEffect } from "react";
 
 export default function MovieList({ movies, watchProvider }) {
@@ -11,6 +11,10 @@ export default function MovieList({ movies, watchProvider }) {
 	const [disabled, setDisabled] = useState(false);
 
 	const arrayLength = movies.length;
+
+	const { isLoggedIn } = useAuth();
+
+	console.log(isLoggedIn());
 
 	useEffect(() => {
 		movies.length < 8 ? setDisabled(true) : setDisabled(false);
@@ -85,7 +89,7 @@ export default function MovieList({ movies, watchProvider }) {
 			<h3 className="text-xl text-white font-medium mb-7">
 				your movie recommendations are...
 			</h3>
-			
+
 			{movies.slice(startIndex, endPoint).map((movie, index) => {
 				const netflixQuery = movie.title.split(" ").join("%20");
 				const amazonQuery = movie.title.split(" ").join("+");
@@ -173,7 +177,9 @@ export default function MovieList({ movies, watchProvider }) {
 											hide
 										</button>
 									</div>
-									<SaveButton movieId={movie.id} movieInfo={movie} />
+									{isLoggedIn() && (
+										<SaveButton movieId={movie.id} movieInfo={movie} />
+									)}
 
 									<Trailer title={movie.title} />
 									<a
