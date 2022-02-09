@@ -57,7 +57,11 @@ function useUsers() {
 			.then((res) => res.json())
 			.then((result) => {
 				setUserData(result.result);
-			});
+			})
+			.catch((e) =>  {
+				console.log(e)
+				res.status(500).send() 
+			})
 	}
 
 	function deleteUser(userName) {
@@ -86,7 +90,11 @@ function useUsers() {
 						magicword: post.magicword,
 					});
 				}
-			});
+			})
+			.catch((e) =>  {
+				console.log(e)
+				res.status(500).send() 
+			})
 	}
 
 	function login(post) {
@@ -103,7 +111,11 @@ function useUsers() {
 					localStorage.setItem("userName", JSON.stringify(post.userName));
 					localStorage.setItem("token", JSON.stringify(result.token));
 				}
-			});
+			})
+			.catch((e) =>  {
+				console.log(e)
+				res.status(500).send() 
+			})
 	}
 
 	function editUser(userName, put) {

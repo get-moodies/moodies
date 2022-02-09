@@ -14,8 +14,6 @@ export default function MovieList({ movies, watchProvider }) {
 
 	const { isLoggedIn } = useAuth();
 
-	console.log(isLoggedIn());
-
 	useEffect(() => {
 		movies.length < 8 ? setDisabled(true) : setDisabled(false);
 		if (movies.length < 8) {
@@ -101,7 +99,7 @@ export default function MovieList({ movies, watchProvider }) {
 				// console.log(netflixUrl);
 				// console.log(amazonUrl);
 				// console.log(disneyUrl);
-				console.log(movie);
+			
 
 				// const handleMouseEnter = () => {
 				// 	setHoverState(true);

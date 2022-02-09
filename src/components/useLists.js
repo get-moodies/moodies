@@ -159,7 +159,7 @@ function deleteList ( userName, listId ) {
 }
 
 function addList (post, userName) {
-    
+    console.log("inside addList" )
     fetch(urlUser + userName + list, {
         headers: {
             'Content-Type': 'application/json',
@@ -168,7 +168,13 @@ function addList (post, userName) {
         method: "POST",
         body: JSON.stringify(post)
         })
-        .then((res) => res.json())
+        .then((res) =>  {console.log("inside addList", res )
+		res.json()
+	})
+		.catch((e) =>  {
+			console.log(e)
+			res.status(500).send() 
+		})
 }
 
 function editList ( userName, listId, put) {

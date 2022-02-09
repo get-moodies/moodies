@@ -4,6 +4,7 @@ import RegisterLoginLayout from "../components/RegisterLoginLayout";
 
 import { useAuth } from "./ContextProvider";
 import useLists from "../components/useLists";
+import AddPlaylist from "../components/AddPlaylist"
 
 const style = {
 	position: "absolute",
@@ -19,8 +20,11 @@ const style = {
 export default function SaveButton({ movieId, movieInfo }) {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	const handleClose = () => {setOpen(false)
+		setIsNewPlaylistActive(false)
+	};
 	const [selectedList, setSelectedList] = useState(null);
+	const [isNewPlaylistActive, setIsNewPlaylistActive] = useState(false)
 
 	const { currentUserName, getUserName } = useAuth();
 	const { getAllLists, allLists, editList, addMovie } = useLists();
@@ -49,6 +53,9 @@ export default function SaveButton({ movieId, movieInfo }) {
 		// console.log("movie Info", movieInfo.id, movieId);
 	};
 
+	const putMovie = { movie_id: movieInfo.id, movie: movieInfo };
+
+	// console.log(isNewPlaylistActive)
 	return (
 		<>
 			<button
@@ -98,10 +105,9 @@ export default function SaveButton({ movieId, movieInfo }) {
 											setSelectedList(e.target.value);
 										}}
 									>
-										{/* {	<option value="public playlist 1"> {[...allLists.private, ...allLists.public][0].name}</option>} */}
 
 										{/* below code was causing an error */}
-
+										<option >choose a playlist</option>
 										{[...allLists.private, ...allLists.public]?.map(
 											(playlist, index) => {
 												return (
@@ -111,17 +117,6 @@ export default function SaveButton({ movieId, movieInfo }) {
 												);
 											}
 										)}
-
-										{/* <option value="watch later">watch later</option>
-										<option value="hidden">hidden</option>
-										<option value="public playlist 1">public playlist 1</option>
-										<option value="public playlist 2">public playlist 2</option>
-										<option value="private playlist 1">
-											private playlist 1
-										</option>
-										<option value="private playlist 2">
-											private playlist 2
-										</option> */}
 									</select>
 								</div>
 
@@ -130,30 +125,40 @@ export default function SaveButton({ movieId, movieInfo }) {
 										className="block text-white text-sm font-base mb-2"
 										htmlFor="password"
 									>
-										create new
+									or...
 									</label>
-									<input
+									<button
 										className="
-                                form-control
-                                block
-                                w-full
-                                px-3
-                                py-1.5
-                                text-base
-                                font-normal
-                                text-gray-700
-                                bg-white bg-clip-padding
-                                border border-solid border-gray-300
-                                rounded
-                                transition
-                                ease-in-out
-                                m-0
-                                focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
-										id="playlist name..."
-										name="playlist name..."
-										placeholder="playlist name..."
-										// onChange={handleChange}
-									/>
+											form-control
+											block
+											w-full
+											px-3
+											py-1.5
+											text-base
+											font-normal
+											text-gray-700
+											bg-white bg-clip-padding
+											border border-solid border-gray-300
+											rounded
+											transition
+											ease-in-out
+											m-0
+											focus:text-gray-700 focus:bg-white focus:border-white focus:outline-none"
+										// id="playlist name..."
+										// name="playlist name..."
+										// placeholder="playlist name..."
+									onClick={() => { setIsNewPlaylistActive(! isNewPlaylistActive) } }
+									>
+									Create new Playlist
+									</button>	
+									<div className={isNewPlaylistActive ?"text-white" : "hidden"  }>
+										<AddPlaylist 
+											handleClose = {handleClose}
+											user={userNameNow}
+											movieId={movieId}
+											putMovie={putMovie}
+										/>
+									</div>
 								</div>
 								<div className="flex justify-center">
 									<button
