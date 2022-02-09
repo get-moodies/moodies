@@ -34,16 +34,17 @@ export default function SaveButton({ movieId, movieInfo }) {
 
 	const submitHandler = () => {
 		const newObject = [...allLists.private, ...allLists.public][selectedList];
-		const updatedMovies = [...newObject.movies, movieId.toString()];
-
-		// console.log("updated", updatedMovies, "movie Info", movieInfo.id, movieId);
+		const updatedMovies = [...newObject.movies, movieId.toString()];	
 
 		const put = { ...newObject, movies: updatedMovies };
 		editList(userNameNow, put._id, put);
 
-		// const putMovie = {"movie_id" :   movieInfo.id, movie: movieInfo}
-		// addMovie(putMovie)
+		const putMovie = {"movie_id" :   movieInfo.id, movie: movieInfo}
+		addMovie(putMovie)
+
+		setOpen(false)
 		// console.log(userNameNow, put._id , put )
+		// console.log("movie Info", movieInfo.id, movieId);
 	};
 
 	return (
@@ -99,7 +100,7 @@ export default function SaveButton({ movieId, movieInfo }) {
 
 										{/* below code was causing an error */}
 
-										{/* {[...allLists.private, ...allLists.public].map(
+										{[...allLists.private, ...allLists.public].map(
 											(playlist, index) => {
 												return (
 													<option key={index} value={index}>
@@ -107,7 +108,7 @@ export default function SaveButton({ movieId, movieInfo }) {
 													</option>
 												);
 											}
-										)} */}
+										)}
 
 										{/* <option value="watch later">watch later</option>
 										<option value="hidden">hidden</option>

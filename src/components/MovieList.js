@@ -85,7 +85,7 @@ export default function MovieList({ movies, watchProvider }) {
 			<h3 className="text-xl text-white font-medium mb-7">
 				your movie recommendations are...
 			</h3>
-			{console.log(movies)}
+			
 			{movies.slice(startIndex, endPoint).map((movie, index) => {
 				const netflixQuery = movie.title.split(" ").join("%20");
 				const amazonQuery = movie.title.split(" ").join("+");
