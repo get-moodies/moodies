@@ -20,15 +20,10 @@ const {token, setToken} = useAuth( );
     
 	return (
 		<div className="App-main lg:w-[1024px] mx-auto p-5 justify-center text-center w-full">
-<<<<<<< HEAD
-			<Logout/>
-			<div>Token (please keep during development): {token}</div>
-=======
 			<div className="hidden">
 				<Logout />
 				Token (please keep during development): {token}
 			</div>
->>>>>>> main
 			<Header />
 			<Outlet />
 			<div className="backGround"></div>
