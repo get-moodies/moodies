@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/moodies/static/css/main.ec639048.css",
-    "main.js": "/moodies/static/js/main.bee91f17.js",
+    "main.css": "/moodies/static/css/main.0124668e.css",
+    "main.js": "/moodies/static/js/main.cd71d138.js",
     "static/media/scifi.png": "/moodies/static/media/scifi.1ff4987d3770c9c31d02.png",
     "static/media/western.png": "/moodies/static/media/western.d7e6f468138867c235b8.png",
     "static/media/oldies2.jpeg": "/moodies/static/media/oldies2.5311a90e00612ad9bcd1.jpeg",
@@ -35,11 +35,11 @@
     "static/media/hero.png": "/moodies/static/media/hero.9e42a28bb2393073df32.png",
     "static/media/90s2.jpeg": "/moodies/static/media/90s2.364d5fd4d18a62e72d8e.jpeg",
     "index.html": "/moodies/index.html",
-    "main.ec639048.css.map": "/moodies/static/css/main.ec639048.css.map",
-    "main.bee91f17.js.map": "/moodies/static/js/main.bee91f17.js.map"
+    "main.0124668e.css.map": "/moodies/static/css/main.0124668e.css.map",
+    "main.cd71d138.js.map": "/moodies/static/js/main.cd71d138.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec639048.css",
-    "static/js/main.bee91f17.js"
+    "static/css/main.0124668e.css",
+    "static/js/main.cd71d138.js"
   ]
 }
