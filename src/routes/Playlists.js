@@ -30,17 +30,41 @@ export default function Playlists() {
 		editUser,
 	} = useUsers();
 
-	const [allPublicPlaylists, setAllPublicPlaylists] = useState([]);
+	const [list, setList] = useState([]);
 	const [selectedList, setSelectedList] = useState(null);
+	const [isUserActive, setIsUserActive] = useState(false)
+
 	useEffect(() => {
 		getAllPublicAllUsers();
+		setList(allPublicAllUsers)
 	}, []);
 	// searchByTags("test, rainy days")
 
+	const searchHandler = (e) => { 
+		
+	if( !isUserActive )	{
+		const result = allPublicAllUsers
+			.filter( (playlist) => playlist.tags?.includes( e.target.value ))
+		e.target.value ? setList(result) : setList(allPublicAllUsers)
+	}
+	else {	
+		const result = allPublicAllUsers
+			.filter( (playlist) => playlist.editRight?.includes( e.target.value ))
+		e.target.value ? setList(result) : setList(allPublicAllUsers)
+	}
+	// const result = allPublicAllUsers.filter( (playlist) => {playlist.tags?.some( tag => e.target.value.split('#').includes(tag))})
+	// e.target.value ? setList(result) : setList(allPublicAllUsers)}
+	// const found = playlist.tags?.some( tag => e.target.value.split('#').includes(tag))
+	// console.log(e.target.value.split('#'))
+
+}
+
+
+	
 	const listHandler = (index) => {
 		index === null ? setSelectedList(null) : setSelectedList(index);
 	};
-
+	
 	return (
 		<>
 			<h1 className="text-2xl font-medium text-white text-left mt-12 mb-6">
@@ -68,8 +92,13 @@ export default function Playlists() {
 					type="info"
 					name="info"
 					placeholder={" search for playlists..."}
+					onChange={searchHandler}
 				/>
-				<button className="btn-primary mt-5 w-32">search</button>
+				{/* <button className="btn-primary mt-5 w-32">search</button> */}
+				<div className="mt-2">
+					<input type="checkbox" id="user" onChange={()=> {setIsUserActive(!isUserActive)} }/>
+					<label className="ml-2 text-white" htmlFor="user">Search by User</label>		
+ 				</div>
 			</div>
 			<h1 className="text-2xl font-medium text-white text-left mt-12 mb-6">
 				browse playlists
@@ -82,7 +111,7 @@ export default function Playlists() {
                
                 "
 			>
-				{allPublicAllUsers.map((list, index) => (
+				{list.map((list, index) => (
 					<div
 						key={list._id}
 						className="
